@@ -1,0 +1,29 @@
+Object
+	Position
+
+GameObject ()
+	Draw()
+	Update()
+
+
+Wall
+	Position
+	Width
+	Height
+
+	
+Ghost
+	Position
+
+Player
+	Position
+	
+	
+Basescreen
+
+
+Gamescreen
+
+
+Manuscreen
+
