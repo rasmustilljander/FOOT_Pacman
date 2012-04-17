@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{30D801C7-38BA-4F43-9FC1-9A7B33950CBC}</ProjectGuid>
+    <RootNamespace>Shoe_Gone</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AudioHandler.cpp" />
+    <ClCompile Include="BaseGameScreen.cpp" />
+    <ClCompile Include="BaseScreen.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Candy.cpp" />
+    <ClCompile Include="CollisionHandler.cpp" />
+    <ClCompile Include="DeathScreen.cpp" />
+    <ClCompile Include="EndScreen.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="GameScreenState.cpp" />
+    <ClCompile Include="GameTimer.cpp" />
+    <ClCompile Include="Ghost.cpp" />
+    <ClCompile Include="HUD.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MapScreen.cpp" />
+    <ClCompile Include="MenuObject.cpp" />
+    <ClCompile Include="MenuScreen.cpp" />
+    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="NonStaticGameObject.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="QuadTree.cpp" />
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="ResourceLoader.cpp" />
+    <ClCompile Include="ScreenHandler.cpp" />
+    <ClCompile Include="ScreenStateStruct.cpp" />
+    <ClCompile Include="ShaderObject.cpp" />
+    <ClCompile Include="SuperCandy.cpp" />
+    <ClCompile Include="WallObject.cpp" />
+    <ClCompile Include="Waypoints.cpp" />
+    <ClCompile Include="WorldHandler.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AudioHandler.h" />
+    <ClInclude Include="BaseGameScreen.h" />
+    <ClInclude Include="BaseScreen.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Candy.h" />
+    <ClInclude Include="CollisionHandler.h" />
+    <ClInclude Include="DeathScreen.h" />
+    <ClInclude Include="EndScreen.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="GameScreenState.h" />
+    <ClInclude Include="GameTimer.h" />
+    <ClInclude Include="Ghost.h" />
+    <ClInclude Include="HUD.h" />
+    <ClInclude Include="Main.h" />
+    <ClInclude Include="MapScreen.h" />
+    <ClInclude Include="MenuObject.h" />
+    <ClInclude Include="MenuScreen.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="NonStaticGameObject.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="QuadTree.h" />
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="ResourceLoader.h" />
+    <ClInclude Include="ScreenHandler.h" />
+    <ClInclude Include="ScreenStateStruct.h" />
+    <ClInclude Include="ShaderObject.h" />
+    <ClInclude Include="SuperCandy.h" />
+    <ClInclude Include="WallObject.h" />
+    <ClInclude Include="Waypoints.h" />
+    <ClInclude Include="WorldHandler.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
