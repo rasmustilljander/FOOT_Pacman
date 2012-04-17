@@ -25,6 +25,8 @@ class GameObject
 		ShaderObject* mShaderObject;
 
 		void CreateVertexBuffer();
+
+		void Lerp();
 };
 
 #endif
