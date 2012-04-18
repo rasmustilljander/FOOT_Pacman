@@ -2,8 +2,7 @@
 using namespace std;
 
 #include "Renderer.h"
-#include "Main.h"
-#include "ScreenHandler.h"
+//#include "ScreenHandler.h"
 
 void Renderer::Update() {
 	throw "Not yet implemented";
