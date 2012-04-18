@@ -10,6 +10,8 @@ class ShaderObject
 {
 	public:
 
+		ShaderObject();
+		~ShaderObject();
 	/// <param name="lTechniqueName">                                                                       </param>
 		void Initialize(ID3D10Device* lDevice, char* lFilename, const D3D10_INPUT_ELEMENT_DESC* lInputDesc, UINT lNumberOfElements, char* lTechniqueName, DWORD lShaderFlags);
 		void Render(UINT lPass);
