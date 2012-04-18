@@ -1,28 +1,32 @@
-#include <exception>
-using namespace std;
-
-#ifndef __Camera_h__
-#define __Camera_h__
-
-// #include "BaseScreen.h"
-
-class BaseScreen;
-class Camera;
+#ifndef CAMERA.H
+#define CAMERA.H
 
 class Camera
 {
-	public:
-		BaseScreen* baseScreen;
+public:
+	private Camera();
+	private virtual ~Camera();
 
-		void StartUp();
-		void Shutdown();
-		void UpdateView();
-		D3DXVECTOR3 getMPosition();
-	private:
-		D3DXVECTOR3 mPosition;
-		D3DXVECTOR3 mAim;
+	void StartUp();
+	void Shutdown();
+	void UpdateView();
+	void SetPosition(D3DXVECTOR3 lPlayerPos);
+	void SetLens(float lFieldOfViewY, float lAspect, float lZValueNearPlane, float lZValueFarPlane);
 
-		void Camera();
+	//Get Functions
+	D3DXMATRIX GetView() const;
+	D3DXMATRIX GetProjection() const;
+	D3DXVECTOR3 GetPosition() const;
+
+	
+private:	
+	D3DXVECTOR3 mPosition;	//Camera position
+	D3DXVECTOR3 mRight;		
+	D3DXVECTOR3 mUp;		//Up vector (0,1,0)
+	D3DXVECTOR3 mAim;		//To where the camera is looking
+
+	D3DXMATRIX mView;		//View Matrix
+	D3DXMATRIX mProjection;	//Projection Matrix
 };
 
 #endif

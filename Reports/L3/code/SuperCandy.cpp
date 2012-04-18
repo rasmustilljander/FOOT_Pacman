@@ -1,4 +1,11 @@
-
 #include "SuperCandy.h"
-#include "GameObject.h"
 
+SuperCandy::SuperCandy()
+{
+
+}
+
+SuperCandy::~SuperCandy()
+{
+
+}
