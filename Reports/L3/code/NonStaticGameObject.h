@@ -1,5 +1,3 @@
-#include <exception>
-
 #ifndef NONSTATICGAMEOBJECT_H
 #define NONSTATICGAMEOBJECT_H
 

@@ -1,5 +1,3 @@
-#include <exception>
-
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 
