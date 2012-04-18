@@ -1,19 +1,18 @@
-#include <exception>
-using namespace std;
-
-#ifndef __NonStaticGameObject_h__
-#define __NonStaticGameObject_h__
+#ifndef NONSTATICGAMEOBJECT_H
+#define NONSTATICGAMEOBJECT_H
 
 #include "GameObject.h"
 
-// class GameObject;
-class NonStaticGameObject;
 
-__abstract class NonStaticGameObject: public GameObject
+class NonStaticGameObject: public GameObject
 {
-	public:
+public:
+	NonStaticGameObject();
+	virtual ~NonStaticGameObject();
 
-		void Update(float dt);
+	void Update(float dt) = 0;
+
+
 };
 
 #endif

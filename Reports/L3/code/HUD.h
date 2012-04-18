@@ -1,4 +1,7 @@
 #include <exception>
+#include "Utilities.h"
+#include "ShaderObject.h"
+#include "Vertex.h"
 using namespace std;
 
 #ifndef __HUD_h__
@@ -6,21 +9,30 @@ using namespace std;
 
 // #include "GameScreen.h"
 
-class GameScreen;
-class HUD;
-
 class HUD
 {
-	public:
-		GameScreen* gameScreen;
+public:
+		HUD();
+		~HUD();
 
 		void Initialize(ID3D10Device* lDevice, ID3D10Effect* lEffect);
-	private:
-		ID3D10EffectShaderResourceVariable* mShaderTextureVariable2;
-		ID3D10ShaderResourceView* mResourceView2;
-		ID3DX10Font mFont;
+		void Draw();
+private:
+		void CreateVertexBuffer( ID3D10Buffer** lVB, int lSize );
 
-		void CreateVertexBuffer();
+		void CreateTextures();
+		float ConvertPixelsToClipSpace( const int lPixelDimension, const int lPixels );
+		float ConvertPixelsToClipSpaceDistance( const int lPixelDimension, const int lPixels );
+		void DisplayText();
+private:
+		ID3D10Device* mDevice;
+
+		ID3D10Effect* mEffect;
+		ID3D10EffectTechnique* mDrawTech;
+		ID3D10EffectShaderResourceVariable* mShaderTextureVariable;
+		ID3D10ShaderResourceView* mResourceView;
+		ID3DX10Font* mFont;
+
 };
 
 #endif

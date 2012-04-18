@@ -1,20 +1,19 @@
-#include <exception>
-using namespace std;
-
-#ifndef __Ghost_h__
-#define __Ghost_h__
+#ifndef GHOST_H
+#define GHOST_H
 
 #include "NonStaticGameObject.h"
 
-// class NonStaticGameObject;
-class Ghost;
-
 class Ghost: public NonStaticGameObject
 {
-	public:
+public:
+	Ghost();
+	virtual ~Ghost();
 
-		void Move(float dt);
-		void SetTargetPosition(D3DXVECTOR lTargetPosition);
+	void Update();
+	void Move(float dt);
+	void SetTargetPosition(D3DXVECTOR lTargetPosition);
+
+
 };
 
 #endif
