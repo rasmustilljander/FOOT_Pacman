@@ -5,11 +5,11 @@ using namespace std;
 //#include "ScreenHandler.h"
 
 Renderer::Renderer():	mDriverType(D3D10_DRIVER_TYPE_NULL),
-							mDevice(NULL),
-							mSwapChain(NULL),
-							mRenderTargetView(NULL),
-							mDepthStencil(NULL),
-							mDepthStencilView(NULL)
+						mDevice(NULL),
+						mSwapChain(NULL),
+						mRenderTargetView(NULL),
+						mDepthStencil(NULL),
+						mDepthStencilView(NULL)
 {
 }
 
