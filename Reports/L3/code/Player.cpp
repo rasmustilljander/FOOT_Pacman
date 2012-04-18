@@ -1,5 +1,17 @@
-
 #include "Player.h"
-#include "DeathScreen.h"
-#include "NonStaticGameObject.h"
 
+Player::Player()
+	: NonStaticGameObject()
+{
+
+}
+
+Player::~Player()
+{
+
+}
+
+void Player::Update()
+{
+
+}

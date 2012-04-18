@@ -1,14 +1,16 @@
-
-#ifndef __Candy_h__
-#define __Candy_h__
+#ifndef CANDY_H
+#define CANDY_H
 
 #include "GameObject.h"
 
-// class GameObject;
-class Candy;
-
 class Candy: public GameObject
 {
+public:
+	void Candy();
+	void ~Candy();
+
+	void Update();
+
 };
 
 #endif

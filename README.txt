@@ -25,13 +25,17 @@ Allmänna saker
 Headerfiler
 	En klass per header
 	Ordning på variabler/funktiner
-		public funktioner			
+		public
 		private funktioner
 		private variabler
 		protected funktioner
 		protected variabler
 	Get/setfunktioner skrivs direkt i header filen och läggs sist
 	Get funktioner skall vara "const"
+	Header guard should use the following standard
+		#ifndef MYCLSS_H
+		#define MYCLSS_H
+		#endif
 	
 Variabler
 	Börja alltid med liten bokstav
