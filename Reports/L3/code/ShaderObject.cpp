@@ -2,7 +2,7 @@
 using namespace std;
 
 #include "ShaderObject.h"
-#include "GameObject.h"
+
 
 void ShaderObject::Initialize(ID3D10Device* lDevice, char* lFilename, const D3D10_INPUT_ELEMENT_DESC* lInputDesc, UINT lNumberOfElements, char* lTechniqueName, DWORD lShaderFlags) {
 	throw "Not yet implemented";
@@ -12,7 +12,7 @@ void ShaderObject::Render(UINT lPass) {
 	throw "Not yet implemented";
 }
 
-void ShaderObject::SetMatrix(char* lVariable, D3DXMatrix& mD3DXMatrix) {
+void ShaderObject::SetMatrix(char* lVariable, D3DXMATRIX& mD3DXMatrix) {
 	throw "Not yet implemented";
 }
 
@@ -20,7 +20,7 @@ void ShaderObject::SetFloat(char* lVariable, float lFloat) {
 	throw "Not yet implemented";
 }
 
-void ShaderObject::SetFloat4(char* lVariable, D3DXVector4* lVector) {
+void ShaderObject::SetFloat4(char* lVariable, D3DXVECTOR4* lVector) {
 	throw "Not yet implemented";
 }
 
