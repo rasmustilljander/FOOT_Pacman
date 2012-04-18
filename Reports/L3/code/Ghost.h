@@ -9,8 +9,7 @@ public:
 	Ghost();
 	virtual ~Ghost();
 
-	void Update();
-	void Move(float dt);
+	void Update(float lDT);
 	void SetTargetPosition(D3DXVECTOR lTargetPosition);
 
 

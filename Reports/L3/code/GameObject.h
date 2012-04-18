@@ -3,18 +3,18 @@
 
 class GameObject
 {
-	public:
-		//ShaderObject* shaderObject;
+public:
+		
 
-		void Initialize(ID3D10Device* lDevice, ID3D10Effect* lEffect);
-		void Draw();
-	protected:
-		/*D3DXVECTOR3 mPosition;
-		D3DXMATRIX mWorldMatrix;
-		ID3D10EffectShaderResourceVariable* mShaderTextureVariable;
-		ID3D10ShaderResourceView* mResourceView;
-		ID3D10Buffer mVertexBuffer;
-		ShaderObject* mShaderObject;*/
+	void Initialize(ID3D10Device* lDevice, ID3D10Effect* lEffect);
+	void Draw();
+protected:
+	/*D3DXVECTOR3 mPosition;
+	D3DXMATRIX mWorldMatrix;
+	ID3D10EffectShaderResourceVariable* mShaderTextureVariable;
+	ID3D10ShaderResourceView* mResourceView;
+	ID3D10Buffer mVertexBuffer;
+	ShaderObject* mShaderObject;*/
 
 protected:
 	void CreateVertexBuffer();

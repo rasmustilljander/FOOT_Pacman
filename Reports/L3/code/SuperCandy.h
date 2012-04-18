@@ -5,6 +5,8 @@
 
 class SuperCandy: public GameObject
 {
+public:
+
 	SuperCandy();
 	virtual ~SuperCandy();
 
