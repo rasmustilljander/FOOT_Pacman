@@ -21,7 +21,7 @@ public:
 		virtual ~BaseScreen();
 		void virtual StartUp(ID3D10Device* lDevice, ID3D10Effect* lEffect) = NULL;
 		void virtual ShutDown() = NULL;
-		void virtual Activate(GameScreenState lGameScreenState) = NULL;
+		void virtual ActivateScreen(GameScreenState lGameScreenState) = NULL;
 		GameScreenState GetScreenState() const
 		{
 			return mGameScreenState;
