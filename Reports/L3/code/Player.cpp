@@ -11,7 +11,7 @@ Player::~Player()
 
 }
 
-void Player::Update()
+void Player::Update(float lDT)
 {
 
 }

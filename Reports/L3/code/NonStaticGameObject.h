@@ -10,7 +10,7 @@ public:
 	NonStaticGameObject();
 	virtual ~NonStaticGameObject();
 
-	void Update(float dt) = 0;
+	void Update(float lDT) = 0;
 
 
 };

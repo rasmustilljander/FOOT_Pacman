@@ -12,7 +12,7 @@ Ghost::~Ghost()
 }
 
 
-void Ghost::Move(float dt) 
+void Ghost::Update(float lDT) 
 {
 
 }

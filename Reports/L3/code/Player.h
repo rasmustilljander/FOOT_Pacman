@@ -8,7 +8,8 @@ class Player: public NonStaticGameObject
 public:
 	Player();
 	virtual ~Player();
-		
+	
+	Update(float lDT);
 
 };
 
