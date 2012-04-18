@@ -4,52 +4,137 @@ AudioHandler::AudioHandler()
 {
 	FMOD::System_Create(&mSystem);
 	
+	mChannel1 = 0;
+	mChannel2 = 0;
+	mChannel3 = 0;
+
+	mListenerFlag = true;
+
 }
 
 
 AudioHandler::~AudioHandler()
 {
-	delete mSystem;
-	delete mSound1;
-	delete mSound2;
-	delete mSound3;
+	StopSound();
+
+	mBackgroundSound1->release();
+	mBackgroundSound2->release();
+	//mCandySound->release();
+	//mDeathSound->release();
+	//mGhostSound->release();
+	//mMenuSound->release();
+	//mSuperCandySound->release();
+
+	delete mBackgroundSound1;
+	delete mBackgroundSound2;
+	delete mCandySound;
+	delete mDeathSound;
+	delete mGhostSound;
+	delete mMenuSound;
+	delete mSuperCandySound;
+	
 	delete mChannel1;
 	delete mChannel2;
 	delete mChannel3;
+
+	mSystem->close();
+	mSystem->release();
+	delete mSystem;
 }
 
 void AudioHandler::Initialize()
 {
-	mSystem->getNumDrivers(&mNumDrivers);
-	mSystem->getDriverCaps(0, &mCaps, 0, &mSpeakerMode);
-	mSystem->setSpeakerMode(mSpeakerMode);
+	mSystem->getNumDrivers( &mNumDrivers);
+	mSystem->getDriverCaps( 0, &mCaps, 0, &mSpeakerMode);
+	mSystem->setSpeakerMode( mSpeakerMode);
 
-	if (caps & FMOD_CAPS_HARDWARE_EMULATED)
+	if (mCaps & FMOD_CAPS_HARDWARE_EMULATED)
 		mSystem->setDSPBufferSize(1024, 10);
 
 	mSystem->getDriverInfo(0, mName, 256, 0);
 
-	if (strstr(name, "SigmaTel"))   /* Sigmatel sound devices crackle for some reason if the format is PCM 16bit.  PCM floating point output seems to solve it. */
-		mSystem->setSoftwareFormat(48000, FMOD_SOUND_FORMAT_PCMFLOAT, 0,0, FMOD_DSP_RESAMPLER_LINEAR);
+	result = mSystem->init(100, FMOD_INIT_NORMAL, 0);
 
-    if (!mSystem->init(100, FMOD_INIT_NORMAL, 0))         /* Ok, the speaker mode selected isn't supported by this soundcard.  Switch it back to stereo... */
-    {
-        mSystem->setSpeakerMode(FMOD_SPEAKERMODE_STEREO);
-		mSystem->init(100, FMOD_INIT_NORMAL, 0);/* ... and re-init. */
-    }
+	mListenerPos.x = 0;
+	mListenerPos.y = 0;
+	mListenerPos.z = 0;
 
 	mSystem->set3DSettings(1.0, DISTANCEFACTOR, 1.0f);
+
+	LoadAudio();
+
+	mChannel1->setVolume(0.75f);
+	mChannel2->setVolume(1.0f);
 }
 
-void AudioHandler::LoadAudio();
+void AudioHandler::LoadAudio()
 {
-	mSystem->createSound("../media/drumloop.wav", FMOD_3D, 0, &mSound1);
-    mSound1->set3DMinMaxDistance(0.5f * DISTANCEFACTOR, 5000.0f * DISTANCEFACTOR);
-    mSound1->setMode(FMOD_LOOP_NORMAL);
+	mSystem->createSound("Resources/Sound/a.wav", FMOD_3D, 0, &mBackgroundSound1);
+    mBackgroundSound1->set3DMinMaxDistance(0.5f * DISTANCEFACTOR, 5000.0f * DISTANCEFACTOR);
+    mBackgroundSound1->setMode(FMOD_LOOP_NORMAL);
 
-	mSystem->createSound("../media/jaguar.wav", FMOD_3D, 0, &mSound2);
-    mSound2->set3DMinMaxDistance(0.5f * DISTANCEFACTOR, 5000.0f * DISTANCEFACTOR);
-    mSound2->setMode(FMOD_LOOP_NORMAL);
+	mSystem->createSound("Resources/Sound/b.wav", FMOD_3D, 0, &mBackgroundSound2);
+    mBackgroundSound2->set3DMinMaxDistance(0.5f * DISTANCEFACTOR, 5000.0f * DISTANCEFACTOR);
+    mBackgroundSound2->setMode(FMOD_LOOP_NORMAL);
+}
 
-    mSystem->createSound("../media/swish.wav", FMOD_SOFTWARE | FMOD_2D, 0, &mSound3);
+void AudioHandler::UpdatePosition(float x, float y, float z)	//Due to simplicity the naming standard is thrown out of the window here
+{
+	FMOD_VECTOR lNewPosition;
+	FMOD_VECTOR lVelocity;
+
+	lNewPosition.x = x * DISTANCEFACTOR;
+	lNewPosition.y = y * DISTANCEFACTOR;
+	lNewPosition.z = z * DISTANCEFACTOR;
+
+	lVelocity.x = (lNewPosition.x - mListenerPos.x) * (1000 / INTERFACE_UPDATETIME);
+    lVelocity.y = (lNewPosition.y - mListenerPos.y) * (1000 / INTERFACE_UPDATETIME);
+    lVelocity.z = (lNewPosition.z - mListenerPos.z) * (1000 / INTERFACE_UPDATETIME);
+
+	mListenerPos = lNewPosition;
+
+	mSystem->update();
+}
+
+void AudioHandler::PlayBackgroundSound()
+{
+	
+    FMOD_VECTOR lPosision = { -10.0f * DISTANCEFACTOR, 0.0f, 0.0f };
+    FMOD_VECTOR lVelocity = {  0.0f, 0.0f, 0.0f };
+
+    mSystem->playSound(FMOD_CHANNEL_FREE, mBackgroundSound1, true, &mChannel1);
+    mChannel1->set3DAttributes(&lPosision, &lVelocity);
+    mChannel1->setPaused(false);
+	
+	
+    FMOD_VECTOR lPosision2 = { 10.0f * DISTANCEFACTOR, 0.0f, 0.0f };
+    FMOD_VECTOR lVelocity2 = { 0.0f, 0.0f, 0.0f };
+
+    mSystem->playSound(FMOD_CHANNEL_FREE, mBackgroundSound2, true, &mChannel2);
+    mChannel2->set3DAttributes(&lPosision2, &lVelocity2);
+    mChannel2->setPaused(false);
+	
+		
+}
+
+void AudioHandler::StopSound()
+{
+	mChannel1->stop();
+	mChannel2->stop();
+	mChannel3->stop();
+}
+
+
+
+float AudioHandler::getPositionX()
+{
+	return mListenerPos.x;
+}
+float AudioHandler::getPositionY()
+{
+	return mListenerPos.y;
+}
+float AudioHandler::getPositionZ()
+{
+	return mListenerPos.z;
 }

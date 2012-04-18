@@ -4,32 +4,68 @@
 
 #pragma comment (lib, "Resources/lib/fmodex_vc.lib")
 
+namespace	//This namespace is anonymous, shoudl solve the const issues
+{
+	//TODO
+	//Change the INTERFACE_UPDATETIME to comply with the actual later
+	const int   INTERFACE_UPDATETIME = 50;      // 50ms update for interface
+	const float DISTANCEFACTOR = 1.0f;          // Units per meter.  I.e feet would = 3.28.  centimeters would = 100.
+
+}
+
+
+
 class AudioHandler
 {
 public:
+	FMOD_RESULT      result;
+
 	AudioHandler();
 	~AudioHandler();
 
-	void Initialise();
-	void LoadAudio();
+	void Initialize();
+	//Play sound functions 
+	void PlayBackgroundSound();
+	void PlayCandySound();
+	void PlayDeathSound();
+	void PlayGhostSound();
+	void PlayMenuSound();	
+	void PlaySuperCandySound();
+	void StopSound();
 
-	void PlayGhostAudio();
-	void PlayBackgroundAudio(float x, float y, float z);
+	void UpdatePosition(float x, float y, float z);
+
+	void ERRCHECK(FMOD_RESULT result);
+
+	float getPositionX();
+	float getPositionY();
+	float getPositionZ();
+
 private:
 	FMOD::System*    mSystem;
-    FMOD::Sound*     mSound1;
-	FMOD::Sound*	 mSound2;
-	FMOD::SOUND*	 mSound3;
-    FMOD::Channel*   mChannel1 = 0;
-	FMOD::Channel*	 mChannel2 = 0;
-	FMOD::Channel*   mChannel3 = 0;
-    int              mKey;
+	//Sounds
+    FMOD::Sound*     mBackgroundSound1;
+	FMOD::Sound*	 mBackgroundSound2;
+	FMOD::Sound*	 mCandySound;
+	FMOD::Sound*	 mDeathSound;
+	FMOD::Sound*	 mGhostSound;
+	FMOD::Sound*	 mMenuSound;
+	FMOD::Sound*	 mSuperCandySound;
+	//Channels
+    FMOD::Channel*   mChannel1;
+	FMOD::Channel*	 mChannel2;
+	FMOD::Channel*   mChannel3;
+  
 	int				 mNumDrivers;
-    bool             mListenerFlag = true;
-    FMOD_VECTOR      mListenerPos  = { 0.0f, 0.0f, -1.0f * DISTANCEFACTOR };
+    bool             mListenerFlag;
+    FMOD_VECTOR      mListenerPos;
     FMOD_SPEAKERMODE mSpeakerMode;
     FMOD_CAPS        mCaps;
     char             mName[256];
-private:
 
-}
+	
+
+private:
+	void LoadAudio();
+
+};
