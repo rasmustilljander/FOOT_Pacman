@@ -72,7 +72,7 @@ HRESULT InitWindow( HINSTANCE hInstance, int nCmdShow )
 	wcex.hCursor        = LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
 	wcex.lpszMenuName   = NULL;
-	wcex.lpszClassName  = L"Shoe-gone";
+	wcex.lpszClassName  = "Shoe-gone";
 	wcex.hIconSm        = 0;
 	if( !RegisterClassEx(&wcex) )
 		return E_FAIL;
@@ -82,8 +82,8 @@ HRESULT InitWindow( HINSTANCE hInstance, int nCmdShow )
 	RECT rc = { 0, 0, 1024, 768 };
 	AdjustWindowRect( &rc, WS_OVERLAPPEDWINDOW, FALSE );
 	
-	if(!(g_hWnd = CreateWindow(	L"Shoe-gone",
-							L"Shoe-gone",
+	if(!(g_hWnd = CreateWindow(	"Shoe-gone",
+							"Shoe-gone",
 							WS_OVERLAPPEDWINDOW,
 							CW_USEDEFAULT,
 							CW_USEDEFAULT,

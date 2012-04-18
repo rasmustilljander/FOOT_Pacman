@@ -13,15 +13,15 @@ class ShaderObject
 		ShaderObject();
 		~ShaderObject();
 	/// <param name="lTechniqueName">                                                                       </param>
-		void Initialize(ID3D10Device* lDevice, char* lFilename, const D3D10_INPUT_ELEMENT_DESC* lInputDesc, UINT lNumberOfElements, char* lTechniqueName, DWORD lShaderFlags);
+		HRESULT Initialize(ID3D10Device* lDevice, char* lFilename, const D3D10_INPUT_ELEMENT_DESC* lInputDesc, UINT lNumberOfElements, char* lTechniqueName, DWORD lShaderFlags);
 		void Render(UINT lPass);
 		void SetMatrix(char* lVariable, D3DXMATRIX& mD3DXMatrix);
 		void SetFloat(char* lVariable, float lFloat);
 		void SetFloat4(char* lVariable, D3DXVECTOR4* lVector);
 		void Setint(char* lVariable, int lInt);
-		void SetBool(char* lVariable);
+		void SetBool(char* lVariable, bool lBool);
 		void SetRawData(char* lVariable, void* lData, size_t lSize);
-		void SetResource(char* lVariable);
+		void SetResource(char* lVariable, ID3D10ShaderResourceView* lShaderResourceView);
 		ID3D10EffectTechnique* GetTechnique();
 		ID3D10EffectTechnique* GetTechniqueByName(char* lVariable);
 		void SetTechniqueByName(char* lVariable);
