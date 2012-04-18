@@ -19,9 +19,9 @@ class ShaderObject
 		void SetFloat(char* lVariable, float lFloat);
 		void SetFloat4(char* lVariable, D3DXVECTOR4* lVector);
 		void Setint(char* lVariable, int lInt);
-		void SetBool(char* lVariable);
+		void SetBool(char* lVariable, bool lBool);
 		void SetRawData(char* lVariable, void* lData, size_t lSize);
-		void SetResource(char* lVariable);
+		void SetResource(char* lVariable, ID3D10ShaderResourceView* lShaderResourceView);
 		ID3D10EffectTechnique* GetTechnique();
 		ID3D10EffectTechnique* GetTechniqueByName(char* lVariable);
 		void SetTechniqueByName(char* lVariable);

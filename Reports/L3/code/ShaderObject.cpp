@@ -104,46 +104,46 @@ void ShaderObject::SetMatrix(char* lVariable, D3DXMATRIX& mD3DXMatrix)
 
 void ShaderObject::SetFloat(char* lVariable, float lFloat) 
 {
-	throw "Not yet implemented";
+	mEffect->GetVariableByName(lVariable)->AsScalar()->SetFloat(lFloat);
 }
 
 void ShaderObject::SetFloat4(char* lVariable, D3DXVECTOR4* lVector) 
 {
-	throw "Not yet implemented";
+	mEffect->GetVariableByName(lVariable)->AsVector()->SetFloatVector((float*)&lVector);
 }
 
 void ShaderObject::Setint(char* lVariable, int lInt) 
 {
-	throw "Not yet implemented";
+	mEffect->GetVariableByName(lVariable)->AsScalar()->SetInt(lInt);
 }
 
-void ShaderObject::SetBool(char* lVariable) 
+void ShaderObject::SetBool(char* lVariable, bool lBool) 
 {
-	throw "Not yet implemented";
+	mEffect->GetVariableByName(lVariable)->AsScalar()->SetBool(lBool);
 }
 
 void ShaderObject::SetRawData(char* lVariable, void* lData, size_t lSize) 
 {
-	throw "Not yet implemented";
+	mEffect->GetVariableByName(lVariable)->SetRawValue(lData, 0, (UINT)lSize);
 }
 
-void ShaderObject::SetResource(char* lVariable) 
+void ShaderObject::SetResource(char* lVariable, ID3D10ShaderResourceView* lShaderResourceView) 
 {
-	throw "Not yet implemented";
+	mEffect->GetVariableByName(lVariable)->AsShaderResource()->SetResource(lShaderResourceView);
 }
 
 ID3D10EffectTechnique* ShaderObject::GetTechnique() 
 {
-	throw "Not yet implemented";
+	return mEffectTechnique;
 }
 
 ID3D10EffectTechnique* ShaderObject::GetTechniqueByName(char* lVariable) 
 {
-	throw "Not yet implemented";
+	return mEffect->GetTechniqueByName(lVariable);
 }
 
 void ShaderObject::SetTechniqueByName(char* lVariable) 
 {
-	throw "Not yet implemented";
+	mEffectTechnique = mEffect->GetTechniqueByName(lVariable);
 }
 
