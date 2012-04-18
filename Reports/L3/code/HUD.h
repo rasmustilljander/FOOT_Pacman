@@ -21,8 +21,8 @@ private:
 		void CreateVertexBuffer( ID3D10Buffer** lVB, int lSize );
 
 		void CreateTextures();
-		float ConvertPixelsToClipSpace( const int lPixelDimenson, const int lPixels );
-		float ConvertPixelsToClipSpaceDistance( const int lPixelDimensoin, const int lPixels );
+		float ConvertPixelsToClipSpace( const int lPixelDimension, const int lPixels );
+		float ConvertPixelsToClipSpaceDistance( const int lPixelDimension, const int lPixels );
 		void DisplayText();
 private:
 		ID3D10Device* mDevice;
@@ -30,7 +30,7 @@ private:
 		ID3D10Effect* mEffect;
 		ID3D10EffectTechnique* mDrawTech;
 		ID3D10EffectShaderResourceVariable* mShaderTextureVariable;
-		ID3D10ShaderResourceView* mResourceView2;
+		ID3D10ShaderResourceView* mResourceView;
 		ID3DX10Font* mFont;
 
 };
