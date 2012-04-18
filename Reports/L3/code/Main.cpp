@@ -4,7 +4,6 @@
 HWND		g_hWnd;   
 HINSTANCE	g_hInst;
 
-
 HRESULT             InitWindow( HINSTANCE hInstance, int nCmdShow );
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 
@@ -17,8 +16,12 @@ LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 //--------------------------------------------------------------------------------------
 int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow )
 {
+	Renderer renderer;
+
 	if( FAILED( InitWindow( hInstance, nCmdShow ) ) )
 		return 0;
+
+	renderer.Initialize(&g_hWnd);
 
 	__int64 cntsPerSec = 0;
 	QueryPerformanceFrequency((LARGE_INTEGER*)&cntsPerSec);
@@ -40,6 +43,9 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 			__int64 currTimeStamp = 0;
 			QueryPerformanceCounter((LARGE_INTEGER*)&currTimeStamp);
 			float dt = (currTimeStamp - prevTimeStamp) * secsPerCnt;	
+
+			renderer.Update();
+			renderer.Draw();
 
 			prevTimeStamp = currTimeStamp;
 	}

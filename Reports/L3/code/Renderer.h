@@ -9,18 +9,28 @@ using namespace std;
 
 class Renderer
 {
-	public:
-		Main* main;
-		//ScreenHandler* screenHandler;
-
+public:
+		Renderer();
+		~Renderer();
 		void Update();
 		void Draw();
-		void Initialize();
-	private:
-		ScreenHandler* mScreenHandler;
-
+		void Initialize(HWND* lHwnd);
+private:
+		void CreateSwapChain();
 		void SetUpViewPort();
-		void CreateBackBuffer();
+		void CreateBackBufferAndRenderTarget();
+private:
+	UINT					mWidth, mHeight;
+	HWND*					hWnd;
+
+	D3D10_DRIVER_TYPE       mDriverType;
+	ID3D10Device*           mDevice;
+	IDXGISwapChain*         mSwapChain;
+	ID3D10RenderTargetView* mRenderTargetView;
+	ID3D10Texture2D*        mDepthStencil;
+	ID3D10DepthStencilView* mDepthStencilView;
+	ID3D10RasterizerState*	mRastState;
+
 };
 
 #endif
