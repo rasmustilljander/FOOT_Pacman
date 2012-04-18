@@ -1,11 +1,11 @@
-#include <exception>
-using namespace std;
-
 #include "BaseScreen.h"
 
+BaseScreen::BaseScreen()
+{
+}
 
-void BaseScreen::Initialize(ID3D10Device* lDevice, ID3D10Effect* lEffect) {
-	throw "Not yet implemented";
+BaseScreen::~BaseScreen()
+{
 }
 
 void BaseScreen::Update() {

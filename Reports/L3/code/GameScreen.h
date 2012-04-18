@@ -1,6 +1,6 @@
 
-#ifndef __GameScreen_h__
-#define __GameScreen_h__
+#ifndef GAMESCREEN_H
+#define GAMESCREEN_H
 
 // #include "HUD.h"
 // #include "CollisionHandler.h"
@@ -10,6 +10,11 @@
 class GameScreen: public BaseGameScreen
 {
 	public:
+		GameScreen();
+		~GameScreen();
+		void StartUp(ID3D10Device* lDevice, ID3D10Effect* lEffect);
+		void ShutDown();
+	
 	//	HUD* HUD;
 		//CollisionHandler* collisionHandler;
 

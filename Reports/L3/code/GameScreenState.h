@@ -1,11 +1,19 @@
 
-#ifndef __GameScreenState_h__
-#define __GameScreenState_h__
+#ifndef GAMESCREENSTATE_H
+#define GAMESCREENSTATE_H
 
-// enum GameScreenState;
+
+
+
 
 enum GameScreenState
 {
+	Death,
+	End,
+	Ingame,
+	Map,
+	Menu
 };
+
 
 #endif

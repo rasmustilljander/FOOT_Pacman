@@ -1,33 +1,41 @@
 #include <exception>
-using namespace std;
 
-#ifndef __ScreenHandler_h__
-#define __ScreenHandler_h__
+#include "BaseScreen.h"
+#include "GameScreen.h"
+#include "MapScreen.h"
+#include "DeathScreen.h"
+#include "EndScreen.h"
+#include "MenuScreen.h"
+
+#ifndef SCREENHANDLER_H
+#define SCREENHANDLER_H
 
 // #include "Renderer.h"
-#include "ScreenStateStruct.h"
-#include "BaseScreen.h"
-#include "GameScreenState.h"
+
 
 
 class ScreenHandler
 {
-	public:
-	//	Renderer* renderer;
-		ScreenStateStruct* screenStateStruct;
-		BaseScreen* baseScreen;
-		GameScreenState* gameScreenState;
+public:
+	ScreenHandler();
+	~ScreenHandler();
+	void Update();
+	void Draw();
+	void Initialize(ID3D10Device* lDevice, ID3D10Effect* lEffect);
 
-		void Update();
-		void Draw();
-		void Initialize(ID3D10Device* lDevice, ID3D10Effect* lEffect);
-	private:
-		/*ScreenStateStruct mScreenStateStruct;
-		GameScreen* mGameScreen;
-		DeathScreen* mDeathScreen;
-		MapScreen* mMapScreen;
-		EndScreen* mEndScreen;
-		MenuScreen* mMenuScreen;*/
+private:
+	void SwapScreenState(GameScreenState lScreenState);
+
+private:	
+	GameScreen* mGameScreen;
+	DeathScreen* mDeathScreen;
+	MapScreen* mMapScreen;
+	EndScreen* mEndScreen;
+	MenuScreen* mMenuScreen;
+	BaseScreen* mScreen;
+
+	
+	GameScreenState mPrevGameScreenState;
 
 };
 

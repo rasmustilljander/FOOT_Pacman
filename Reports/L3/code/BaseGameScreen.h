@@ -10,11 +10,11 @@
 
 class BaseGameScreen: public BaseScreen
 {
-	public:
-	//	GameTimer* gameTimer;
-	//	WorldHandler* worldHandler;
+public:
+		BaseGameScreen();
+		virtual ~BaseGameScreen();
 
-	protected:
+protected:
 		float mDeltaTime;
 		//WorldHandler mWorldHandler;
 		//GameTimer* mGameTimer;
