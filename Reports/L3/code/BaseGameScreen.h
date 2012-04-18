@@ -6,21 +6,18 @@
 // #include "WorldHandler.h"
 #include "BaseScreen.h"
 
-class GameTimer;
-class WorldHandler;
-// class BaseScreen;
-class BaseGameScreen;
+
 
 class BaseGameScreen: public BaseScreen
 {
-	public:
-		GameTimer* gameTimer;
-		WorldHandler* worldHandler;
+public:
+		BaseGameScreen();
+		virtual ~BaseGameScreen();
 
-	protected:
+protected:
 		float mDeltaTime;
-		WorldHandler mWorldHandler;
-		GameTimer* mGameTimer;
+		//WorldHandler mWorldHandler;
+		//GameTimer* mGameTimer;
 
 };
 

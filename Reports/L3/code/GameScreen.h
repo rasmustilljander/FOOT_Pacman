@@ -1,21 +1,22 @@
 
-#ifndef __GameScreen_h__
-#define __GameScreen_h__
+#ifndef GAMESCREEN_H
+#define GAMESCREEN_H
 
 // #include "HUD.h"
 // #include "CollisionHandler.h"
 #include "BaseGameScreen.h"
 
-class HUD;
-class CollisionHandler;
-// class BaseGameScreen;
-class GameScreen;
 
 class GameScreen: public BaseGameScreen
 {
 	public:
-		HUD* HUD;
-		CollisionHandler* collisionHandler;
+		GameScreen();
+		~GameScreen();
+		void StartUp(ID3D10Device* lDevice, ID3D10Effect* lEffect);
+		void ShutDown();
+	
+	//	HUD* HUD;
+		//CollisionHandler* collisionHandler;
 
 	private:
 		bool mSuperCandyInEffect;

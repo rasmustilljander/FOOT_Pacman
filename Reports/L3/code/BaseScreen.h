@@ -1,35 +1,38 @@
 #include <exception>
-using namespace std;
+#include "Utilities.h"
+#include "GameScreenState.h"
 
-#ifndef __BaseScreen_h__
-#define __BaseScreen_h__
 
-// #include "ScreenHandler.h"
+#ifndef BASESCREEN_H
+#define BASESCREEN_H
+
+//#include "ScreenHandler.h"
 // #include "Camera.h"
 // #include "AudioHandler.h"
 // #include "KeyboardInputHandler.h"
 
-class ScreenHandler;
-class Camera;
-class AudioHandler;
-class KeyboardInputHandler;
-class BaseScreen;
+
+
 
 class BaseScreen
 {
-	public:
-		ScreenHandler* screenHandler;
-		Camera* camera;
-		AudioHandler* audioHandler;
-		KeyboardInputHandler* keyboardInputHandler;
-
-		void Initialize(ID3D10Device* lDevice, ID3D10Effect* lEffect);
+public:
+		BaseScreen();
+		virtual ~BaseScreen();
+		void virtual StartUp(ID3D10Device* lDevice, ID3D10Effect* lEffect) = NULL;
+		void virtual ShutDown() = NULL;
+		void virtual Activate(GameScreenState lGameScreenState) = NULL;
+		GameScreenState GetScreenState() const
+		{
+			return mGameScreenState;
+		}
 		void Update();
 		void Draw();
-	protected:
+protected:
+		GameScreenState mGameScreenState;
 		static int mScore;
-		Camera mCamera;
-		AudioHandler mAudioHandler;
+		//Camera mCamera;
+		//AudioHandler mAudioHandler;
 
 };
 
