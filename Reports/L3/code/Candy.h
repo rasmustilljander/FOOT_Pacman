@@ -7,7 +7,7 @@ class Candy: public GameObject
 {
 public:
 	void Candy();
-	void ~Candy();
+	void virtual ~Candy();
 
 	void Update();
 
