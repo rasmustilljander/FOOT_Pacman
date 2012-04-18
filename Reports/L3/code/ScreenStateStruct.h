@@ -4,14 +4,12 @@
 
 // #include "ScreenHandler.h"
 
-class ScreenHandler;
-class ScreenStateStruct;
 
 class ScreenStateStruct
 {
 	public:
-		GameState mGameState;
-		ScreenHandler* screenHandler;
+		//GameState mGameState;
+		//ScreenHandler* screenHandler;
 
 };
 

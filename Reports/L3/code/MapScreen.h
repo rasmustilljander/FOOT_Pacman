@@ -4,8 +4,6 @@
 
 #include "BaseScreen.h"
 
-// class BaseScreen;
-class MapScreen;
 
 class MapScreen: public BaseScreen
 {

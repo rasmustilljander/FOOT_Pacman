@@ -5,15 +5,12 @@
 // #include "MenuObject.h"
 #include "BaseScreen.h"
 
-class MenuObject;
-// class BaseScreen;
-class MenuScreen;
 
 class MenuScreen: public BaseScreen
 {
 	public:
-		MenuScreen* menuScreen;
-		MenuObject* menuObject;
+	//	MenuScreen* menuScreen;
+	//	MenuObject* menuObject;
 
 };
 

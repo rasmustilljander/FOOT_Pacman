@@ -5,14 +5,12 @@
 // #include "Player.h"
 #include "BaseGameScreen.h"
 
-class Player;
-// class BaseGameScreen;
-class DeathScreen;
+
 
 class DeathScreen: public BaseGameScreen
 {
 	public:
-		Player* player;
+		//Player* player;
 
 };
 
