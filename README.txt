@@ -36,6 +36,8 @@ Headerfiler
 		#ifndef MYCLSS_H
 		#define MYCLSS_H
 		#endif
+	Destruktorer
+		Skall alltid vara virtual		
 	
 Variabler
 	Börja alltid med liten bokstav

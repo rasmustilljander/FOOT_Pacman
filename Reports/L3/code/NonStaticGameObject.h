@@ -8,7 +8,7 @@ class NonStaticGameObject: public GameObject
 {
 public:
 	NonStaticGameObject();
-	~NonStaticGameObject();
+	virtual ~NonStaticGameObject();
 
 	void Update(float dt) = 0;
 

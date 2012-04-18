@@ -1,25 +1,48 @@
-#include <exception>
-using namespace std;
-
 #include "Camera.h"
-#include "BaseScreen.h"
 
-void Camera::Camera() {
+void Camera::Camera() 
+{
+
 }
 
-void Camera::StartUp() {
-	throw "Not yet implemented";
+void Camera::StartUp() 
+{
+
 }
 
-void Camera::Shutdown() {
-	throw "Not yet implemented";
+void Camera::Shutdown() 
+{
+
 }
 
-void Camera::UpdateView() {
-	throw "Not yet implemented";
+void Camera::UpdateView() 
+{
+	D3DXMatrixLookAtLH(&mView, &mPosition, &mAim, &mUp);
 }
 
-D3DXVECTOR3 Camera::getMPosition() {
-	return this->mPosition;
+void Camera::SetPosition(D3DXVECTOR3 lPlayerPos)
+{
+	mPosition = lPlayerPos;
 }
 
+void Camera::SetLens(float lFieldOfViewY, float lAspect, float lZValueNearPlane, float lZValueFarPlane)
+{
+	D3DXMatrixPerspectiveFovLH(&mProjection, lFieldOfViewY, lAspect, lZValueFarPlane, lZValueFarPlane);
+}
+
+
+//Get Functions
+D3DXMATRIX Camera::GetView()const
+{
+	return mView;
+}
+
+D3DXMATRIX Camera::GetProjection()const
+{
+	return mProjection;
+}
+
+D3DXVECTOR3 Camera::GetPosition() const
+{
+	return this -> mPosition;
+}

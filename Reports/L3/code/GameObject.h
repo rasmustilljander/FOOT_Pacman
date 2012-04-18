@@ -4,8 +4,8 @@
 class GameObject
 {
 public:
-	public GameObject();
-	public ~GameObject();	
+	GameObject();
+	virtual ~GameObject();	
 
 	void Initialize(ID3D10Device* lDevice, ID3D10Effect* lEffect);
 	void Draw();
