@@ -13,7 +13,7 @@ public:
 		
 		void StartUp(ID3D10Device* lDevice, ID3D10Effect* lEffect);
 		void ShutDown();
-		void ActivateScreen(
+		void ActivateScreen(GameScreenState lGameScreenState);
 		//Player* player;
 private:
 	DeathScreen();
