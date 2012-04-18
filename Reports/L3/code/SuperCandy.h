@@ -1,14 +1,13 @@
-
-#ifndef __SuperCandy_h__
-#define __SuperCandy_h__
+#ifndef SUPERCANDY_H
+#define SUPERCANDY_H
 
 #include "GameObject.h"
 
-// class GameObject;
-class SuperCandy;
-
 class SuperCandy: public GameObject
 {
+	SuperCandy();
+	~SuperCandy();
+
 };
 
 #endif

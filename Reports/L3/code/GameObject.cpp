@@ -20,14 +20,7 @@ GameObject::~GameObject()
 	//delete mVertexBuffer;	
 }
 
-
-
 void GameObject::Initialize(ID3D10Device* lDevice, ID3D10Effect* lEffect) 
-{
-
-}
-
-void GameObject::Draw() 
 {
 
 }
@@ -36,4 +29,11 @@ void GameObject::CreateVertexBuffer()
 {
 
 }
+
+
+void GameObject::Draw() 
+{
+
+}
+
 
