@@ -1,5 +1,17 @@
 #include "Ghost.h"
 
+
+Ghost::Ghost()
+{
+
+}
+
+Ghost::~Ghost()
+{
+
+}
+
+
 void Ghost::Move(float dt) 
 {
 

@@ -6,7 +6,7 @@
 class SuperCandy: public GameObject
 {
 	SuperCandy();
-	~SuperCandy();
+	virtual ~SuperCandy();
 
 };
 

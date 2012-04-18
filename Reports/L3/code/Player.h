@@ -7,7 +7,7 @@ class Player: public NonStaticGameObject
 {
 public:
 	Player();
-	~Player();
+	virtual ~Player();
 		
 
 };

@@ -6,7 +6,7 @@ class WallObject: public GameObject
 {
 public:
 	WallObject();
-	~WallObject();
+	virtual ~WallObject();
 
 
 private:
