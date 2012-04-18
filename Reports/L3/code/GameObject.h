@@ -1,12 +1,5 @@
-#include <exception>
-using namespace std;
-
-#ifndef __GameObject_h__
-#define __GameObject_h__
-
-// #include "ShaderObject.h"
-
-
+#ifndef GAMEOBJECT_H
+#define GAMEOBJECT_H
 
 class GameObject
 {
@@ -23,7 +16,17 @@ class GameObject
 		ID3D10Buffer mVertexBuffer;
 		ShaderObject* mShaderObject;*/
 
-		void CreateVertexBuffer();
+protected:
+	void CreateVertexBuffer();
+
+protected:
+	ShaderObject* mShaderObject;
+	D3DXVECTOR3 mPosition;
+	D3DXMATRIX mWorldMatrix;
+	ID3D10EffectShaderResourceVariable* mShaderTextureVariable;
+	ID3D10ShaderResourceView* mResourceView;
+	ID3D10Buffer mVertexBuffer;
+
 };
 
 #endif

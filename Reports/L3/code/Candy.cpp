@@ -1,4 +1,18 @@
-
 #include "Candy.h"
-#include "GameObject.h"
 
+
+Candy::Candy()
+	: GameObject()
+{
+	//Default Contructor
+}
+
+Candy::~Candy()
+{
+
+}
+
+void Candy::Update()
+{
+
+}

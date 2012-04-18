@@ -1,18 +1,39 @@
-#include <exception>
-using namespace std;
-
 #include "GameObject.h"
-#include "ShaderObject.h"
 
-void GameObject::Initialize(ID3D10Device* lDevice, ID3D10Effect* lEffect) {
-	throw "Not yet implemented";
+GameObject::GameObject(): 
+	mShaderObject(NULL),
+	mPosition(NULL),
+	mWorldMatrix(NULL),
+	mShaderTextureVariable(NULL),
+	mResourceView(NULL),
+	mVertexBuffer(NULL)
+{
+	//Default Constructor
 }
 
-void GameObject::Draw() {
-	throw "Not yet implemented";
+GameObject::~GameObject()
+{
+	delete mShaderObject;
+	//Release Com instead
+	//delete mShaderTextureVariable;
+	//delete mResourceView;
+	//delete mVertexBuffer;	
 }
 
-void GameObject::CreateVertexBuffer() {
-	throw "Not yet implemented";
+void GameObject::Initialize(ID3D10Device* lDevice, ID3D10Effect* lEffect) 
+{
+
 }
+
+void GameObject::CreateVertexBuffer() 
+{
+
+}
+
+
+void GameObject::Draw() 
+{
+
+}
+
 
