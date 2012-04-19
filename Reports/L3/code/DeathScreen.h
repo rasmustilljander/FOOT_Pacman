@@ -11,7 +11,7 @@ class DeathScreen: public BaseGameScreen
 {
 public:
 		
-		void StartUp(ID3D10Device* lDevice, ID3D10Effect* lEffect);
+		void StartUp(ID3D10Device* lDevice);
 		void ShutDown();
 		void ActivateScreen(GameScreenState lGameScreenState);
 		//Player* player;

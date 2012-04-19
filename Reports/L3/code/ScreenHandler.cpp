@@ -52,15 +52,15 @@ void ScreenHandler::Draw()
 	mScreen->Draw();
 }
 
-void ScreenHandler::Initialize(ID3D10Device* lDevice, ID3D10Effect* lEffect) 
+void ScreenHandler::Initialize(ID3D10Device* lDevice) 
 {
 	////throw "Not yet implemented";
 	
-	mDeathScreen->StartUp(lDevice, lEffect);
-	mEndScreen->StartUp(lDevice, lEffect);
-	mGameScreen->StartUp(lDevice, lEffect);
-	mMapScreen->StartUp(lDevice, lEffect);
-	mMenuScreen->StartUp(lDevice, lEffect);
+	mDeathScreen->StartUp(lDevice);
+	mEndScreen->StartUp(lDevice);
+	mGameScreen->StartUp(lDevice);
+	mMapScreen->StartUp(lDevice);
+	mMenuScreen->StartUp(lDevice);
 	
 	
 	mPrevGameScreenState = Menu;

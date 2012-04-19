@@ -11,7 +11,7 @@ class MenuScreen: public BaseScreen
 public:
 	MenuScreen();
 	~MenuScreen();
-	void StartUp(ID3D10Device* lDevice, ID3D10Effect* lEffect);
+	void StartUp(ID3D10Device* lDevice);
 	void ShutDown();
 
 

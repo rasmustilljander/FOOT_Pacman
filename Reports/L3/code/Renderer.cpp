@@ -11,6 +11,7 @@ Renderer::Renderer():	mDriverType(D3D10_DRIVER_TYPE_NULL),
 						mDepthStencil(NULL),
 						mDepthStencilView(NULL)
 {
+	mScreenHandler = new ScreenHandler();
 }
 
 Renderer::~Renderer()
@@ -26,6 +27,8 @@ void Renderer::Draw()
 	mDevice->ClearRenderTargetView( mRenderTargetView, D3DXCOLOR(1.0f,1.0f, 1.0f, 0.0f));
 	mDevice->ClearDepthStencilView( mDepthStencilView, D3D10_CLEAR_DEPTH, 1.0f, 0 );
 
+	mScreenHandler->Draw();
+
 	mSwapChain->Present( 1, 0 );
 }
 
@@ -40,6 +43,8 @@ void Renderer::Initialize(HWND* lHwnd)
 	CreateSwapChain();
 	SetUpViewPort();
 	CreateBackBufferAndRenderTarget();
+
+	mScreenHandler->Initialize(mDevice);
 }
 
 void Renderer::CreateSwapChain()

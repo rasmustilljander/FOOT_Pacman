@@ -12,11 +12,16 @@ DeathScreen::~DeathScreen()
 
 }
 
-void DeathScreen::StartUp(ID3D10Device* lDevice, ID3D10Effect* lEffect)
+void DeathScreen::StartUp(ID3D10Device* lDevice)
 {
 
 }
 void DeathScreen::ShutDown()
+{
+
+}
+
+void DeathScreen::ActivateScreen( GameScreenState lGameScreenState)
 {
 
 }

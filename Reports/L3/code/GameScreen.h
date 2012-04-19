@@ -12,7 +12,7 @@ class GameScreen: public BaseGameScreen
 	public:
 		GameScreen();
 		~GameScreen();
-		void StartUp(ID3D10Device* lDevice, ID3D10Effect* lEffect);
+		void StartUp(ID3D10Device* lDevice);
 		void ShutDown();
 	
 	//	HUD* HUD;

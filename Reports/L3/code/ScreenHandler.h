@@ -21,7 +21,7 @@ public:
 	~ScreenHandler();
 	void Update();
 	void Draw();
-	void Initialize(ID3D10Device* lDevice, ID3D10Effect* lEffect);
+	void Initialize(ID3D10Device* lDevice);
 
 private:
 	void SwapScreenState(GameScreenState lScreenState);

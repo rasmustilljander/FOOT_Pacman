@@ -10,7 +10,7 @@ GameScreen::~GameScreen()
 {
 }
 
-void GameScreen::StartUp(ID3D10Device* lDevice, ID3D10Effect* lEffect)
+void GameScreen::StartUp(ID3D10Device* lDevice)
 {
 
 }

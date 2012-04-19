@@ -5,7 +5,7 @@ using namespace std;
 #define __Renderer_h__
 
 #include "Utilities.h"
-// #include "ScreenHandler.h"
+#include "ScreenHandler.h"
 
 class Renderer
 {
@@ -30,6 +30,8 @@ private:
 	ID3D10Texture2D*        mDepthStencil;
 	ID3D10DepthStencilView* mDepthStencilView;
 	ID3D10RasterizerState*	mRastState;
+
+	ScreenHandler* mScreenHandler;
 
 };
 
