@@ -3,7 +3,7 @@
 #include "Utilities.h"
 class Camera
 {
-
+	// HEJ
 	
 public:
 	Camera();

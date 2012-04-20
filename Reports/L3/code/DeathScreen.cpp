@@ -14,7 +14,7 @@ DeathScreen::~DeathScreen()
 
 void DeathScreen::StartUp(ID3D10Device* lDevice)
 {
-	//BaseGameScreen::StartUp(lDevice);
+	BaseGameScreen::StartUp(lDevice);
 }
 void DeathScreen::ShutDown()
 {

@@ -11,13 +11,13 @@ class DeathScreen: public BaseGameScreen
 {
 public:
 		
+		~DeathScreen();
 		void StartUp(ID3D10Device* lDevice);
 		void ShutDown();
 		void ActivateScreen(GameScreenState lGameScreenState);
 		void Draw();
 private:
-	DeathScreen();
-	~DeathScreen();
+		DeathScreen();
 };
 
 #endif
