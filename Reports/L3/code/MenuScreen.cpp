@@ -23,6 +23,10 @@ void MenuScreen::Draw()
 {
 }
 
+void MenuScreen::Update()
+{
+}
+
 void MenuScreen::ActivateScreen(GameScreenState lGameScreenState)
 {
 

@@ -17,12 +17,12 @@
 class BaseScreen
 {
 public:
-		BaseScreen();
+		
 		
 		void virtual StartUp(ID3D10Device* lDevice);
 		void virtual ShutDown() = NULL;
 		void virtual ActivateScreen(GameScreenState lGameScreenState) = NULL;
-		void Update();
+		void virtual Update() = NULL;
 		void virtual Draw() = NULL;
 		GameScreenState GetScreenState() const
 		{
@@ -35,7 +35,7 @@ protected:
 		Camera* mCamera;
 		//AudioHandler mAudioHandler;
 		virtual ~BaseScreen();
-
+		BaseScreen();
 };
 
 #endif

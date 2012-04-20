@@ -14,6 +14,7 @@ public:
 	void StartUp(ID3D10Device* lDevice);
 	void ShutDown();
 	void Draw();
+	void Update();
 	void ActivateScreen(GameScreenState lGameScreenState);
 
 };

@@ -16,11 +16,7 @@
 
 class ScreenHandler
 {
-	GameScreen mGameScreen;
-	DeathScreen mDeathScreen;
-	MapScreen mMapScreen;
-	EndScreen mEndScreen;
-	MenuScreen mMenuScreen;
+	
 public:
 	ScreenHandler();
 	~ScreenHandler();
@@ -34,7 +30,11 @@ private:
 private:	
 	
 	BaseScreen* mScreen;
-
+	GameScreen mGameScreen;
+	DeathScreen mDeathScreen;
+	MapScreen mMapScreen;
+	EndScreen mEndScreen;
+	MenuScreen* mMenuScreen;
 	
 	GameScreenState mPrevGameScreenState;
 

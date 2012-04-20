@@ -24,6 +24,10 @@ void MapScreen::Draw()
 {
 }
 
+void MapScreen::Update()
+{
+}
+
 void MapScreen::ActivateScreen(GameScreenState lGameScreenState)
 {
 }

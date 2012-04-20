@@ -29,3 +29,7 @@ void DeathScreen::ActivateScreen(GameScreenState lGameScreenState)
 void DeathScreen::Draw()
 {
 }
+
+void DeathScreen::Update()
+{
+}

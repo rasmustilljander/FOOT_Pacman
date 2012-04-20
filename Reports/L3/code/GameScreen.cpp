@@ -27,6 +27,10 @@ void GameScreen::Draw()
 	mHUD->Draw();
 }
 
+void GameScreen::Update()
+{
+}
+
 void GameScreen::ActivateScreen(GameScreenState lGameScreenState)
 {
 }

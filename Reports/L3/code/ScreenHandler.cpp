@@ -4,7 +4,6 @@
 
 ScreenHandler::ScreenHandler()
 {
-
 }
 
 ScreenHandler::~ScreenHandler()
@@ -12,7 +11,7 @@ ScreenHandler::~ScreenHandler()
 	mDeathScreen.ShutDown();
 	mGameScreen.ShutDown();
 	mEndScreen.ShutDown();
-	mMenuScreen.ShutDown();
+	mMenuScreen->ShutDown();
 	mMapScreen.ShutDown();
 }
 
@@ -35,7 +34,7 @@ void ScreenHandler::SwapScreenState(GameScreenState lGameScreenState)
 	else if(lGameScreenState == End)
 		*mScreen = mEndScreen;
 	else if(lGameScreenState == Menu)
-		*mScreen = mMenuScreen;
+		mScreen = mMenuScreen;
 	else if(lGameScreenState == Map)
 		*mScreen = mMapScreen;
 	else
@@ -52,16 +51,16 @@ void ScreenHandler::Draw()
 
 void ScreenHandler::Initialize(ID3D10Device* lDevice) 
 {
-
-	
+	mScreen = (BaseScreen*)malloc(sizeof(BaseScreen));
+	mMenuScreen = (MenuScreen*)malloc(sizeof(MenuScreen));
 	mDeathScreen.StartUp(lDevice);
 	mEndScreen.StartUp(lDevice);
 	mGameScreen.StartUp(lDevice);
 	mMapScreen.StartUp(lDevice);
-	mMenuScreen.StartUp(lDevice);
+	mMenuScreen->StartUp(lDevice);
 	
 	
 	mPrevGameScreenState = Menu;
-	*mScreen = mMenuScreen;
+	mScreen = mMenuScreen;
 }
 

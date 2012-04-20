@@ -24,6 +24,10 @@ void EndScreen::Draw()
 {
 }
 
+void EndScreen::Update()
+{
+}
+
 void EndScreen::ActivateScreen(GameScreenState lGameScreenState)
 {
 }
