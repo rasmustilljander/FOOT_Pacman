@@ -54,7 +54,7 @@ void AudioHandler::Initialize()
 	mListenerPos.x = 0;
 	mListenerPos.y = 0;
 	mListenerPos.z = 0;
-
+	mSystem->init(100, FMOD_INIT_NORMAL, 0);
 	mSystem->set3DSettings(1.0, DISTANCEFACTOR, 1.0f);
 
 	LoadAudio();
@@ -88,7 +88,10 @@ void AudioHandler::UpdatePosition(float lPosX, float lPosY, float lPosZ, float l
     lVelocity.z = (lNewPosition.z - mListenerPos.z) * (1000 / INTERFACE_UPDATETIME);
 
 	mListenerPos = lNewPosition;
-	//mListenerDir = lVelocity;
+
+	mListenerDir.x = lDirX;
+	mListenerDir.y = lDirY;
+	mListenerDir.z = lDirZ;
 
 	mSystem->update();
 }
@@ -106,7 +109,7 @@ void AudioHandler::PlayBackgroundSound()
 
     mSystem->playSound(FMOD_CHANNEL_FREE, mBackgroundSound2, true, &mChannel2);
     mChannel2->set3DAttributes(&lPosision2, &mListenerDir);
-    mChannel2->setPaused(false);	
+    mChannel2->setPaused(false);
 }
 
 void AudioHandler::StopSound()
@@ -122,9 +125,19 @@ float AudioHandler::getPositionX()
 }
 float AudioHandler::getPositionY()
 {
+	//kod är coolt för att man kan skriva den
 	return mListenerPos.y;
 }
 float AudioHandler::getPositionZ()
 {
 	return mListenerPos.z;
+}
+
+void AudioHandler::PlayTest()
+{
+	FMOD_VECTOR lPosision2 = { 10.0f * DISTANCEFACTOR, 0.0f, 0.0f };
+
+    mSystem->playSound(FMOD_CHANNEL_FREE, mBackgroundSound2, true, &mChannel2);
+    mChannel2->set3DAttributes(&lPosision2, &mListenerDir);
+    mChannel2->setPaused(false);
 }
