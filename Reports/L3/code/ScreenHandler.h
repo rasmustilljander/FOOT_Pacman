@@ -30,10 +30,10 @@ private:
 private:	
 	
 	BaseScreen* mScreen;
-	GameScreen mGameScreen;
-	DeathScreen mDeathScreen;
-	MapScreen mMapScreen;
-	EndScreen mEndScreen;
+	GameScreen* mGameScreen;
+	DeathScreen* mDeathScreen;
+	MapScreen* mMapScreen;
+	EndScreen* mEndScreen;
 	MenuScreen* mMenuScreen;
 	
 	GameScreenState mPrevGameScreenState;

@@ -3,19 +3,20 @@
 
 GameScreen::GameScreen()
 	: BaseGameScreen()
-{
+{	
 	mHUD = new HUD();
 }
 
 GameScreen::~GameScreen()
 {
+
 }
 
 void GameScreen::StartUp(ID3D10Device* lDevice)
 {
-	BaseGameScreen::StartUp(lDevice);
-	mWorldHandler->Initialize( lDevice );
-	mHUD->Initialize( lDevice );
+	//BaseGameScreen::StartUp(lDevice);
+	//mWorldHandler->Initialize( lDevice );
+	//mHUD->Initialize( lDevice );
 }
 
 void GameScreen::ShutDown()
