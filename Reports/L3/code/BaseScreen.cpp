@@ -8,11 +8,13 @@ BaseScreen::~BaseScreen()
 {
 }
 
-void BaseScreen::Update() {
+void BaseScreen::Update() 
+{
 	throw "Not yet implemented";
 }
 
-void BaseScreen::Draw() {
-	throw "Not yet implemented";
+void BaseScreen::StartUp(ID3D10Device* lDevice)
+{
+	mCamera = new Camera();
 }
 

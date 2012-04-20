@@ -1,14 +1,13 @@
-#ifndef CAMERA.H
-#define CAMERA.H
-
+#ifndef CAMERA_H
+#define CAMERA_H
+#include "Utilities.h"
 class Camera
 {
-public:
-	private Camera();
-	private virtual ~Camera();
 
-	void StartUp();
-	void Shutdown();
+	
+public:
+	Camera();
+	virtual ~Camera();
 	void UpdateView();
 	void SetPosition(D3DXVECTOR3 lPlayerPos);
 	void SetLens(float lFieldOfViewY, float lAspect, float lZValueNearPlane, float lZValueFarPlane);

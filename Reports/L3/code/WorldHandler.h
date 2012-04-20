@@ -1,4 +1,5 @@
 #include <exception>
+#include "Utilities.h"
 using namespace std;
 
 #ifndef __WorldHandler_h__
@@ -9,23 +10,16 @@ using namespace std;
 // #include "Waypoints.h"
 // #include "WallObject.h"
 
-class BaseGameScreen;
-class QuadTree;
-class Waypoints;
-class WallObject;
-class WorldHandler;
-
 class WorldHandler
 {
 	public:
-		BaseGameScreen* baseGameScreen;
-		QuadTree* quadTree;
-		Waypoints* waypoints;
-		WallObject* wallObject;
+		//QuadTree* quadTree;
+		//Waypoints* waypoints;
+		//WallObject* wallObject;
 
-		void Initialize(ID3D10Device* lDevice, ID3D10Effect* lEffect);
+		void Initialize(ID3D10Device* lDevice);
 	private:
-		Waypoint mWaypoint[];
+		//Waypoint mWaypoint[];
 
 };
 

@@ -12,8 +12,18 @@ MenuScreen::~MenuScreen()
 
 void MenuScreen::StartUp(ID3D10Device* lDevice)
 {
+	BaseScreen::StartUp(lDevice);
 }
 
 void MenuScreen::ShutDown()
 {
+}
+
+void MenuScreen::Draw()
+{
+}
+
+void MenuScreen::ActivateScreen(GameScreenState lGameScreenState)
+{
+
 }

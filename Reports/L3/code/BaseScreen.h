@@ -7,7 +7,7 @@
 #define BASESCREEN_H
 
 //#include "ScreenHandler.h"
-// #include "Camera.h"
+#include "Camera.h"
 // #include "AudioHandler.h"
 // #include "KeyboardInputHandler.h"
 
@@ -19,19 +19,20 @@ class BaseScreen
 public:
 		BaseScreen();
 		virtual ~BaseScreen();
-		void virtual StartUp(ID3D10Device* lDevice) = NULL;
+		void virtual StartUp(ID3D10Device* lDevice);
 		void virtual ShutDown() = NULL;
 		void virtual ActivateScreen(GameScreenState lGameScreenState) = NULL;
+		void Update();
+		void virtual Draw() = NULL;
 		GameScreenState GetScreenState() const
 		{
 			return mGameScreenState;
 		}
-		void Update();
-		void Draw();
+		
 protected:
 		GameScreenState mGameScreenState;
 		static int mScore;
-		//Camera mCamera;
+		Camera* mCamera;
 		//AudioHandler mAudioHandler;
 
 };

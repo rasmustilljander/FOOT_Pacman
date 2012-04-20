@@ -20,6 +20,7 @@ Renderer::~Renderer()
 
 void Renderer::Update() 
 {
+	mScreenHandler->Update();
 }
 
 void Renderer::Draw() 

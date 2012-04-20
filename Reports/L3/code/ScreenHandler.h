@@ -16,6 +16,11 @@
 
 class ScreenHandler
 {
+	GameScreen mGameScreen;
+	DeathScreen mDeathScreen;
+	MapScreen mMapScreen;
+	EndScreen mEndScreen;
+	MenuScreen mMenuScreen;
 public:
 	ScreenHandler();
 	~ScreenHandler();
@@ -27,11 +32,7 @@ private:
 	void SwapScreenState(GameScreenState lScreenState);
 
 private:	
-	GameScreen* mGameScreen;
-	DeathScreen* mDeathScreen;
-	MapScreen* mMapScreen;
-	EndScreen* mEndScreen;
-	MenuScreen* mMenuScreen;
+	
 	BaseScreen* mScreen;
 
 	

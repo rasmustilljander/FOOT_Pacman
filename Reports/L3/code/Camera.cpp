@@ -1,19 +1,14 @@
 #include "Camera.h"
 
-void Camera::Camera() 
+Camera::Camera() 
 {
 
 }
-
-void Camera::StartUp() 
+Camera::~Camera()
 {
-
 }
 
-void Camera::Shutdown() 
-{
 
-}
 
 void Camera::UpdateView() 
 {

@@ -15,7 +15,7 @@ void HUD::Draw()
 {
 }
 
-void HUD::Initialize(ID3D10Device* lDevice, ID3D10Effect* lEffect) 
+void HUD::Initialize(ID3D10Device* lDevice) 
 {
 	mDevice = lDevice;
 

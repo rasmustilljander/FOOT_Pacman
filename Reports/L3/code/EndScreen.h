@@ -2,7 +2,7 @@
 #ifndef ENDSCREEN_H
 #define ENDSCREEN_H
 
-// #include "MenuObject.h"
+//#include "MenuObject.h"
 #include "BaseScreen.h"
 
 
@@ -13,7 +13,8 @@ public:
 	~EndScreen();
 	void StartUp(ID3D10Device* lDevice);
 	void ShutDown();
-
+	void Draw();
+	void ActivateScreen(GameScreenState lGameScreenState);
 };
 
 #endif
