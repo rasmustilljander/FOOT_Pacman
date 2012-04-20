@@ -1,23 +1,34 @@
-#include <exception>
-using namespace std;
+//=======================================================================================
+// GameTimer.h by Frank Luna (C) 2008 All Rights Reserved.
+//=======================================================================================
 
-#ifndef __GameTimer_h__
-#define __GameTimer_h__
-
-// #include "BaseGameScreen.h"
-
-class BaseGameScreen;
-class GameTimer;
+#ifndef GAMETIMER_H
+#define GAMETIMER_H
 
 class GameTimer
 {
-	public:
-		BaseGameScreen* baseGameScreen;
+public:
+	GameTimer();
 
-		void Reset();
-		void Start();
-		double GetElapsedTimeSeconds();
-		double GetElapsedTimeMilliseconds();
+	float GetGameTime()const;  // in seconds
+	float GetDeltaTime()const; // in seconds
+
+	void Reset(); // Call before message loop.
+	void Start(); // Call when unpaused.
+	void Stop();  // Call when paused.
+	void Tick();  // Call every frame.
+
+private:
+	double mSecondsPerCount;
+	double mDeltaTime;
+
+	__int64 mBaseTime;
+	__int64 mPausedTime;
+	__int64 mStopTime;
+	__int64 mPrevTime;
+	__int64 mCurrTime;
+
+	bool mStopped;
 };
 
 #endif

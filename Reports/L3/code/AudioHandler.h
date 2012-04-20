@@ -18,13 +18,12 @@ namespace	//This namespace is anonymous, shoudl solve the const issues
 class AudioHandler
 {
 public:
-	FMOD_RESULT      result;
 
 	AudioHandler();
 	~AudioHandler();
 
 	void Initialize();
-	//Play sound functions 
+	//Play sound functions
 	void PlayBackgroundSound();
 	void PlayCandySound();
 	void PlayDeathSound();
@@ -33,7 +32,7 @@ public:
 	void PlaySuperCandySound();
 	void StopSound();
 
-	void UpdatePosition(float x, float y, float z);
+	void UpdatePosition(float lPosX, float lPosY, float lPosZ, float lDirX, float lDirY, float lDirZ);
 
 	void ERRCHECK(FMOD_RESULT result);
 
@@ -59,6 +58,7 @@ private:
 	int				 mNumDrivers;
     bool             mListenerFlag;
     FMOD_VECTOR      mListenerPos;
+	FMOD_VECTOR		 mListenerDir;
     FMOD_SPEAKERMODE mSpeakerMode;
     FMOD_CAPS        mCaps;
     char             mName[256];
@@ -67,5 +67,4 @@ private:
 
 private:
 	void LoadAudio();
-
 };
