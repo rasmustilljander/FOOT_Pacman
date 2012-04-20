@@ -11,9 +11,7 @@ namespace	//This namespace is anonymous, shoudl solve the const issues
 	const int   INTERFACE_UPDATETIME = 50;      // 50ms update for interface
 	const float DISTANCEFACTOR = 1.0f;          // Units per meter.  I.e feet would = 3.28.  centimeters would = 100.
 
-}
-
-
+};
 
 class AudioHandler
 {
@@ -34,11 +32,13 @@ public:
 
 	void UpdatePosition(float lPosX, float lPosY, float lPosZ, float lDirX, float lDirY, float lDirZ);
 
-	void ERRCHECK(FMOD_RESULT result);
-
 	float getPositionX();
 	float getPositionY();
 	float getPositionZ();
+	void  PlayTest();
+
+private:
+	void LoadAudio();
 
 private:
 	FMOD::System*    mSystem;
@@ -63,8 +63,4 @@ private:
     FMOD_CAPS        mCaps;
     char             mName[256];
 
-	
-
-private:
-	void LoadAudio();
 };
