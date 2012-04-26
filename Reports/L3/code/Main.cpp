@@ -1,4 +1,4 @@
-#include "Renderer.h"
+//#include "Renderer.h"
 #include <Windows.h>
 
 HWND		g_hWnd;   
@@ -16,12 +16,12 @@ LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 //--------------------------------------------------------------------------------------
 int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow )
 {
-	Renderer renderer;
+	//Renderer renderer;
 
 	if( FAILED( InitWindow( hInstance, nCmdShow ) ) )
 		return 0;
 
-	renderer.Initialize(&g_hWnd);
+	//renderer.Initialize(&g_hWnd);
 
 	__int64 cntsPerSec = 0;
 	QueryPerformanceFrequency((LARGE_INTEGER*)&cntsPerSec);
@@ -44,8 +44,8 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 			QueryPerformanceCounter((LARGE_INTEGER*)&currTimeStamp);
 			float dt = (currTimeStamp - prevTimeStamp) * secsPerCnt;	
 
-			renderer.Update();
-			renderer.Draw();
+			//renderer.Update();
+			//renderer.Draw();
 
 			prevTimeStamp = currTimeStamp;
 	}
