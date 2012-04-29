@@ -7,6 +7,7 @@ HUD::HUD()
 {
 	mScore = 0;
 	mLivesLeft = 0;
+	mShaderObj = new ShaderObject();
 }
 
 HUD::~HUD()
@@ -21,6 +22,8 @@ void HUD::Draw()
     UINT offset = 0;
 
 	mDevice->IASetVertexBuffers(0,1,&mVertexBuffer, &stride, &offset);
+
+	mShaderObj->Render(0);
 	DisplayText();
 }
 
@@ -31,6 +34,8 @@ void HUD::Initialize(ID3D10Device* lDevice)
 	CreateVertexBuffer( &mVertexBuffer, 4 );
 	CreateTextures();
 	SetValuesToVertexBuffer();
+
+	mShaderObj->Initialize( mDevice, "HUD.fx", spriteVertexLayout, spriteVertexLayoutNumElements, "drawHUD", NULL);
 }
 
 void HUD::CreateVertexBuffer( ID3D10Buffer** lVB, int lSize  ) 

@@ -39,6 +39,8 @@ private:
 
 		int mScore;
 		int mLivesLeft;
+
+		ShaderObject* mShaderObj;
 };
 
 #endif
