@@ -31,6 +31,7 @@ public:
 	void StopSound();
 
 	void UpdatePosition(float lPosX, float lPosY, float lPosZ, float lDirX, float lDirY, float lDirZ);
+	void UpdateGhostPosition(int lGhost, float lPasX, float lPosY, float lPosZ);
 
 	float getPositionX();
 	float getPositionY();
@@ -54,6 +55,7 @@ private:
     FMOD::Channel*   mChannel1;
 	FMOD::Channel*	 mChannel2;
 	FMOD::Channel*   mChannel3;
+	FMOD::Channel*	 mGhostChannel[4];
   
 	int				 mNumDrivers;
     bool             mListenerFlag;
