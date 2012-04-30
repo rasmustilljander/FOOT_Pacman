@@ -4,21 +4,25 @@
 
 ScreenHandler::ScreenHandler()
 {
+	
 }
 
 ScreenHandler::~ScreenHandler()
 {
-	mDeathScreen->ShutDown();
-	mGameScreen->ShutDown();
+	delete mDeathScreen;
 	delete mEndScreen;
+	delete mGameScreen;
+	delete mMenuScreen;
+	delete mMapScreen;
+	//mDeathScreen->ShutDown();
+	//mGameScreen->ShutDown();
 	//mEndScreen->ShutDown();
-	mMenuScreen->ShutDown();
-	mMapScreen->ShutDown();
+	//mMenuScreen->ShutDown();
+	//mMapScreen->ShutDown();
 }
 
 void ScreenHandler::Update() 
 {
-	//throw "Not yet implemented";
 	mScreen->Update();
 	if(mScreen->GetScreenState() != mPrevGameScreenState)
 	{
@@ -56,7 +60,18 @@ void ScreenHandler::Initialize(ID3D10Device* lDevice)
 	mGameScreen = new GameScreen();
 	mMapScreen = new MapScreen();
 	mMenuScreen = new MenuScreen();
-	
+	ScreenStartUp(lDevice);
+	ResourceLoader.GetResourceLoader().LoadTextures(lDevice);
+
 	mPrevGameScreenState = Menu;
 	mScreen = mMenuScreen;
+}
+
+void ScreenHandler::ScreenStartUp(ID3D10Device* lDevice)
+{
+	mDeathScreen->StartUp(lDevice);
+	mEndScreen->StartUp(lDevice);
+	mGameScreen->StartUp(lDevice);
+	mMapScreen->StartUp(lDevice);
+	mMenuScreen->StartUp(lDevice);
 }

@@ -4,7 +4,7 @@
 GameScreen::GameScreen()
 	: BaseGameScreen()
 {	
-	mHUD = new HUD();
+	//mHUD = new HUD();
 }
 
 GameScreen::~GameScreen()
@@ -25,7 +25,7 @@ void GameScreen::ShutDown()
 
 void GameScreen::Draw()
 {
-	mHUD->Draw();
+//	mHUD->Draw();
 }
 
 void GameScreen::Update()

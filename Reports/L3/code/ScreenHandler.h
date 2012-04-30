@@ -26,6 +26,7 @@ public:
 
 private:
 	void SwapScreenState(GameScreenState lScreenState);
+	void ScreenStartUp(ID3D10Device *lDevice);
 
 private:	
 	

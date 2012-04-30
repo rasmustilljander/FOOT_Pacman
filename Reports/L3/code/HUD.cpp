@@ -34,8 +34,7 @@ void HUD::Initialize(ID3D10Device* lDevice)
 	CreateVertexBuffer( &mVertexBuffer, 4 );
 	CreateTextures();
 	SetValuesToVertexBuffer();
-
-	mShaderObj->Initialize( mDevice, "HUD.fx", spriteVertexLayout, spriteVertexLayoutNumElements, "drawHUD", NULL);
+	mShaderObj->Initialize( mDevice, "/fx/HUD.fx", spriteVertexLayout, spriteVertexLayoutNumElements, "drawHUD", NULL);
 }
 
 void HUD::CreateVertexBuffer( ID3D10Buffer** lVB, int lSize  ) 

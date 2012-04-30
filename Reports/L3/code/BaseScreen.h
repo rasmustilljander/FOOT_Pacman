@@ -1,7 +1,7 @@
 #include <exception>
 #include "Utilities.h"
 #include "GameScreenState.h"
-
+#include "ResourceLoader.h"
 
 #ifndef BASESCREEN_H
 #define BASESCREEN_H
@@ -30,6 +30,8 @@ public:
 	{
 		return mGameScreenState;
 	}
+public:
+	
 		
 protected:
 	GameScreenState mGameScreenState;
