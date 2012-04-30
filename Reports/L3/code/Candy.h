@@ -6,11 +6,13 @@
 class Candy: public GameObject
 {
 public:
-	void Candy();
-	void virtual ~Candy();
+	Candy(int lType, D3DXVECTOR3 lPosition);
+	virtual ~Candy();
 
-	void Update();
-
+private:
+	void SetResources();
+private:
+	int mType;
 };
 
 #endif

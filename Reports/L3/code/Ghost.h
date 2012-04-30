@@ -10,7 +10,7 @@ public:
 	virtual ~Ghost();
 
 	void Update(float lDT);
-	void SetTargetPosition(D3DXVECTOR lTargetPosition);
+	void SetTargetPosition(D3DXVECTOR3 lTargetPosition);
 
 
 };

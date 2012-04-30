@@ -1,10 +1,12 @@
 #include "Candy.h"
 
 
-Candy::Candy()
+Candy::Candy( int lType ,D3DXVECTOR3 lPosition )
 	: GameObject()
 {
 	//Default Contructor
+	mPosition = lPosition;
+	mType = lType;
 }
 
 Candy::~Candy()
@@ -12,7 +14,10 @@ Candy::~Candy()
 
 }
 
-void Candy::Update()
+
+void Candy::SetResources()
 {
+	D3DXMatrixIdentity(&mWorldMatrix);
+	D3DXMatrixTranslation(&mWorldMatrix, mPosition.x, mPosition.y, mPosition.z);
 
 }

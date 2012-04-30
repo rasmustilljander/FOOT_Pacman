@@ -1,20 +1,24 @@
 
 Texture2D tex2D;
 
-//Sprite structs
 
-struct SPRITE_INPUT
+matrix World;
+matrix View;
+matrix Projection;
+
+//Menu structs
+
+struct VSSceneIn
 {
-	float2 topLeft : ANCHOR;
-	float2 dimensions : DIMENSIONS;
-	float opacity: OPACITY;
+	float4 Pos	: POS;
+	float2 Tex : TEXCOORD;
+	float3 n : NORMAL;
 };
 
-struct PS_HUD
+struct PSSceneIn
 {
-	float4 p : SV_POSITION;
-	float2 t : TEXC;
-	float opacity : OPACITY;
+	float4 Pos  : SV_Position;
+	float2 Tex : TEXC;
 };
 
 //-----------------------------------------------------------------------------------------
@@ -74,65 +78,46 @@ BlendState SrcAlphaBlending
 //-----------------------------------------------------------------------------------------
 // VertexShader: VSScene
 //-----------------------------------------------------------------------------------------
-SPRITE_INPUT VS( SPRITE_INPUT input )
+PSSceneIn VSScene(VSSceneIn input)
 {
-	return input;
-}
+	PSSceneIn output;
+	
+		input.Pos = mul( input.Pos, World );
+	    output.Pos = mul( input.Pos, View );
+	    output.Pos = mul( output.Pos, Projection );
 
-//--------------------------------------------------------------------------------------
-// Geometry Shader - Billboard
-//--------------------------------------------------------------------------------------
-
-[maxvertexcount(4)]
-void GS( point SPRITE_INPUT sprite[1] : SV_POSITION, inout TriangleStream<PS_HUD> triStream )
-{
-	PS_HUD p;
-	p.opacity = sprite[0].opacity;
-
-	//bottom left
-	p.p = float4( sprite[0].topLeft[0], sprite[0].topLeft[1] - sprite[0].dimensions[1], 0, 1 );
-	p.t = float2( 0, 1 );
-	triStream.Append(p);
-
-
-	//top left
-	p.p = float4( sprite[0].topLeft[0], sprite[0].topLeft[1], 0, 1 );
-	p.t = float2( 0, 0 );
-	triStream.Append(p);
-
-	//bottom right
-	p.p = float4( sprite[0].topLeft[0] + sprite[0].dimensions[0], sprite[0].topLeft[1] - sprite[0].dimensions[1], 0, 1 );
-	p.t = float2( 1, 1 );
-	triStream.Append(p);
-
-	//top right
-	p.p = float4( sprite[0].topLeft[0] + sprite[0].dimensions[0], sprite[0].topLeft[1], 0, 1 );
-	p.t = float2( 1, 0 );
-	triStream.Append(p);
-
+		output.Tex = input.Tex;
+		
+	return output;
 }
 
 //-----------------------------------------------------------------------------------------
 // PixelShader: PSSceneMain
 //-----------------------------------------------------------------------------------------
 
-float4 PSHUD( PS_HUD input ) : SV_Target
+
+float4 textured( PSSceneIn input ) : SV_Target
 {
-	return tex2D.Sample( linearSampler, input.t );
+	return tex2D.Sample( linearSampler, input.Tex );
 }
+
 
 //-----------------------------------------------------------------------------------------
 // Technique: RenderTextured  
 //-----------------------------------------------------------------------------------------
-
-technique10 drawHUD
+technique10 DrawTech
 {
-    pass P0
+    pass p0
     {
-        SetVertexShader( CompileShader( vs_4_0, VS() ) );
-        SetGeometryShader( CompileShader( gs_4_0, GS() ) );
-        SetPixelShader( CompileShader( ps_4_0, PSHUD() ) );	
+		// Set VS, GS, and PS
+        SetVertexShader( CompileShader( vs_4_0, VSScene() ) );
+        SetGeometryShader( NULL );
+        SetPixelShader( CompileShader( ps_4_0, textured() ) );
+	    
+	    SetRasterizerState( NoCulling );
 
-		SetBlendState( SrcAlphaBlending, float4( 0.0f, 0.0f, 0.0f, 0.0f ), 0xFFFFFFFF );		
-    }
+	    SetDepthStencilState( EnableDepth, 0 );
+	    //SetDepthStencilState( DisableDepth, 0 );
+	    //SetDepthStencilState( EnableDepthTestOnly, 0 );
+    }  
 }

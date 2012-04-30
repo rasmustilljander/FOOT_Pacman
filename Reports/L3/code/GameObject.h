@@ -1,31 +1,35 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 
+#include "Utilities.h"
+#include "ShaderObject.h"
+#include "Camera.h"
+#include "Vertex.h"
+
 class GameObject
 {
 public:
-		
+		GameObject();
+		~GameObject();
 
-	void Initialize(ID3D10Device* lDevice, ID3D10Effect* lEffect);
-	void Draw();
-protected:
-	/*D3DXVECTOR3 mPosition;
-	D3DXMATRIX mWorldMatrix;
-	ID3D10EffectShaderResourceVariable* mShaderTextureVariable;
-	ID3D10ShaderResourceView* mResourceView;
-	ID3D10Buffer mVertexBuffer;
-	ShaderObject* mShaderObject;*/
+	void Initialize(ID3D10Device* lDevice, char* lFxFilename);
+	void Draw( Camera* lCam );
 
 protected:
-	void CreateVertexBuffer();
+	void CreateVertexBuffer( ID3D10Buffer** lVB, int lSize );
+	void SetValuesToVertexBuffer();
+	virtual void SetResources() = 0;
 
 protected:
+	ID3D10Device* mDevice;
+
 	ShaderObject* mShaderObject;
 	D3DXVECTOR3 mPosition;
 	D3DXMATRIX mWorldMatrix;
+	D3DXMATRIX mViewProjMatrix;
 	ID3D10EffectShaderResourceVariable* mShaderTextureVariable;
 	ID3D10ShaderResourceView* mResourceView;
-	ID3D10Buffer mVertexBuffer;
+	ID3D10Buffer* mVertexBuffer;
 
 };
 
