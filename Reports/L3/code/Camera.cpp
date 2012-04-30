@@ -53,21 +53,24 @@ void Camera::SetPosition(D3DXVECTOR3 lPlayerPos)
 	mPosition = lPlayerPos;
 }
 
-//Move player using keyboardbuttons 'A' or 'D'
+//Move camera using keyboardbuttons 'A' or 'D'
 void Camera::Strafe(float d)
 {
+	mPosition += mRight * d;
 //	Left (A)
 //	mPos1 = mPos0 + mRight * (-(walkingspeed * dt))
 //Right (D)
 //	mPos1 = mPos0 + mRight * ((walkingspeed * dt))
 }
 
+//Move camera using keyboardbuttons 'W' or 'S'
 void Camera::Walk(float d)
 {
+	mPosition += mAim * d;
 //Forward (W)
 //	mPos1 = mPos0 + mAt * ((walkingspeed * dt))
 //Back (S)
-//	mPos1 = mPos0 + mAt * ((walkingspeed * dt))
+//	mPos1 = mPos0 + mAt * (-(walkingspeed * dt))
 }
 
 void Camera::Pitch(float lAngle)
@@ -76,17 +79,17 @@ void Camera::Pitch(float lAngle)
 	D3DXMatrixRotationAxis(&lMatrix, &mRight, lAngle);
 
 	D3DXVec3TransformNormal(&mUp, &mUp, &lMatrix);
-	D3DXVec3TransformNormal(&mAt, &mAt, &lMatrix);
+	D3DXVec3TransformNormal(&mAim, &mAim, &lMatrix);
 }
 
 void Camera::RotateY(float lAngle)
 {
 	D3DXMATRIX lMatrix;
-	D3DXMatrixRotationY(&lMatrix, angle);
+	D3DXMatrixRotationY(&lMatrix, lAngle);
 
 	D3DXVec3TransformNormal(&mRight, &mRight, &lMatrix);
 	D3DXVec3TransformNormal(&mUp, &mUp, &lMatrix);
-	D3DXVec3TransformNormal(&mAt, &mAt, &lMatrix);
+	D3DXVec3TransformNormal(&mAim, &mAim, &lMatrix);
 }
 
 void Camera::SetLens(float lFieldOfViewY, float lAspect, float lZValueNearPlane, float lZValueFarPlane)
