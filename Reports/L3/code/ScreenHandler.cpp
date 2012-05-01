@@ -44,6 +44,7 @@ void ScreenHandler::SwapScreenState(GameScreenState lGameScreenState)
 		mScreen = mMapScreen;
 	else
 		return;
+	mScreen->ActivateScreen(lGameScreenState);
 	mPrevGameScreenState = mScreen->GetScreenState();
 	
 }
@@ -61,10 +62,12 @@ void ScreenHandler::Initialize(ID3D10Device* lDevice)
 	mMapScreen = new MapScreen();
 	mMenuScreen = new MenuScreen();
 	ScreenStartUp(lDevice);
-	ResourceLoader.GetResourceLoader().LoadTextures(lDevice);
+	
+	//ResourceLoader.GetResourceLoader().LoadTextures(lDevice);
 
 	mPrevGameScreenState = Menu;
 	mScreen = mMenuScreen;
+	mScreen->ActivateScreen(Menu);
 }
 
 void ScreenHandler::ScreenStartUp(ID3D10Device* lDevice)

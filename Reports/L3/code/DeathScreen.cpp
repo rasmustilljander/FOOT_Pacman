@@ -23,7 +23,7 @@ void DeathScreen::ShutDown()
 
 void DeathScreen::ActivateScreen(GameScreenState lGameScreenState)
 {
-
+	mGameScreenState = lGameScreenState;
 }
 
 void DeathScreen::Draw()

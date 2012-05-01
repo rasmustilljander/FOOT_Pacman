@@ -30,4 +30,5 @@ void MapScreen::Update()
 
 void MapScreen::ActivateScreen(GameScreenState lGameScreenState)
 {
+	mGameScreenState = lGameScreenState;
 }

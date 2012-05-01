@@ -34,4 +34,5 @@ void GameScreen::Update()
 
 void GameScreen::ActivateScreen(GameScreenState lGameScreenState)
 {
+	mGameScreenState = lGameScreenState;
 }
