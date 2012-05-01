@@ -11,6 +11,9 @@ public:
 
 	void Update(float lDT);
 	void SetTargetPosition(D3DXVECTOR3 lTargetPosition);
+private:
+	void SetResources();
+	void SetupVertices();
 
 
 };

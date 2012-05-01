@@ -11,6 +11,7 @@ public:
 
 private:
 	void SetResources();
+	void SetupVertices();
 private:
 	int mType;
 };

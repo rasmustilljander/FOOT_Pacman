@@ -19,6 +19,7 @@ protected:
 	void CreateVertexBuffer( ID3D10Buffer** lVB, int lSize );
 	void SetValuesToVertexBuffer();
 	virtual void SetResources() = 0;
+	virtual void SetupVertices() = 0;
 
 protected:
 	ID3D10Device* mDevice;

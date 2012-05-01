@@ -48,3 +48,21 @@ const D3D10_INPUT_ELEMENT_DESC spriteVertexLayout[] =
 };
 
 const int spriteVertexLayoutNumElements = sizeof(spriteVertexLayout)/sizeof(spriteVertexLayout[0]);
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+struct BillboardVertex
+{
+	D3DXVECTOR3 centerW;
+	D3DXVECTOR2 sizeW;
+};
+
+const D3D10_INPUT_ELEMENT_DESC BillboardVertexLayout[] =
+	{
+		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D10_INPUT_PER_VERTEX_DATA, 0},
+		{"SIZE",     0, DXGI_FORMAT_R32G32_FLOAT,    0, 12, D3D10_INPUT_PER_VERTEX_DATA, 0},
+	};
+
+const int BillboardLayoutNumElements = sizeof(BillboardVertexLayout)/sizeof(BillboardVertexLayout[0]);
