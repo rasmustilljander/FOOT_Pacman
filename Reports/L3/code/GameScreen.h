@@ -4,6 +4,7 @@
 #include "HUD.h"
 // #include "CollisionHandler.h"
 #include "BaseGameScreen.h"
+#include "Player.h"
 
 
 class GameScreen: public BaseGameScreen
@@ -14,7 +15,7 @@ class GameScreen: public BaseGameScreen
 		void StartUp(ID3D10Device* lDevice);
 		void ShutDown();
 		void Draw();
-		void Update(float lDeltaTime);
+		void Update();
 		void KeyBoardMovement(float lDeltaTime);
 		void MouseMovement();
 		void ActivateScreen(GameScreenState lGameScreenState);
@@ -23,6 +24,7 @@ class GameScreen: public BaseGameScreen
 	private:
 		bool mSuperCandyInEffect;
 		HUD* mHUD;
+		Player* mPacman;
 		POINT mOldCursorPosition;
 		//CollisionHandler* collisionHandler;
 };

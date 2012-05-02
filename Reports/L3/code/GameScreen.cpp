@@ -28,9 +28,9 @@ void GameScreen::Draw()
 //	mHUD->Draw();
 }
 
-void GameScreen::Update(float lDeltaTime)
+void GameScreen::Update()
 {
-	KeyBoardMovement(lDeltaTime);
+	KeyBoardMovement(0); //needs deltatime value
 	MouseMovement();
 
 

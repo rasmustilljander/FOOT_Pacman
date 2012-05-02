@@ -13,7 +13,6 @@ public:
 		void StartUp(ID3D10Device* lDevice);
 
 protected:
-		virtual void Update(float lDeltaTime) = 0;
 		WorldHandler* mWorldHandler;
 		//GameTimer* mGameTimer;
 
