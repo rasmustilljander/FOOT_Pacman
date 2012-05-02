@@ -6,7 +6,7 @@
 class Ghost: public NonStaticGameObject
 {
 public:
-	Ghost();
+	Ghost( D3DXVECTOR3 lPosition );
 	virtual ~Ghost();
 
 	void Update(float lDT);
@@ -15,6 +15,8 @@ private:
 	void SetResources();
 	void SetupVertices();
 
+private:
+	ID3D10ShaderResourceView* mResourceView2;
 
 };
 

@@ -20,6 +20,12 @@ void Candy::SetResources()
 	D3DXMatrixIdentity(&mWorldMatrix);
 	D3DXMatrixTranslation(&mWorldMatrix, mPosition.x, mPosition.y, mPosition.z);
 
+	if (mType == 0)
+		mShaderObject->SetResource("tex2D", GetResourceLoader().GetCandyTexture());
+	else
+		mShaderObject->SetResource("tex2D", GetResourceLoader().GetSuperCandyTexture());
+
+	
 }
 
 void Candy::SetupVertices()

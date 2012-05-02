@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "ShaderObject.h"
 #include "Vertex.h"
+#include "ResourceLoader.h"
 
 class WallObject
 {

@@ -9,7 +9,11 @@ public:
 	Player();
 	virtual ~Player();
 	
-	Update(float lDT);
+	void Update(float lDT);
+	D3DXVECTOR3 GetPosition() { return mPosition; }
+private:
+	void SetResources();
+	void SetupVertices();
 
 };
 

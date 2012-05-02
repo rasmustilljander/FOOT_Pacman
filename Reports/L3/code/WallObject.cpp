@@ -37,6 +37,7 @@ void WallObject::SetResources()
 	D3DXMatrixTranslation(&mWorldMatrix, mPosition.x, mPosition.y, mPosition.z);
 
 	mShaderObject->SetMatrix("worldMatrix", mWorldMatrix);
+	mShaderObject->SetResource("tex2D", GetResourceLoader().GetWallTexture());
 }
 
 void WallObject::SetupVertices()

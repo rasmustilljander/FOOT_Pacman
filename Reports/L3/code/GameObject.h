@@ -5,6 +5,7 @@
 #include "ShaderObject.h"
 #include "Camera.h"
 #include "Vertex.h"
+#include "ResourceLoader.h"
 
 class GameObject
 {
@@ -23,15 +24,14 @@ protected:
 
 protected:
 	ID3D10Device* mDevice;
-
 	ShaderObject* mShaderObject;
+
 	D3DXVECTOR3 mPosition;
 	D3DXMATRIX mWorldMatrix;
 	D3DXMATRIX mViewProjMatrix;
 	ID3D10EffectShaderResourceVariable* mShaderTextureVariable;
 	ID3D10ShaderResourceView* mResourceView;
 	ID3D10Buffer* mVertexBuffer;
-
 };
 
 #endif
