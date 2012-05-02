@@ -30,6 +30,7 @@ public:
 	{
 		return mGameScreenState;
 	}
+
 public:
 	
 		
