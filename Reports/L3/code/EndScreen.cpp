@@ -28,7 +28,8 @@ void EndScreen::Update()
 {
 	if(GetAsyncKeyState(VK_BACK) & 0x8000)
 		mGameScreenState = Menu;
-	OutputDebugString("HEJSAN\n");
+	//OutputDebugString("HEJSAN\n");
+	
 }
 
 void EndScreen::ActivateScreen(GameScreenState lGameScreenState)
