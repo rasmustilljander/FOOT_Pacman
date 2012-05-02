@@ -24,7 +24,7 @@ void Camera::UpdateView()
 
 	// Fill in the view matrix entries.
 	float x = -D3DXVec3Dot(&mPosition, &mRight);
-	float y = -D3DXVec3Dot(&mPosition, &mUp);
+	float y = -D3DXVec3Dot(&mPosition, &mUp); 
 	float z = -D3DXVec3Dot(&mPosition, &mAim);
 
 	mView(0,0) = mRight.x; 
@@ -58,9 +58,9 @@ void Camera::Strafe(float d)
 {
 	mPosition += mRight * d;
 //	Left (A)
-//	mPos1 = mPos0 + mRight * (-(walkingspeed * dt))
+//	mPos1 = mPos0 + mRight * (-(movementspeed * dt))
 //Right (D)
-//	mPos1 = mPos0 + mRight * ((walkingspeed * dt))
+//	mPos1 = mPos0 + mRight * ((movementspeed * dt))
 }
 
 //Move camera using keyboardbuttons 'W' or 'S'
@@ -68,9 +68,9 @@ void Camera::Walk(float d)
 {
 	mPosition += mAim * d;
 //Forward (W)
-//	mPos1 = mPos0 + mAt * ((walkingspeed * dt))
+//	mPos1 = mPos0 + mAt * ((movementspeed * dt))
 //Back (S)
-//	mPos1 = mPos0 + mAt * (-(walkingspeed * dt))
+//	mPos1 = mPos0 + mAt * (-(movementspeed * dt))
 }
 
 void Camera::Pitch(float lAngle)

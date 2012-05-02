@@ -1,7 +1,7 @@
 #include "Renderer.h"
 #include <Windows.h>
 
-HWND		g_hWnd;   
+HWND		g_hWnd;
 HINSTANCE	g_hInst;
 
 HRESULT             InitWindow( HINSTANCE hInstance, int nCmdShow );
@@ -80,6 +80,8 @@ HRESULT InitWindow( HINSTANCE hInstance, int nCmdShow )
 	// Create window
 	g_hInst = hInstance; 
 	RECT rc = { 0, 0, 1024, 768 };
+
+
 	AdjustWindowRect( &rc, WS_OVERLAPPEDWINDOW, FALSE );
 	
 	if(!(g_hWnd = CreateWindow(	"Shoe-gone",
@@ -97,8 +99,11 @@ HRESULT InitWindow( HINSTANCE hInstance, int nCmdShow )
 		return E_FAIL;
 	}
 
-	ShowWindow( g_hWnd, nCmdShow );
+	gLockedCursorPoint.x = rc.right/2;
+	gLockedCursorPoint.y = rc.bottom/2;
+	ScreenToClient(g_hWnd, &gLockedCursorPoint);
 
+	ShowWindow( g_hWnd, nCmdShow );
 	return S_OK;
 }
 
