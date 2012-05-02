@@ -1,6 +1,8 @@
 #include "Utilities.h"
+//#include <string>
 #ifndef RESOURCELOADER_H
 #define RESOURCELOADER_H
+
 
 
 class ResourceLoader
@@ -9,7 +11,7 @@ public:
 
 	ResourceLoader();
 	~ResourceLoader();
-	static ResourceLoader& GetResourceLoader();
+	//static ResourceLoader& GetResourceLoader();
 	void LoadTextures(ID3D10Device* lDevice);
 
 #pragma region GetTextureMethods
@@ -45,7 +47,7 @@ public:
 
 private:
 	
-
+	void CreateTextureShader(ID3D10Device* lDevice, LPCSTR lTexturePath, ID3D10ShaderResourceView* lShaderResView);
 
 private:
 
@@ -58,5 +60,6 @@ private:
 	ID3D10ShaderResourceView* mButtonTexture;
 
 };
+ResourceLoader& GetResourceLoader();
 
 #endif
