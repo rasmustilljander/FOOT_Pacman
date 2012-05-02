@@ -1,12 +1,9 @@
-
-#ifndef __BaseGameScreen_h__
-#define __BaseGameScreen_h__
+#ifndef BASEGAMESCREEN_H
+#define BASEGAMESCREEN_H
 
 // #include "GameTimer.h"
 #include "WorldHandler.h"
 #include "BaseScreen.h"
-
-
 
 class BaseGameScreen: public BaseScreen
 {
@@ -14,8 +11,9 @@ public:
 		BaseGameScreen();
 		virtual ~BaseGameScreen();
 		void StartUp(ID3D10Device* lDevice);
+
 protected:
-		float mDeltaTime;
+		virtual void Update(float lDeltaTime) = 0;
 		WorldHandler* mWorldHandler;
 		//GameTimer* mGameTimer;
 

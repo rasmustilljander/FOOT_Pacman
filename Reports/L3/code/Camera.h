@@ -34,8 +34,8 @@ public:
 	
 private:	
 	D3DXVECTOR3 mPosition;	//Camera position
-	D3DXVECTOR3 mRight;		
-	D3DXVECTOR3 mUp;
+	D3DXVECTOR3 mRight;		//Orthogonal right vector to aim vector
+	D3DXVECTOR3 mUp;		//Orthogonal up vector to aim
 	D3DXVECTOR3 mAim;		//To where the camera is looking
 
 	D3DXMATRIX mView;		//View Matrix

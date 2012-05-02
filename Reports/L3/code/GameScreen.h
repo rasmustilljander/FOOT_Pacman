@@ -1,4 +1,3 @@
-
 #ifndef GAMESCREEN_H
 #define GAMESCREEN_H
 
@@ -15,13 +14,16 @@ class GameScreen: public BaseGameScreen
 		void StartUp(ID3D10Device* lDevice);
 		void ShutDown();
 		void Draw();
-		void Update();
+		void Update(float lDeltaTime);
+		void KeyBoardMovement(float lDeltaTime);
+		void MouseMovement();
 		void ActivateScreen(GameScreenState lGameScreenState);
 		
 
 	private:
 		bool mSuperCandyInEffect;
 		HUD* mHUD;
+		POINT mOldCursorPosition;
 		//CollisionHandler* collisionHandler;
 };
 
