@@ -4,6 +4,7 @@
 // #include "GameTimer.h"
 #include "WorldHandler.h"
 #include "BaseScreen.h"
+#include "GameTimer.h"
 
 class BaseGameScreen: public BaseScreen
 {
@@ -14,7 +15,7 @@ public:
 
 protected:
 		WorldHandler* mWorldHandler;
-		//GameTimer* mGameTimer;
+		GameTimer* mGameTimer;
 
 };
 

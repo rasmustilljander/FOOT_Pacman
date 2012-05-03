@@ -21,7 +21,7 @@ void GameObject::Initialize(ID3D10Device* lDevice, char* FxFileName)
 {
 	mDevice = lDevice;
 
-	mShaderObject->Initialize( mDevice, FxFileName, BillboardVertexLayout, BillboardLayoutNumElements, "drawTech", NULL);
+	mShaderObject->Initialize( mDevice, FxFileName, BillboardVertexLayout, BillboardLayoutNumElements, "drawTech", D3D10_SHADER_ENABLE_STRICTNESS);
 	CreateVertexBuffer( &mVertexBuffer, 4 );
 }
 

@@ -82,6 +82,7 @@ void Camera::Walk(float d)
 void Camera::Pitch(float lAngle)
 {
 	D3DXMATRIX lMatrix;
+	D3DXMatrixIdentity(&lMatrix);
 	D3DXMatrixRotationAxis(&lMatrix, &mRight, lAngle);
 
 	D3DXVec3TransformNormal(&mUp, &mUp, &lMatrix);

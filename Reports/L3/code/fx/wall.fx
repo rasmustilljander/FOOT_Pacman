@@ -1,5 +1,5 @@
 
-Texture2D tex2D;
+//Texture2D tex2D;
 
 
 matrix worldMatrix;
@@ -98,7 +98,8 @@ PSSceneIn VSScene(VSSceneIn input)
 
 float4 textured( PSSceneIn input ) : SV_Target
 {
-	return tex2D.Sample( linearSampler, input.Tex );
+	//return tex2D.Sample( linearSampler, input.Tex );
+	return float4(1,1,1,0);
 }
 
 

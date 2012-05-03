@@ -21,7 +21,7 @@ ResourceLoader::~ResourceLoader()
 void ResourceLoader::LoadTextures(ID3D10Device* lDevice)
 {
 	//Load all textures here when you create the screens in "Screenhandler"
-	OutputDebugString("YAY IM ALIVE\n");
+	
 
 
 

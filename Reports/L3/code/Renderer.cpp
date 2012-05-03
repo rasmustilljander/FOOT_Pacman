@@ -25,7 +25,7 @@ void Renderer::Update()
 
 void Renderer::Draw() 
 {
-	mDevice->ClearRenderTargetView( mRenderTargetView, D3DXCOLOR(1.0f,1.0f, 1.0f, 0.0f));
+	mDevice->ClearRenderTargetView( mRenderTargetView, D3DXCOLOR(0.0f,0.0f, 0.0f, 0.0f));
 	mDevice->ClearDepthStencilView( mDepthStencilView, D3D10_CLEAR_DEPTH, 1.0f, 0 );
 
 	mScreenHandler->Draw();
@@ -97,6 +97,24 @@ void Renderer::SetUpViewPort()
 	vp.TopLeftX = 0;
 	vp.TopLeftY = 0;
 	mDevice->RSSetViewports( 1, &vp );
+
+	//set rasterizer state
+	//--------------------------------------------------------------
+	
+	D3D10_RASTERIZER_DESC rasterizerState;
+	rasterizerState.CullMode = D3D10_CULL_NONE;
+	rasterizerState.FillMode = D3D10_FILL_SOLID;
+	rasterizerState.FrontCounterClockwise = false;
+    rasterizerState.DepthBias = false;
+    rasterizerState.DepthBiasClamp = 0;
+    rasterizerState.SlopeScaledDepthBias = 0;
+    rasterizerState.DepthClipEnable = true;
+    rasterizerState.ScissorEnable = false;
+    rasterizerState.MultisampleEnable = false;
+    rasterizerState.AntialiasedLineEnable = true;		
+	
+	mDevice->CreateRasterizerState( &rasterizerState, &mRastState);
+	mDevice->RSSetState(mRastState);
 }
 
 void Renderer::CreateBackBufferAndRenderTarget() 
@@ -106,7 +124,6 @@ void Renderer::CreateBackBufferAndRenderTarget()
 
 	mDevice->CreateRenderTargetView( pBackBuffer, NULL, &mRenderTargetView );
 	pBackBuffer->Release();
-
 
 	// Create depth stencil texture
 	D3D10_TEXTURE2D_DESC descDepth;
@@ -123,7 +140,6 @@ void Renderer::CreateBackBufferAndRenderTarget()
 	descDepth.MiscFlags = 0;
 	mDevice->CreateTexture2D( &descDepth, NULL, &mDepthStencil );
 
-
 	// Create the depth stencil view
 	D3D10_DEPTH_STENCIL_VIEW_DESC descDSV;
 	descDSV.Format = descDepth.Format;
@@ -131,8 +147,6 @@ void Renderer::CreateBackBufferAndRenderTarget()
 	descDSV.Texture2D.MipSlice = 0;
 	mDevice->CreateDepthStencilView( mDepthStencil, &descDSV, &mDepthStencilView );
 	
-
-
 	mDevice->OMSetRenderTargets( 1, &mRenderTargetView, mDepthStencilView );
 }
 

@@ -3,7 +3,9 @@
 GameScreen::GameScreen()
 	: BaseGameScreen()
 {	
-	//mHUD = new HUD();
+	mHUD = new HUD();
+	mWorldHandler = new WorldHandler();
+	mKeyboardHandler = new KeyboardInputHandler();
 }
 
 GameScreen::~GameScreen()
@@ -13,8 +15,11 @@ GameScreen::~GameScreen()
 
 void GameScreen::StartUp(ID3D10Device* lDevice)
 {
-	//BaseGameScreen::StartUp(lDevice);
-	//mWorldHandler->Initialize( lDevice );
+	BaseGameScreen::StartUp(lDevice);
+	mWorldHandler->Initialize( lDevice );
+	mOldCursorPosition.x = 0;
+	mOldCursorPosition.y = 0;
+
 	//mHUD->Initialize( lDevice );
 }
 
@@ -25,35 +30,39 @@ void GameScreen::ShutDown()
 
 void GameScreen::Draw()
 {
-//	mHUD->Draw();
+	//mHUD->Draw();
+	mWorldHandler->Draw( mCamera );
 }
 
 void GameScreen::Update()
 {
-	KeyBoardMovement(0); //needs deltatime value
+	mGameTimer->Tick();
+	KeyBoardMovement(mGameTimer->GetDeltaTime()); //needs deltatime value
 	MouseMovement();
-
 
 }
 
 void GameScreen::KeyBoardMovement(float lDeltaTime)
 {
+	/*
 	bool w = false;
 	bool a = false;
 	bool s = false;
 	bool d = false;
+	*/
+
 	//Forward
-	if(w == true)
-		mCamera->Walk(gMovementSpeed * lDeltaTime);
+	if(mKeyboardHandler->CheckPressedKey(W))
+		mCamera->Walk(gPlayerMovementSpeed * lDeltaTime);
 	//Left
-	if(a == true)
-		mCamera->Walk(-gMovementSpeed  * lDeltaTime);
+	if(mKeyboardHandler->CheckPressedKey(A))
+		mCamera->Walk(-gPlayerMovementSpeed  * lDeltaTime);
 	//Back
-	if(s == true)
-		mCamera->Walk(-gMovementSpeed  * lDeltaTime);
+	if(mKeyboardHandler->CheckPressedKey(S))
+		mCamera->Walk(-gPlayerMovementSpeed  * lDeltaTime);
 	//Right
-	if(d == true)
-		mCamera->Walk(gMovementSpeed  * lDeltaTime);
+	if(mKeyboardHandler->CheckPressedKey(D))
+		mCamera->Walk(gPlayerMovementSpeed  * lDeltaTime);
 }
 
 void GameScreen::MouseMovement()
@@ -64,8 +73,8 @@ void GameScreen::MouseMovement()
 	int dy = 0;
 	dx = lMousePosition.x - mOldCursorPosition.x;
 	dy = lMousePosition.y - mOldCursorPosition.y;
-	mCamera->Pitch(dy * gCursosSensitivity);
-	mCamera->RotateY(dx * gCursosSensitivity);
+	mCamera->Pitch(dy * gCursorSensitivity);
+	mCamera->RotateY(dx * gCursorSensitivity);
 	mOldCursorPosition = lMousePosition;
 }
 

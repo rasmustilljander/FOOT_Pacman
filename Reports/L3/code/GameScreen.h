@@ -5,6 +5,7 @@
 // #include "CollisionHandler.h"
 #include "BaseGameScreen.h"
 #include "Player.h"
+#include "KeyboardInputHandler.h"
 
 
 class GameScreen: public BaseGameScreen
@@ -27,6 +28,7 @@ class GameScreen: public BaseGameScreen
 		Player* mPacman;
 		POINT mOldCursorPosition;
 		//CollisionHandler* collisionHandler;
+		KeyboardInputHandler* mKeyboardHandler;
 };
 
 #endif

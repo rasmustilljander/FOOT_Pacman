@@ -27,7 +27,6 @@ void MenuScreen::Update()
 {
 	if(GetAsyncKeyState(VK_TAB) & 0x8000)
 		mGameScreenState = End;
-	OutputDebugString("Yay\n");
 }
 
 void MenuScreen::ActivateScreen(GameScreenState lGameScreenState)
