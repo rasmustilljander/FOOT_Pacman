@@ -1,7 +1,6 @@
-#ifndef Utilities_h
-#define Utilities_h
+#ifndef UTILITIES_H
+#define UTILITIES_H
 
-// #include "Renderer.h"
 #include <D3D10.h>
 #include <D3DX10.h>
 #define SAFE_RELEASE(x) if( x ) { (x)->Release(); (x) = NULL; }
@@ -9,9 +8,11 @@
 #define PI (3.14159265358979323846f)
 #define TWO_PI 6.283185307179586476925286766559
 
+//Game Specific Things
+#define gMovementSpeed 20
+#define gCursosSensitivity 0.0087266f
+
 static POINT gLockedCursorPoint;
-const float gMovementSpeed = 20;
-const float gCursosSensitivity = 0.0087266f;
 
 
 
