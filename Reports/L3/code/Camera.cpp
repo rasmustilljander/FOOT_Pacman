@@ -2,7 +2,13 @@
 
 Camera::Camera() 
 {
+	mPosition	= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	mRight		= D3DXVECTOR3(1.0f, 0.0f, 0.0f);
+	mUp			= D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+	mAim		= D3DXVECTOR3(0.0f, 0.0f, 1.0f);
 
+	D3DXMatrixIdentity(&mView);
+	D3DXMatrixIdentity(&mProjection);
 }
 Camera::~Camera()
 {
