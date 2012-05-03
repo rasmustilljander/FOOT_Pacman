@@ -46,6 +46,7 @@ private:
 		//Waypoints* waypoints;
 		vector<WallObject*> mWallObject;
 		vector<Candy*> mCandy;
+
 };
 
 #endif

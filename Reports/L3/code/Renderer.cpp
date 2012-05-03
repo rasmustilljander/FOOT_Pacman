@@ -101,7 +101,7 @@ void Renderer::SetUpViewPort()
 	//set rasterizer state
 	//--------------------------------------------------------------
 	
-	D3D10_RASTERIZER_DESC rasterizerState;
+	/*D3D10_RASTERIZER_DESC rasterizerState;
 	rasterizerState.CullMode = D3D10_CULL_NONE;
 	rasterizerState.FillMode = D3D10_FILL_SOLID;
 	rasterizerState.FrontCounterClockwise = false;
@@ -114,7 +114,7 @@ void Renderer::SetUpViewPort()
     rasterizerState.AntialiasedLineEnable = true;		
 	
 	mDevice->CreateRasterizerState( &rasterizerState, &mRastState);
-	mDevice->RSSetState(mRastState);
+	mDevice->RSSetState(mRastState);*/
 }
 
 void Renderer::CreateBackBufferAndRenderTarget() 

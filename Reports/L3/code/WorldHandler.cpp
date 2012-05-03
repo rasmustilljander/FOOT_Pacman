@@ -14,7 +14,7 @@ void WorldHandler::Initialize(ID3D10Device* lDevice)
 	mDevice = lDevice;
 
 	mShaderObject->Initialize( mDevice, "wall.fx", VertexLayout, vertexInputLayoutNumElements, "drawTech", D3D10_SHADER_ENABLE_STRICTNESS );
-	CreateVertexBuffer( &mVertexBuffer, 5 );
+	CreateVertexBuffer( &mVertexBuffer, 4 );
 	SetResources();
 	SetupVertices();
 }
@@ -23,7 +23,7 @@ void WorldHandler::CreateVertexBuffer( ID3D10Buffer** lVB, int lSize  )
 {
 	D3D10_BUFFER_DESC bd;
 	bd.Usage = D3D10_USAGE_DYNAMIC;
-	bd.ByteWidth = sizeof( BillboardVertex ) * lSize;
+	bd.ByteWidth = sizeof( Vertex ) * lSize;
 	bd.BindFlags = D3D10_BIND_VERTEX_BUFFER;
 	bd.CPUAccessFlags = D3D10_CPU_ACCESS_WRITE;
 	bd.MiscFlags = 0;
@@ -80,4 +80,5 @@ void WorldHandler::Draw( Camera* lCam )
 	mDevice->IASetVertexBuffers(0,1,&mVertexBuffer, &stride, &offset);
 
 	mShaderObject->Render(0);
+	mDevice->Draw(4,0);
 }

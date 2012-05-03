@@ -99,7 +99,7 @@ PSSceneIn VSScene(VSSceneIn input)
 float4 textured( PSSceneIn input ) : SV_Target
 {
 	//return tex2D.Sample( linearSampler, input.Tex );
-	return float4(1,1,1,0);
+	return float4(1,1,1,1);
 }
 
 
