@@ -2,7 +2,7 @@
 using namespace std;
 
 #include "Renderer.h"
-//#include "ScreenHandler.h"
+#include "ScreenHandler.h"
 
 Renderer::Renderer():	mDriverType(D3D10_DRIVER_TYPE_NULL),
 						mDevice(NULL),

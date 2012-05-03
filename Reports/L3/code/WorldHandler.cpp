@@ -62,6 +62,11 @@ void WorldHandler::SetupVertices()
 	mVertexBuffer->Unmap();
 }
 
+void WorldHandler::CreateLevel()
+{
+
+}
+
 void WorldHandler::Draw( Camera* lCam )
 {
 	mShaderObject->SetMatrix("viewMatrix", lCam->GetView());

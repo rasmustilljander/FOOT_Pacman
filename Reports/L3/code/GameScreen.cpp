@@ -16,11 +16,11 @@ GameScreen::~GameScreen()
 void GameScreen::StartUp(ID3D10Device* lDevice)
 {
 	BaseGameScreen::StartUp(lDevice);
-	mWorldHandler->Initialize( lDevice );
+	//mWorldHandler->Initialize( lDevice );
 	mOldCursorPosition.x = 0;
 	mOldCursorPosition.y = 0;
 
-	//mHUD->Initialize( lDevice );
+	mHUD->Initialize( lDevice );
 }
 
 void GameScreen::ShutDown()
@@ -30,8 +30,8 @@ void GameScreen::ShutDown()
 
 void GameScreen::Draw()
 {
-	//mHUD->Draw();
-	mWorldHandler->Draw( mCamera );
+	mHUD->Draw();
+	//mWorldHandler->Draw( mCamera );
 }
 
 void GameScreen::Update()

@@ -16,12 +16,12 @@ LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 //--------------------------------------------------------------------------------------
 int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow )
 {
-	//Renderer renderer;
+	Renderer renderer;
 	
 	if( FAILED( InitWindow( hInstance, nCmdShow ) ) )
 		return 0;
 	
-	//renderer.Initialize(&g_hWnd);
+	renderer.Initialize(&g_hWnd);
 	
 	 
 	__int64 cntsPerSec = 0;
@@ -41,8 +41,8 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 			DispatchMessage( &msg );
 		}
 
-			//renderer.Update();
-			//renderer.Draw();
+			renderer.Update();
+			renderer.Draw();
 
 	}
 

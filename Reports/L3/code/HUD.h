@@ -2,6 +2,7 @@
 #include "Utilities.h"
 #include "ShaderObject.h"
 #include "Vertex.h"
+#include "ResourceLoader.h"
 #include <sstream>
 using namespace std;
 

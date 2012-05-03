@@ -67,9 +67,9 @@ void ScreenHandler::Initialize(ID3D10Device* lDevice)
 	GetResourceLoader().LoadTextures(lDevice);
 
 	//Sets MenuScreen as the starting screen
-	mPrevGameScreenState = Menu;
-	mScreen = mMenuScreen;
-	mScreen->ActivateScreen(Menu);
+	mPrevGameScreenState = Ingame;
+	mScreen = mGameScreen;
+	mScreen->ActivateScreen(Ingame);
 }
 
 void ScreenHandler::ScreenStartUp(ID3D10Device* lDevice)
