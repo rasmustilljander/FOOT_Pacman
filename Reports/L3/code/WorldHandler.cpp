@@ -14,7 +14,7 @@ void WorldHandler::Initialize(ID3D10Device* lDevice)
 	mDevice = lDevice;
 
 	mShaderObject->Initialize( mDevice, "wall.fx", VertexLayout, vertexInputLayoutNumElements, "drawTech", D3D10_SHADER_ENABLE_STRICTNESS );
-	CreateVertexBuffer( &mVertexBuffer, 4 );
+	CreateVertexBuffer( &mVertexBuffer, 5 );
 	SetResources();
 	SetupVertices();
 }
