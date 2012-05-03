@@ -10,6 +10,7 @@ Camera::Camera()
 	D3DXMatrixIdentity(&mView);
 	D3DXMatrixIdentity(&mProjection);
 }
+
 Camera::~Camera()
 {
 

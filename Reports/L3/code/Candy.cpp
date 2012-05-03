@@ -24,8 +24,6 @@ void Candy::SetResources()
 		mShaderObject->SetResource("tex2D", GetResourceLoader().GetCandyTexture());
 	else
 		mShaderObject->SetResource("tex2D", GetResourceLoader().GetSuperCandyTexture());
-
-	
 }
 
 void Candy::SetupVertices()

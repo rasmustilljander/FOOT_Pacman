@@ -8,7 +8,10 @@ class Waypoint
 {
 public:
 	Waypoint();
+	Waypoint(D3DXVECTOR3 lPosition);
 	virtual ~Waypoint();
+
+	void AddAdjecentWaypoint(Waypoint* lWaypoint);
 
 	Waypoint* GetNextDestinationWaypoint(Waypoint* lPreviousWaypoint);
 	

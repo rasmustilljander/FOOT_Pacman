@@ -1,9 +1,18 @@
 #include "Ghost.h"
 
-
-Ghost::Ghost( D3DXVECTOR3 lPosition )
+Ghost::Ghost()
+{
+	mDestinationWaypoint = NULL;
+	mPreviousWaypoint = NULL;
+	mStartWaypoint = NULL;
+	mSpawnPosition = D3DXVECTOR3(0,0,0);
+}
+Ghost::Ghost(D3DXVECTOR3 lPosition, Waypoint* lWaypoint)
 {
 	mPosition = lPosition;
+	mDestinationWaypoint = lWaypoint;
+	mStartWaypoint = mDestinationWaypoint;
+	mSpawnPosition = mPosition;
 }
 
 Ghost::~Ghost()
@@ -12,7 +21,7 @@ Ghost::~Ghost()
 }
 
 void Ghost::Update(float lDeltaTime) 
-{
+{	
 	if(CalculateDistance() < gGhostWaypointOffset)
 		SetNextWaypoint();
 	MoveTowardsWaypoint(lDeltaTime);
@@ -40,10 +49,24 @@ void Ghost::MoveTowardsWaypoint(float lDeltaTime)
 		mPosition.x += gGhostMovementSpeed * lDeltaTime;
 	else if(mPosition.x > lVector.x)
 		mPosition.x -= gGhostMovementSpeed * lDeltaTime;
-	else if(mPosition.y < lVector.y)
-		mPosition.y += gGhostMovementSpeed * lDeltaTime;
-	else if(mPosition.y > lVector.y)
-		mPosition.y -= gGhostMovementSpeed * lDeltaTime;
+	else if(mPosition.z < lVector.z)
+		mPosition.z += gGhostMovementSpeed * lDeltaTime;
+	else if(mPosition.z > lVector.z)
+		mPosition.z -= gGhostMovementSpeed * lDeltaTime;
+}
+
+void Ghost::Eaten()
+{
+	mPosition = mSpawnPosition;
+	mDestinationWaypoint = mStartWaypoint;
+}
+
+void Ghost::IsEdible(bool lIsEdible)
+{
+	if (!lIsEdible)
+		mShaderObject->SetResource("tex2D", GetResourceLoader().GetCandyTexture());
+	else
+		mShaderObject->SetResource("tex2D", GetResourceLoader().GetSuperCandyTexture());	
 }
 
 void Ghost::SetResources()
