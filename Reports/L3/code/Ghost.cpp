@@ -11,14 +11,39 @@ Ghost::~Ghost()
 
 }
 
-void Ghost::Update(float lDT) 
+void Ghost::Update(float lDeltaTime) 
 {
-
+	if(CalculateDistance() < gGhostWaypointOffset)
+		SetNextWaypoint();
+	MoveTowardsWaypoint(lDeltaTime);
 }
 
-void Ghost::SetTargetPosition(D3DXVECTOR3 lTargetPosition) 
+float Ghost::CalculateDistance()
 {
+	D3DXVECTOR3 lVector = mPosition - mDestinationWaypoint -> GetPosition();
+	return D3DXVec3Length(&lVector);
+}
 
+void Ghost::SetNextWaypoint()
+{
+	mPosition = mDestinationWaypoint -> GetPosition();
+	Waypoint* lTemp = mDestinationWaypoint;
+	mDestinationWaypoint = mDestinationWaypoint -> GetNextDestinationWaypoint(mPreviousWaypoint);
+	mPreviousWaypoint = lTemp;
+	delete lTemp;
+}
+
+void Ghost::MoveTowardsWaypoint(float lDeltaTime)
+{
+	D3DXVECTOR3 lVector = mDestinationWaypoint -> GetPosition();
+	if(mPosition.x < lVector.x)
+		mPosition.x += gGhostMovementSpeed * lDeltaTime;
+	else if(mPosition.x > lVector.x)
+		mPosition.x -= gGhostMovementSpeed * lDeltaTime;
+	else if(mPosition.y < lVector.y)
+		mPosition.y += gGhostMovementSpeed * lDeltaTime;
+	else if(mPosition.y > lVector.y)
+		mPosition.y -= gGhostMovementSpeed * lDeltaTime;
 }
 
 void Ghost::SetResources()

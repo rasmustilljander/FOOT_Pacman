@@ -10,14 +10,15 @@
 class GameObject
 {
 public:
-		GameObject();
-		~GameObject();
+	GameObject();
+	~GameObject();
 
 	void Initialize(ID3D10Device* lDevice, char* lFxFilename);
-	void Draw( Camera* lCam );
+	void Draw(Camera* lCam);
+
 
 protected:
-	void CreateVertexBuffer( ID3D10Buffer** lVB, int lSize );
+	void CreateVertexBuffer(ID3D10Buffer** lVB, int lSize);
 	void SetValuesToVertexBuffer();
 	virtual void SetResources() = 0;
 	virtual void SetupVertices() = 0;

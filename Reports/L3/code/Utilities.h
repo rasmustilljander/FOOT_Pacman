@@ -9,11 +9,12 @@
 #define TWO_PI 6.283185307179586476925286766559
 
 //Game Specific Things
-#define gMovementSpeed 20
+#define gPlayerMovementSpeed 20
+#define gGhostMovementSpeed 18
 #define gCursosSensitivity 0.0087266f
+#define gGhostWaypointOffset 10
 
 static POINT gLockedCursorPoint;
-
 
 
 #endif

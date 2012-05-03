@@ -2,7 +2,12 @@
 #define GHOST_H
 
 #include "NonStaticGameObject.h"
-#include "Waypoints.h"
+#include "Waypoint.h"
+
+int main()
+	{
+		return 0;
+}
 
 class Ghost: public NonStaticGameObject
 {
@@ -10,15 +15,20 @@ public:
 	Ghost(D3DXVECTOR3 lPosition);
 	virtual ~Ghost();
 
-	void Update(float lDT);
-	void SetTargetPosition(D3DXVECTOR3 lTargetPosition);
+	void Update(float lDeltaTime);
 
 private:
-	void SetResources();
-	void SetupVertices();
+	float	CalculateDistance();
+	void	SetNextWaypoint();
+	void	MoveTowardsWaypoint(float lDeltaTime);
+	void	SetResources();
+	void	SetupVertices();
 
 private:
 	ID3D10ShaderResourceView* mResourceView2;
+	Waypoint* mDestinationWaypoint;
+	Waypoint* mPreviousWaypoint;
+
 
 
 };
