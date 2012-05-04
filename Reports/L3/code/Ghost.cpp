@@ -22,6 +22,8 @@ Ghost::~Ghost()
 
 void Ghost::Update(float lDeltaTime) 
 {	
+
+	
 	if(CalculateDistance() < gGhostWaypointOffset)
 		SetNextWaypoint();
 	MoveTowardsWaypoint(lDeltaTime);
@@ -30,7 +32,10 @@ void Ghost::Update(float lDeltaTime)
 float Ghost::CalculateDistance()
 {
 	D3DXVECTOR3 lVector = mPosition - mDestinationWaypoint -> GetPosition();
-	return D3DXVec3Length(&lVector);
+	float lDistance = D3DXVec3Length(&lVector);
+	if(lDistance < 30)
+		int lol = 2;
+	return lDistance;
 }
 
 void Ghost::SetNextWaypoint()
@@ -39,7 +44,6 @@ void Ghost::SetNextWaypoint()
 	Waypoint* lTemp = mDestinationWaypoint;
 	mDestinationWaypoint = mDestinationWaypoint -> GetNextDestinationWaypoint(mPreviousWaypoint);
 	mPreviousWaypoint = lTemp;
-	delete lTemp;
 }
 
 void Ghost::MoveTowardsWaypoint(float lDeltaTime)

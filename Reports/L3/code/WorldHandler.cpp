@@ -7,6 +7,7 @@ WorldHandler::WorldHandler()
 
 WorldHandler::~WorldHandler()
 {
+	
 }
 
 void WorldHandler::Initialize(ID3D10Device* lDevice) 
@@ -17,6 +18,7 @@ void WorldHandler::Initialize(ID3D10Device* lDevice)
 	CreateVertexBuffer( &mVertexBuffer, 4 );
 	SetResources();
 	SetupVertices();
+	LoadWaypoints();
 }
 
 void WorldHandler::CreateVertexBuffer( ID3D10Buffer** lVB, int lSize  )
@@ -43,19 +45,19 @@ void WorldHandler::SetupVertices()
 
 	mVertexBuffer->Map( D3D10_MAP_WRITE_DISCARD, 0, reinterpret_cast< void** > ((void**)&data) );
 
-	data[0].pos = D3DXVECTOR3(0,0,0);
+	data[0].pos = D3DXVECTOR4(0,5,0,0);
 	data[0].texC = D3DXVECTOR2(0,0);
 	data[0].normal = D3DXVECTOR3(0,1,0);
 
-	data[1].pos = D3DXVECTOR3(1000,0,0);
+	data[1].pos = D3DXVECTOR4(1000,0,0,0);
 	data[1].texC = D3DXVECTOR2(1,0);
 	data[1].normal = D3DXVECTOR3(0,1,0);
 
-	data[2].pos = D3DXVECTOR3(0,0,1000);
+	data[2].pos = D3DXVECTOR4(0,5,1000,0);
 	data[2].texC = D3DXVECTOR2(0,1);
 	data[2].normal = D3DXVECTOR3(0,1,0);
 
-	data[3].pos = D3DXVECTOR3(1000,0,1000);
+	data[3].pos = D3DXVECTOR4(1000,0,1000,0);
 	data[3].texC = D3DXVECTOR2(1,1);
 	data[3].normal = D3DXVECTOR3(0,1,0);
 
@@ -67,18 +69,49 @@ void WorldHandler::CreateLevel()
 
 }
 
+void WorldHandler::LoadWaypoints()
+{
+	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(0, 0, -200)));
+	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(0, 0, 0)));
+	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(0, 0, 200)));
+	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(200, 0, 200)));
+	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(200, 0, 0)));
+
+
+	mWaypoint.at(0)->AddAdjecentWaypoint(mWaypoint.at(1)); //Test Spawn
+
+	mWaypoint.at(1)->AddAdjecentWaypoint(mWaypoint.at(2));
+	mWaypoint.at(1)->AddAdjecentWaypoint(mWaypoint.at(4));
+
+	mWaypoint.at(2)->AddAdjecentWaypoint(mWaypoint.at(1));
+	mWaypoint.at(2)->AddAdjecentWaypoint(mWaypoint.at(3));
+
+	mWaypoint.at(3)->AddAdjecentWaypoint(mWaypoint.at(2));
+	mWaypoint.at(3)->AddAdjecentWaypoint(mWaypoint.at(4));
+
+	mWaypoint.at(4)->AddAdjecentWaypoint(mWaypoint.at(3)); 
+	mWaypoint.at(4)->AddAdjecentWaypoint(mWaypoint.at(1)); 
+
+
+}
+
 void WorldHandler::Draw( Camera* lCam )
 {
 	mShaderObject->SetMatrix("viewMatrix", lCam->GetView());
 	mShaderObject->SetMatrix("projMatrix", lCam->GetProjection());
-
+	
 	mDevice->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 
 	UINT stride = sizeof(Vertex);
-	UINT offset= 0;
+	UINT offset = 0;
 
-	mDevice->IASetVertexBuffers(0,1,&mVertexBuffer, &stride, &offset);
+	mDevice->IASetVertexBuffers(0,1, &mVertexBuffer, &stride, &offset);
 
 	mShaderObject->Render(0);
 	mDevice->Draw(4,0);
+}
+
+Waypoint* WorldHandler::GetGhostSpawnWaypoint()
+{
+	return mWaypoint.at(0);
 }

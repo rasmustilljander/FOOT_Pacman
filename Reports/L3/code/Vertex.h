@@ -2,29 +2,32 @@
 
 struct Vertex
 {
-	D3DXVECTOR3 pos;
+	D3DXVECTOR4 pos;
 	D3DXVECTOR3 normal;
 	D3DXVECTOR2 texC;
 
-	Vertex () : normal( D3DXVECTOR3(0,0,0) )
-	{			
+	Vertex () : pos (D3DXVECTOR4(0,0,0,0)), normal(D3DXVECTOR3(0,0,0)), texC(D3DXVECTOR2(0,0))
+	{
+
 	}
 	
-	Vertex( D3DXVECTOR3 p, D3DXVECTOR3 n ) : pos(p), normal(n)
-	{		
+	Vertex( D3DXVECTOR4 p, D3DXVECTOR3 n ) : pos(p), normal(n), texC(D3DXVECTOR2(0,0))
+	{
+
 	}	
 
-	Vertex( D3DXVECTOR3 p, D3DXVECTOR2 t, D3DXVECTOR3 n ) : pos(p), normal(n), texC(t)
+	Vertex( D3DXVECTOR4 p, D3DXVECTOR3 n, D3DXVECTOR2 t) : pos(p), normal(n), texC(t)
 	{
+
 	}	
 };
 
 
 const D3D10_INPUT_ELEMENT_DESC VertexLayout[] =
 {
-	{ "POS", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D10_INPUT_PER_VERTEX_DATA, 0 },
-	{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D10_INPUT_PER_VERTEX_DATA, 0},
-	{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0,24,D3D10_INPUT_PER_VERTEX_DATA, 0}
+	{ "POSITION", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 0, D3D10_INPUT_PER_VERTEX_DATA, 0 },
+	{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0,16,D3D10_INPUT_PER_VERTEX_DATA, 0},
+	{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 20, D3D10_INPUT_PER_VERTEX_DATA, 0}
 };
 
 const int vertexInputLayoutNumElements = sizeof(VertexLayout)/sizeof(VertexLayout[0]);

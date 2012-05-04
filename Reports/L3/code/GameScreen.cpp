@@ -6,6 +6,8 @@ GameScreen::GameScreen()
 	mHUD = new HUD();
 	mWorldHandler = new WorldHandler();
 	mKeyboardHandler = new KeyboardInputHandler();
+	//TODO Remove this
+	test = 0;
 }
 
 GameScreen::~GameScreen()
@@ -21,6 +23,7 @@ void GameScreen::StartUp(ID3D10Device* lDevice)
 
 	//mHUD->Initialize( lDevice );
 	mWorldHandler->Initialize( lDevice );
+	LoadGhosts();
 }
 
 void GameScreen::ShutDown()
@@ -37,9 +40,13 @@ void GameScreen::Draw()
 void GameScreen::Update()
 {
 	mGameTimer->Tick();
-	KeyBoardMovement(mGameTimer->GetDeltaTime()); //needs deltatime value
-	MouseMovement();
+	float lDeltaTime = mGameTimer->GetDeltaTime();
+	//KeyBoardMovement(lDeltaTime);
+	//MouseMovement();
+	UpdateGhost(lDeltaTime);
 
+
+	mCamera->UpdateView();
 }
 
 void GameScreen::KeyBoardMovement(float lDeltaTime)
@@ -78,7 +85,32 @@ void GameScreen::MouseMovement()
 	mOldCursorPosition = lMousePosition;
 }
 
+void GameScreen::UpdateGhost(float lDeltaTime)
+{
+	for(UINT i = 0; i < mGhost.size(); i++)
+		mGhost.at(i)->Update(lDeltaTime);
+}
+
 void GameScreen::ActivateScreen(GameScreenState lGameScreenState)
 {
 	mGameScreenState = lGameScreenState;
+}
+
+void GameScreen::LoadGhosts()
+{
+	D3DXVECTOR3 spawnVector(0, 0, -200);
+	//mWaypoint.push_back(new Waypoint(D3DXVECTOR3(200, -200, 0)));
+
+	/*Waypoint* lWaypoint = mWorldHandler->GetGhostSpawnWaypoint();
+
+	mGhost.push_back(new Ghost(spawnVector, lWaypoint));
+	mGhost.push_back(new Ghost(spawnVector, lWaypoint));
+	mGhost.push_back(new Ghost(spawnVector, lWaypoint));
+	mGhost.push_back(new Ghost(spawnVector, lWaypoint));
+
+	delete lWaypoint;*/
+	mGhost.push_back(new Ghost(spawnVector, mWorldHandler->GetGhostSpawnWaypoint()));
+	mGhost.push_back(new Ghost(spawnVector, mWorldHandler->GetGhostSpawnWaypoint()));
+	mGhost.push_back(new Ghost(spawnVector, mWorldHandler->GetGhostSpawnWaypoint()));
+	mGhost.push_back(new Ghost(spawnVector, mWorldHandler->GetGhostSpawnWaypoint()));
 }
