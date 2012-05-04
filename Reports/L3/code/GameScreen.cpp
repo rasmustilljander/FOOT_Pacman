@@ -6,6 +6,7 @@ GameScreen::GameScreen()
 	mHUD = new HUD();
 	mWorldHandler = new WorldHandler();
 	mKeyboardHandler = new KeyboardInputHandler();
+	mSky = new Sky();
 }
 
 GameScreen::~GameScreen()
@@ -19,8 +20,9 @@ void GameScreen::StartUp(ID3D10Device* lDevice)
 	mOldCursorPosition.x = 0;
 	mOldCursorPosition.y = 0;
 
-	//mHUD->Initialize( lDevice );
+	mHUD->Initialize( lDevice );
 	mWorldHandler->Initialize( lDevice );
+	mSky->initialize( lDevice, 5000 );
 }
 
 void GameScreen::ShutDown()
@@ -30,8 +32,10 @@ void GameScreen::ShutDown()
 
 void GameScreen::Draw()
 {
-	//mHUD->Draw();
+	mHUD->Draw();
 	mWorldHandler->Draw( mCamera );
+
+	mSky->draw( mCamera );
 }
 
 void GameScreen::Update()
@@ -39,7 +43,9 @@ void GameScreen::Update()
 	mGameTimer->Tick();
 	KeyBoardMovement(mGameTimer->GetDeltaTime()); //needs deltatime value
 	MouseMovement();
-
+	
+	
+	mCamera->UpdateView();
 }
 
 void GameScreen::KeyBoardMovement(float lDeltaTime)

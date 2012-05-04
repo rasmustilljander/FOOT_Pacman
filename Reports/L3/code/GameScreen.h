@@ -6,6 +6,7 @@
 #include "BaseGameScreen.h"
 #include "Player.h"
 #include "KeyboardInputHandler.h"
+#include "Sky.h"
 
 
 class GameScreen: public BaseGameScreen
@@ -29,6 +30,7 @@ class GameScreen: public BaseGameScreen
 		POINT mOldCursorPosition;
 		//CollisionHandler* collisionHandler;
 		KeyboardInputHandler* mKeyboardHandler;
+		Sky* mSky;
 };
 
 #endif

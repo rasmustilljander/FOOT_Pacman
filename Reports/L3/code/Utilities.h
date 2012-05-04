@@ -7,6 +7,7 @@
 #define SAFE_DELETE(x) if( x ) { delete(x); (x) = NULL; }
 #define PI (3.14159265358979323846f)
 #define TWO_PI 6.283185307179586476925286766559
+#define DEG_TO_RAD 0.01745329251994329576923690768489
 
 //Game Specific Things
 #define gPlayerMovementSpeed 20
@@ -16,5 +17,10 @@
 
 static POINT gLockedCursorPoint;
 
+template<typename T>
+D3DX10INLINE T Min(const T& a, const T& b)
+{
+	return a < b ? a : b;
+};
 
 #endif

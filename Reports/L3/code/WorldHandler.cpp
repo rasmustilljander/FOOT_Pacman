@@ -35,6 +35,7 @@ void WorldHandler::SetResources()
 {
 	D3DXMatrixIdentity(&mWorldMatrix);
 	mShaderObject->SetMatrix("worldMatrix", mWorldMatrix);
+	mShaderObject->SetResource("tex2D", GetResourceLoader().GetWallTexture());
 }
 
 void WorldHandler::SetupVertices()
@@ -43,19 +44,19 @@ void WorldHandler::SetupVertices()
 
 	mVertexBuffer->Map( D3D10_MAP_WRITE_DISCARD, 0, reinterpret_cast< void** > ((void**)&data) );
 
-	data[0].pos = D3DXVECTOR3(0,10,0);
+	data[0].pos = D3DXVECTOR3(0,0,0);
 	data[0].texC = D3DXVECTOR2(0,0);
 	data[0].normal = D3DXVECTOR3(0,1,0);
 
-	data[1].pos = D3DXVECTOR3(10,0,0);
+	data[1].pos = D3DXVECTOR3(1000,0,0);
 	data[1].texC = D3DXVECTOR2(1,0);
 	data[1].normal = D3DXVECTOR3(0,1,0);
 
-	data[2].pos = D3DXVECTOR3(0,10,10);
+	data[2].pos = D3DXVECTOR3(0,0,1000);
 	data[2].texC = D3DXVECTOR2(0,1);
 	data[2].normal = D3DXVECTOR3(0,1,0);
 
-	data[3].pos = D3DXVECTOR3(10,0,10);
+	data[3].pos = D3DXVECTOR3(1000,0,1000);
 	data[3].texC = D3DXVECTOR2(1,1);
 	data[3].normal = D3DXVECTOR3(0,1,0);
 
@@ -67,11 +68,11 @@ void WorldHandler::CreateLevel()
 
 }
 
-void WorldHandler::Draw( Camera* lCam )
+void WorldHandler::Draw(Camera* lCam)
 {
 	mShaderObject->SetMatrix("viewMatrix", lCam->GetView());
 	mShaderObject->SetMatrix("projMatrix", lCam->GetProjection());
-
+	mShaderObject->SetTechniqueByName("drawTech");
 	mDevice->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 
 	UINT stride = sizeof(Vertex);

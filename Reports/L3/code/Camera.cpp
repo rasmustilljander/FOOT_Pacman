@@ -2,10 +2,10 @@
 
 Camera::Camera() 
 {
-	mPosition	= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	mPosition	= D3DXVECTOR3(0.0f, 100.0f, -50.0f);
 	mRight		= D3DXVECTOR3(1.0f, 0.0f, 0.0f);
 	mUp			= D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	mAim		= D3DXVECTOR3(0.0f, 0.0f, 1.0f);
+	mAim		= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 	D3DXMatrixIdentity(&mView);
 	D3DXMatrixIdentity(&mProjection);
@@ -107,5 +107,6 @@ void Camera::RotateY(float lAngle)
 
 void Camera::SetLens(float lFieldOfViewY, float lAspect, float lZValueNearPlane, float lZValueFarPlane)
 {
-	D3DXMatrixPerspectiveFovLH(&mProjection, lFieldOfViewY, lAspect, lZValueFarPlane, lZValueFarPlane);
+	float FOV = lFieldOfViewY * (float) DEG_TO_RAD;
+	D3DXMatrixPerspectiveFovLH(&mProjection, FOV, lAspect, lZValueFarPlane, lZValueFarPlane);
 }

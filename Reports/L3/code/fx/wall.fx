@@ -1,5 +1,5 @@
 
-//Texture2D tex2D;
+Texture2D tex2D;
 
 
 matrix worldMatrix;
@@ -62,19 +62,6 @@ SamplerState linearSampler
     MaxAnisotropy = 16;
 };
 
-BlendState SrcAlphaBlending
-{
-	BlendEnable[0] = TRUE;
-	SrcBlend = SRC_ALPHA;
-	DestBlend = INV_SRC_ALPHA;
-	BlendOp = ADD;
-	SrcBlendAlpha = ZERO;
-	DestBlendAlpha = ZERO;
-	BlendOpAlpha = ADD;
-	RenderTargetWriteMask[0] = 0x0F;
-};
-
-
 //-----------------------------------------------------------------------------------------
 // VertexShader: VSScene
 //-----------------------------------------------------------------------------------------
@@ -98,8 +85,7 @@ PSSceneIn VSScene(VSSceneIn input)
 
 float4 textured( PSSceneIn input ) : SV_Target
 {
-	//return tex2D.Sample( linearSampler, input.Tex );
-	return float4(1,1,1,1);
+	return tex2D.Sample( linearSampler, input.Tex );
 }
 
 

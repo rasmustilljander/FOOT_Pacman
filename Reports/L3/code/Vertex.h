@@ -3,8 +3,8 @@
 struct Vertex
 {
 	D3DXVECTOR3 pos;
-	D3DXVECTOR3 normal;
 	D3DXVECTOR2 texC;
+	D3DXVECTOR3 normal;
 
 	Vertex () : normal( D3DXVECTOR3(0,0,0) )
 	{			
@@ -19,12 +19,11 @@ struct Vertex
 	}	
 };
 
-
 const D3D10_INPUT_ELEMENT_DESC VertexLayout[] =
 {
 	{ "POS", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D10_INPUT_PER_VERTEX_DATA, 0 },
-	{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D10_INPUT_PER_VERTEX_DATA, 0},
-	{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0,24,D3D10_INPUT_PER_VERTEX_DATA, 0}
+	{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D10_INPUT_PER_VERTEX_DATA, 0 },
+	{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 20, D3D10_INPUT_PER_VERTEX_DATA, 0 }
 };
 
 const int vertexInputLayoutNumElements = sizeof(VertexLayout)/sizeof(VertexLayout[0]);
@@ -66,3 +65,18 @@ const D3D10_INPUT_ELEMENT_DESC BillboardVertexLayout[] =
 	};
 
 const int BillboardLayoutNumElements = sizeof(BillboardVertexLayout)/sizeof(BillboardVertexLayout[0]);
+
+
+////////////////////
+
+struct SpaceVertex
+{
+	D3DXVECTOR3 pos;
+};
+
+const D3D10_INPUT_ELEMENT_DESC spaceVertexDesc[] =
+	{
+		{"POSITION",  0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0,  D3D10_INPUT_PER_VERTEX_DATA, 0}
+	};
+
+const int skyVertexInputLayoutNumElements = sizeof(spaceVertexDesc)/sizeof(spaceVertexDesc[0]);

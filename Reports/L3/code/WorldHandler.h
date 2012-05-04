@@ -6,6 +6,7 @@
 #include "Camera.h"
 #include "Candy.h"
 #include "WallObject.h"
+#include "ResourceLoader.h"
 using namespace std;
 
 #ifndef __WorldHandler_h__
