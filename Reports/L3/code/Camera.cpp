@@ -63,7 +63,10 @@ void Camera::SetPosition(D3DXVECTOR3 lPlayerPos)
 //Move camera using keyboardbuttons 'A' or 'D'
 void Camera::Strafe(float d)
 {
-	mPosition += mRight * d;
+	D3DXVECTOR3 lRight;
+	D3DXVec3Normalize(&lRight, &mRight);
+	mPosition += lRight * d;
+
 //	Left (A)
 //	mPos1 = mPos0 + mRight * (-(movementspeed * dt))
 //Right (D)
@@ -73,7 +76,9 @@ void Camera::Strafe(float d)
 //Move camera using keyboardbuttons 'W' or 'S'
 void Camera::Walk(float d)
 {
-	mPosition += mAim * d;
+	D3DXVECTOR3 lAim;
+	D3DXVec3Normalize(&lAim, &mAim);
+	mPosition += lAim * d;
 //Forward (W)
 //	mPos1 = mPos0 + mAt * ((movementspeed * dt))
 //Back (S)

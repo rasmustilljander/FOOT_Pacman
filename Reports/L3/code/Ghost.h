@@ -4,11 +4,6 @@
 #include "NonStaticGameObject.h"
 #include "Waypoint.h"
 
-int main()
-{
-		return 0;
-}
-
 class Ghost: public NonStaticGameObject
 {
 public:
