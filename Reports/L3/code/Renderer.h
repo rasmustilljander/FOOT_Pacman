@@ -7,6 +7,7 @@ using namespace std;
 #include "Utilities.h"
 #include "ScreenHandler.h"
 
+
 class Renderer
 {
 public:
@@ -32,6 +33,7 @@ private:
 	ID3D10RasterizerState*	mRastState;
 
 	ScreenHandler* mScreenHandler;
+
 
 };
 

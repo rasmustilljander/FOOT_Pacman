@@ -6,6 +6,8 @@
 #include "Candy.h"
 #include "WallObject.h"
 #include "Waypoint.h"
+#include "ResourceLoader.h"
+using namespace std;
 
 #ifndef WORLDHANDLER_H
 #define WORLDHANDLER_H

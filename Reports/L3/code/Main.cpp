@@ -9,7 +9,6 @@ LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 
 
 
-
 //--------------------------------------------------------------------------------------
 // Entry point to the program. Initializes everything and goes into a message processing 
 // loop. Idle time is used to render the scene.
@@ -20,7 +19,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 	
 	if( FAILED( InitWindow( hInstance, nCmdShow ) ) )
 		return 0;
-	
+
 	renderer.Initialize(&g_hWnd);
 	
 	 
@@ -43,7 +42,6 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 
 			renderer.Update();
 			renderer.Draw();
-
 	}
 
 		return (int) msg.wParam;

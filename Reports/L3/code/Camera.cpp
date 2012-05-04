@@ -108,5 +108,6 @@ void Camera::RotateY(float lAngle)
 
 void Camera::SetLens(float lFieldOfViewY, float lAspect, float lZValueNearPlane, float lZValueFarPlane)
 {
-	D3DXMatrixPerspectiveFovLH(&mProjection, lFieldOfViewY, lAspect, lZValueFarPlane, lZValueFarPlane);
+	float FOV = lFieldOfViewY * (float) DEG_TO_RAD;
+	D3DXMatrixPerspectiveFovLH(&mProjection, FOV, lAspect, lZValueFarPlane, lZValueFarPlane);
 }

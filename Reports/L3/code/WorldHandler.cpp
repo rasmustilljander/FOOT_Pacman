@@ -14,7 +14,7 @@ void WorldHandler::Initialize(ID3D10Device* lDevice)
 {
 	mDevice = lDevice;
 
-	mShaderObject->Initialize( mDevice, "wall.fx", VertexLayout, vertexInputLayoutNumElements, "drawTech", D3D10_SHADER_ENABLE_STRICTNESS );
+	mShaderObject->Initialize( mDevice, "wall.fx", VertexLayout, vertexInputLayoutNumElements, "drawTech", D3D10_SHADER_ENABLE_BACKWARDS_COMPATIBILITY );
 	CreateVertexBuffer( &mVertexBuffer, 4 );
 	SetResources();
 	SetupVertices();
@@ -37,6 +37,7 @@ void WorldHandler::SetResources()
 {
 	D3DXMatrixIdentity(&mWorldMatrix);
 	mShaderObject->SetMatrix("worldMatrix", mWorldMatrix);
+	mShaderObject->SetResource("tex2D", GetResourceLoader().GetWallTexture());
 }
 
 void WorldHandler::SetupVertices()
@@ -68,7 +69,6 @@ void WorldHandler::CreateLevel()
 {
 
 }
-
 void WorldHandler::LoadWaypoints()
 {
 	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(0, 0, -200)));
@@ -99,7 +99,6 @@ void WorldHandler::Draw( Camera* lCam )
 {
 	mShaderObject->SetMatrix("viewMatrix", lCam->GetView());
 	mShaderObject->SetMatrix("projMatrix", lCam->GetProjection());
-	
 	mDevice->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 
 	UINT stride = sizeof(Vertex);
@@ -107,8 +106,14 @@ void WorldHandler::Draw( Camera* lCam )
 
 	mDevice->IASetVertexBuffers(0,1, &mVertexBuffer, &stride, &offset);
 
-	mShaderObject->Render(0);
-	mDevice->Draw(4,0);
+	D3D10_TECHNIQUE_DESC techDesc;
+	mShaderObject->GetTechnique()->GetDesc( &techDesc );
+
+	for( UINT p = 0; p < techDesc.Passes; p++ )
+	{
+		mShaderObject->Render(p);
+		mDevice->Draw(4,0);
+	}
 }
 
 Waypoint* WorldHandler::GetGhostSpawnWaypoint()

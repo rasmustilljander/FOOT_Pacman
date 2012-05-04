@@ -6,8 +6,6 @@ GameScreen::GameScreen()
 	mHUD = new HUD();
 	mWorldHandler = new WorldHandler();
 	mKeyboardHandler = new KeyboardInputHandler();
-	//TODO Remove this
-	test = 0;
 }
 
 GameScreen::~GameScreen()
@@ -21,7 +19,7 @@ void GameScreen::StartUp(ID3D10Device* lDevice)
 	mOldCursorPosition.x = 0;
 	mOldCursorPosition.y = 0;
 
-	//mHUD->Initialize( lDevice );
+	mHUD->Initialize( lDevice );
 	mWorldHandler->Initialize( lDevice );
 	LoadGhosts();
 }
@@ -33,8 +31,8 @@ void GameScreen::ShutDown()
 
 void GameScreen::Draw()
 {
-	//mHUD->Draw();
-	mWorldHandler->Draw( mCamera );
+	mHUD->Draw();
+	mWorldHandler->Draw( mCamera );	
 }
 
 void GameScreen::Update()
@@ -44,8 +42,6 @@ void GameScreen::Update()
 	//KeyBoardMovement(lDeltaTime);
 	//MouseMovement();
 	UpdateGhost(lDeltaTime);
-
-
 	mCamera->UpdateView();
 }
 

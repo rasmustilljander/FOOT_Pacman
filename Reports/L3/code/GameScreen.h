@@ -34,8 +34,13 @@ private:
 	KeyboardInputHandler* mKeyboardHandler;
 	vector<Ghost*> mGhost;
 
-	//TODO REMOVE THIS JUST TEST THING LOL
-	int test;
+	private:
+		bool mSuperCandyInEffect;
+		HUD* mHUD;
+		Player* mPacman;
+		POINT mOldCursorPosition;
+		//CollisionHandler* collisionHandler;
+		KeyboardInputHandler* mKeyboardHandler;
 };
 
 #endif
