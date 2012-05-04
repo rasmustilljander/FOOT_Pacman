@@ -56,13 +56,13 @@ void GameScreen::KeyBoardMovement(float lDeltaTime)
 		mCamera->Walk(gPlayerMovementSpeed * lDeltaTime);
 	//Left
 	if(mKeyboardHandler->CheckPressedKey(A))
-		mCamera->Walk(-gPlayerMovementSpeed  * lDeltaTime);
+		mCamera->Strafe(-gPlayerMovementSpeed  * lDeltaTime);
 	//Back
 	if(mKeyboardHandler->CheckPressedKey(S))
 		mCamera->Walk(-gPlayerMovementSpeed  * lDeltaTime);
 	//Right
 	if(mKeyboardHandler->CheckPressedKey(D))
-		mCamera->Walk(gPlayerMovementSpeed  * lDeltaTime);
+		mCamera->Strafe(gPlayerMovementSpeed  * lDeltaTime);
 }
 
 void GameScreen::MouseMovement()

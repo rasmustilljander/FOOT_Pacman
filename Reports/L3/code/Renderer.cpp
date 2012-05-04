@@ -11,7 +11,10 @@ Renderer::Renderer():	mDriverType(D3D10_DRIVER_TYPE_NULL),
 						mDepthStencil(NULL),
 						mDepthStencilView(NULL)
 {
-	mScreenHandler = new ScreenHandler();
+	//mScreenHandler = new ScreenHandler();
+	mWorld = new WorldHandler();
+	cam = new Camera();
+	cam->SetLens(45,1024/768,0.1f,5000);
 }
 
 Renderer::~Renderer()
@@ -20,7 +23,7 @@ Renderer::~Renderer()
 
 void Renderer::Update() 
 {
-	mScreenHandler->Update();
+	//mScreenHandler->Update();
 }
 
 void Renderer::Draw() 
@@ -28,8 +31,8 @@ void Renderer::Draw()
 	mDevice->ClearRenderTargetView( mRenderTargetView, D3DXCOLOR(0.0f,0.0f, 0.0f, 0.0f));
 	mDevice->ClearDepthStencilView( mDepthStencilView, D3D10_CLEAR_DEPTH, 1.0f, 0 );
 
-	mScreenHandler->Draw();
-
+	//mScreenHandler->Draw();
+	mWorld->Draw(cam);
 	mSwapChain->Present( 1, 0 );
 }
 
@@ -45,7 +48,8 @@ void Renderer::Initialize(HWND* lHwnd)
 	SetUpViewPort();
 	CreateBackBufferAndRenderTarget();
 
-	mScreenHandler->Initialize(mDevice);
+	//mScreenHandler->Initialize(mDevice);
+	mWorld->Initialize(mDevice);
 }
 
 void Renderer::CreateSwapChain()
@@ -101,7 +105,7 @@ void Renderer::SetUpViewPort()
 	//set rasterizer state
 	//--------------------------------------------------------------
 	
-	/*D3D10_RASTERIZER_DESC rasterizerState;
+	D3D10_RASTERIZER_DESC rasterizerState;
 	rasterizerState.CullMode = D3D10_CULL_NONE;
 	rasterizerState.FillMode = D3D10_FILL_SOLID;
 	rasterizerState.FrontCounterClockwise = false;
@@ -114,7 +118,7 @@ void Renderer::SetUpViewPort()
     rasterizerState.AntialiasedLineEnable = true;		
 	
 	mDevice->CreateRasterizerState( &rasterizerState, &mRastState);
-	mDevice->RSSetState(mRastState);*/
+	mDevice->RSSetState(mRastState);
 }
 
 void Renderer::CreateBackBufferAndRenderTarget() 
