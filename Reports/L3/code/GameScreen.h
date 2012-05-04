@@ -34,13 +34,6 @@ private:
 	KeyboardInputHandler* mKeyboardHandler;
 	vector<Ghost*> mGhost;
 
-	private:
-		bool mSuperCandyInEffect;
-		HUD* mHUD;
-		Player* mPacman;
-		POINT mOldCursorPosition;
-		//CollisionHandler* collisionHandler;
-		KeyboardInputHandler* mKeyboardHandler;
 };
 
 #endif

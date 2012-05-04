@@ -10,7 +10,7 @@ matrix projMatrix;
 
 struct VSSceneIn
 {
-	float4 Pos	: POS;
+	float3 Pos	: POS;
 	float2 Tex : TEXCOORD;
 	float3 n : NORMAL;
 };
@@ -69,7 +69,7 @@ PSSceneIn VSScene(VSSceneIn input)
 {
 	PSSceneIn output;
 	
-		input.Pos = mul( input.Pos, worldMatrix );
+		input.Pos = mul( float4(input.Pos,1.0), worldMatrix );
 	    output.Pos = mul( input.Pos, viewMatrix );
 	    output.Pos = mul( output.Pos, projMatrix );
 

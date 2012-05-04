@@ -27,9 +27,10 @@ class ShaderObject
 		ID3D10EffectTechnique* GetTechniqueByName(char* lVariable);
 		void SetTechniqueByName(char* lVariable);
 	private:
-		ID3D10Effect* mEffect;
-		ID3D10EffectTechnique* mEffectTechnique;
 		ID3D10Device* mDevice;
+		ID3D10Effect* mEffect;
+
+		ID3D10EffectTechnique* mEffectTechnique;
 		ID3D10InputLayout* mInputLayout;
 
 };
