@@ -38,7 +38,7 @@ void HUD::Initialize(ID3D10Device* lDevice)
 	D3DX10CreateFont( mDevice, 20, 0, FW_BOLD, 0, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, TEXT("Copperplate Gothic Bold"), &mFont);
 }
 
-void HUD::CreateVertexBuffer( ID3D10Buffer** lVB, int lSize  ) 
+void HUD::CreateVertexBuffer(ID3D10Buffer** lVB, int lSize  ) 
 {
 	D3D10_BUFFER_DESC bd;
 	bd.Usage = D3D10_USAGE_DYNAMIC;

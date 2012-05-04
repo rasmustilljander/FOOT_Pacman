@@ -1,6 +1,11 @@
 #include "Candy.h"
 
 
+Candy::Candy()
+{
+	mType = 0;
+}
+
 Candy::Candy( int lType ,D3DXVECTOR3 lPosition )
 	: GameObject()
 {

@@ -5,7 +5,7 @@ MenuObject::MenuObject()
 
 }
 
-MenuObject::~MenuObject
+MenuObject::~MenuObject()
 {
 
 }
