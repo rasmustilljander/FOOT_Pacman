@@ -51,15 +51,15 @@ void WorldHandler::SetupVertices()
 	data[0].texC = D3DXVECTOR2(0,0);
 	data[0].normal = D3DXVECTOR3(0,1,0);
 
-	data[1].pos = D3DXVECTOR3(100,0,0);
+	data[1].pos = D3DXVECTOR3(1000,0,0);
 	data[1].texC = D3DXVECTOR2(1,0);
 	data[1].normal = D3DXVECTOR3(0,1,0);
 
-	data[2].pos = D3DXVECTOR3(0,0,100);
+	data[2].pos = D3DXVECTOR3(0,0,1000);
 	data[2].texC = D3DXVECTOR2(0,1);
 	data[2].normal = D3DXVECTOR3(0,1,0);
 
-	data[3].pos = D3DXVECTOR3(100,0,100);
+	data[3].pos = D3DXVECTOR3(1000,0,1000);
 	data[3].texC = D3DXVECTOR2(1,1);
 	data[3].normal = D3DXVECTOR3(0,1,0);
 
