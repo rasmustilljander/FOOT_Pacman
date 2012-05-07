@@ -10,11 +10,12 @@ GameObject::GameObject():
 
 GameObject::~GameObject()
 {
-	//delete mShaderObject;
-	//Release Com instead
-	//delete mShaderTextureVariable;
-	//delete mResourceView;
-	//delete mVertexBuffer;	
+	delete mShaderObject;
+
+	//Release?
+	delete mShaderTextureVariable;
+	delete mResourceView;
+	delete mVertexBuffer;	
 }
 
 void GameObject::Initialize(ID3D10Device* lDevice, char* FxFileName) 

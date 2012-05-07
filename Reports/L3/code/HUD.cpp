@@ -1,7 +1,5 @@
-#include <exception>
-using namespace std;
-
 #include "HUD.h"
+using namespace std;
 
 HUD::HUD()
 {
@@ -12,6 +10,7 @@ HUD::HUD()
 
 HUD::~HUD()
 {
+	delete mShaderObj;
 }
 
 void HUD::Draw()

@@ -1,4 +1,3 @@
-#include <exception>
 using namespace std;
 
 #include "Renderer.h"
@@ -12,11 +11,12 @@ Renderer::Renderer():	mDriverType(D3D10_DRIVER_TYPE_NULL),
 						mDepthStencilView(NULL)
 {
 	mScreenHandler = new ScreenHandler();
-
 }
 
 Renderer::~Renderer()
 {
+	delete mScreenHandler;
+	SAFE_DELETE(mDevice);
 }
 
 void Renderer::Update() 
@@ -57,8 +57,8 @@ void Renderer::CreateSwapChain()
 
 	D3D10_DRIVER_TYPE driverTypes[] = 
 	{
-		D3D10_DRIVER_TYPE_HARDWARE,
 		D3D10_DRIVER_TYPE_REFERENCE,
+		D3D10_DRIVER_TYPE_HARDWARE,		
 	};
 	UINT numDriverTypes = sizeof(driverTypes) / sizeof(driverTypes[0]);
 
