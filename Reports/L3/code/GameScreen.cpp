@@ -4,13 +4,15 @@ GameScreen::GameScreen()
 	: BaseGameScreen()
 {	
 	mHUD = new HUD();
-	mWorldHandler = new WorldHandler();
 	mKeyboardHandler = new KeyboardInputHandler();
 }
 
 GameScreen::~GameScreen()
 {
-	//delete mHUD;
+	delete mHUD;
+	//delete mPacman;
+	delete mKeyboardHandler;
+	mGhost.clear();
 }
 
 void GameScreen::StartUp(ID3D10Device* lDevice)
@@ -32,7 +34,7 @@ void GameScreen::ShutDown()
 void GameScreen::Draw()
 {
 	mHUD->Draw();
-	mWorldHandler->Draw( mCamera );	
+	mWorldHandler -> Draw(mCamera);	
 }
 
 void GameScreen::Update()
@@ -47,13 +49,6 @@ void GameScreen::Update()
 
 void GameScreen::KeyBoardMovement(float lDeltaTime)
 {
-	/*
-	bool w = false;
-	bool a = false;
-	bool s = false;
-	bool d = false;
-	*/
-
 	//Forward
 	if(mKeyboardHandler->CheckPressedKey(W))
 		mCamera->Walk(gPlayerMovementSpeed * lDeltaTime);
@@ -77,7 +72,7 @@ void GameScreen::MouseMovement()
 	dx = lMousePosition.x - mOldCursorPosition.x;
 	dy = lMousePosition.y - mOldCursorPosition.y;
 	mCamera->Pitch(dy * gCursorSensitivity);
-	mCamera->RotateY(dx * gCursorSensitivity);
+	//mCamera->RotateY(dx * gCursorSensitivity);
 	mOldCursorPosition = lMousePosition;
 }
 

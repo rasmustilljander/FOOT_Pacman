@@ -9,7 +9,11 @@ WorldHandler::WorldHandler()
 
 WorldHandler::~WorldHandler()
 {
-	
+	delete mShaderObject;
+	//SAFE_RELEASE(mVertexBuffer);
+	mWallObject.clear();
+	mCandy.clear();
+	mWaypoint.clear();
 }
 
 void WorldHandler::Initialize(ID3D10Device* lDevice) 

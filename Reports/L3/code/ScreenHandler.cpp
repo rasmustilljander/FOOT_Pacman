@@ -14,11 +14,6 @@ ScreenHandler::~ScreenHandler()
 	delete mGameScreen;
 	delete mMenuScreen;
 	delete mMapScreen;
-	//mDeathScreen->ShutDown();
-	//mGameScreen->ShutDown();
-	//mEndScreen->ShutDown();
-	//mMenuScreen->ShutDown();
-	//mMapScreen->ShutDown();
 }
 
 void ScreenHandler::Update() 

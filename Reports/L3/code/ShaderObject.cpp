@@ -13,12 +13,7 @@ ShaderObject::ShaderObject():	mEffect(NULL),
 ShaderObject::~ShaderObject()
 {
 	SAFE_RELEASE(mInputLayout);
-
-	if(mEffect)
-	{
-		while(mEffect->Release());
-		mEffect = NULL;
-	}
+	SAFE_RELEASE(mEffect);
 }
 
 HRESULT ShaderObject::Initialize(ID3D10Device* lDevice, char* lFilename, const D3D10_INPUT_ELEMENT_DESC* lInputDesc, UINT lNumberOfElements, char* lTechniqueName, DWORD lShaderFlags) 

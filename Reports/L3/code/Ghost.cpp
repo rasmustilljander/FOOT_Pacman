@@ -17,13 +17,14 @@ Ghost::Ghost(D3DXVECTOR3 lPosition, Waypoint* lWaypoint)
 
 Ghost::~Ghost()
 {
-
+	delete mResourceView2;
+	delete mDestinationWaypoint;
+	delete mPreviousWaypoint;
+	delete mStartWaypoint;
 }
 
 void Ghost::Update(float lDeltaTime) 
-{	
-
-	
+{		
 	if(CalculateDistance() < gGhostWaypointOffset)
 		SetNextWaypoint();
 	MoveTowardsWaypoint(lDeltaTime);

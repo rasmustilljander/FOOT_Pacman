@@ -2,7 +2,6 @@
 #define GAMESCREEN_H
 
 #include "HUD.h"
-// #include "CollisionHandler.h"
 #include "BaseGameScreen.h"
 #include "Player.h"
 #include "KeyboardInputHandler.h"

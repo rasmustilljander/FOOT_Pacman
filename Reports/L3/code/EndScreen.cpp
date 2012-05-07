@@ -1,4 +1,3 @@
-
 #include "EndScreen.h"
 
 EndScreen::EndScreen()
