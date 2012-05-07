@@ -35,10 +35,18 @@ void Candy::SetupVertices()
 {
 	BillboardVertex* data = NULL;
 
-	mVertexBuffer->Map( D3D10_MAP_WRITE_DISCARD, 0, reinterpret_cast< void** > ((void**)&data) );
-
 	data[0].centerW = mPosition;
 	data[0].sizeW = D3DXVECTOR2(10, 10);
 
-	mVertexBuffer->Unmap();
+	D3D10_BUFFER_DESC vbd;
+    vbd.Usage = D3D10_USAGE_IMMUTABLE;
+    vbd.ByteWidth = sizeof(BillboardVertex) * 1;
+    vbd.BindFlags = D3D10_BIND_VERTEX_BUFFER;
+    vbd.CPUAccessFlags = 0;
+    vbd.MiscFlags = 0;
+    D3D10_SUBRESOURCE_DATA vinitData;
+    vinitData.pSysMem = data;
+    mDevice->CreateBuffer(&vbd, &vinitData, &mVertexBuffer);
+
+	delete[] data;
 }

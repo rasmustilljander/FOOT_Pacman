@@ -22,8 +22,8 @@ void GameObject::Initialize(ID3D10Device* lDevice, char* FxFileName)
 {
 	mDevice = lDevice;
 
-	mShaderObject->Initialize( mDevice, FxFileName, BillboardVertexLayout, BillboardLayoutNumElements, "drawTech", D3D10_SHADER_ENABLE_BACKWARDS_COMPATIBILITY);
-	CreateVertexBuffer( &mVertexBuffer, 4 );
+	mShaderObject->Initialize( mDevice, FxFileName, BillboardVertexLayout, BillboardLayoutNumElements, "TreeBillboardTech", D3D10_SHADER_ENABLE_BACKWARDS_COMPATIBILITY);
+	//CreateVertexBuffer( &mVertexBuffer, 4 );
 }
 
 void GameObject::CreateVertexBuffer( ID3D10Buffer** lVB, int lSize ) 
@@ -43,8 +43,8 @@ void GameObject::Draw( Camera* lCam )
 {
 	D3DXMatrixIdentity(&mViewProjMatrix);
 	mViewProjMatrix = lCam->GetView() * lCam->GetProjection();
-	mShaderObject->SetMatrix("viewProj", mViewProjMatrix);
-	mShaderObject->SetFloat3("eyePos", &lCam->GetPosition());
+	mShaderObject->SetMatrix("gViewProj", mViewProjMatrix);
+	mShaderObject->SetFloat3("gEyePosW", &lCam->GetPosition());
 
 	mDevice->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 

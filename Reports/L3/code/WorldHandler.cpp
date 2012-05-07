@@ -25,7 +25,7 @@ void WorldHandler::Initialize(ID3D10Device* lDevice)
 	SetResources();
 	SetupVertices();
 	LoadWaypoints();
-	mCandy.at(0)->Initialize(mDevice, "gameobject.fx");
+	mCandy.at(0)->Initialize(mDevice, "tree.fx");
 }
 
 void WorldHandler::CreateVertexBuffer( ID3D10Buffer** lVB, int lSize  )

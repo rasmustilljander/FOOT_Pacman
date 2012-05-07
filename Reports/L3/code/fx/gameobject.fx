@@ -173,7 +173,7 @@ void GS(point VS_OUT gIn[1],
 
 float4 PS(GS_OUT pIn) : SV_Target
 {
-	return tex2D.Sample( linearSampler, input.Tex );
+	return tex2D.Sample( linearSampler, pIn.texC );
 }
 
 
