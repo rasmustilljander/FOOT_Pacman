@@ -8,6 +8,7 @@
 
 //#include "ScreenHandler.h"
 #include "Camera.h"
+#include "Camera2.h"
 // #include "AudioHandler.h"
 // #include "KeyboardInputHandler.h"
 
@@ -38,6 +39,7 @@ protected:
 	GameScreenState mGameScreenState;
 	static int mScore;
 	Camera* mCamera;
+	Camera2* mCamera2;
 
 };
 

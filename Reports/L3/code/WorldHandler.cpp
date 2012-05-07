@@ -25,7 +25,7 @@ void WorldHandler::Initialize(ID3D10Device* lDevice)
 	SetResources();
 	SetupVertices();
 	LoadWaypoints();
-	mCandy.at(0)->Initialize(mDevice, "tree.fx");
+	//mCandy.at(0)->Initialize(mDevice, "gameobject.fx");
 }
 
 void WorldHandler::CreateVertexBuffer( ID3D10Buffer** lVB, int lSize  )
@@ -105,6 +105,9 @@ void WorldHandler::LoadWaypoints()
 
 void WorldHandler::Draw( Camera* lCam )
 {
+	/*mShaderObject->SetMatrix("viewMatrix", lCam->getViewMatrix());
+	mShaderObject->SetMatrix("projMatrix", lCam->getProjectionMatrix());*/
+
 	mShaderObject->SetMatrix("viewMatrix", lCam->GetView());
 	mShaderObject->SetMatrix("projMatrix", lCam->GetProjection());
 	mDevice->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
@@ -121,7 +124,7 @@ void WorldHandler::Draw( Camera* lCam )
 		mShaderObject->Render(p);
 		mDevice->Draw(4,0);
 	}
-	mCandy.at(0)->Draw( lCam );
+	//mCandy.at(0)->Draw( lCam );
 }
 
 Waypoint* WorldHandler::GetGhostSpawnWaypoint()
