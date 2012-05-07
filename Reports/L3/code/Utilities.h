@@ -10,7 +10,7 @@
 #define DEG_TO_RAD 0.01745329251994329576923690768489
 
 //Game Specific Things
-#define gPlayerMovementSpeed 20
+#define gPlayerMovementSpeed 50
 #define gGhostMovementSpeed 2
 #define gCursorSensitivity 0.0087266f
 #define gGhostWaypointOffset 10
