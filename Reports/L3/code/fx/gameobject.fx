@@ -1,5 +1,5 @@
 
-Texture2D texture2D;
+Texture2D tex2D;
 
 
 //Gameobject structs
@@ -60,12 +60,19 @@ RasterizerState NoCulling
 	CullMode = NONE;
 };
 
+//SamplerState linearSampler
+//{
+//	Filter = MIN_MAG_MIP_LINEAR;
+//	AddressU = Clamp;
+//    AddressV = Clamp;
+//    MaxAnisotropy = 16;
+//};
+
 SamplerState linearSampler
 {
 	Filter = MIN_MAG_MIP_LINEAR;
-	AddressU = Clamp;
-    AddressV = Clamp;
-    MaxAnisotropy = 16;
+	AddressU = Wrap;
+	AddressV = Wrap;
 };
 
 BlendState SrcAlphaBlending
@@ -166,7 +173,7 @@ void GS(point VS_OUT gIn[1],
 
 float4 PS(GS_OUT pIn) : SV_Target
 {
-	return texture2D.Sample( linearSampler, input.Tex );
+	return tex2D.Sample( linearSampler, input.Tex );
 }
 
 

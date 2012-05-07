@@ -57,8 +57,9 @@ void Renderer::CreateSwapChain()
 
 	D3D10_DRIVER_TYPE driverTypes[] = 
 	{
-		D3D10_DRIVER_TYPE_HARDWARE,
 		D3D10_DRIVER_TYPE_REFERENCE,
+		D3D10_DRIVER_TYPE_HARDWARE,
+		
 	};
 	UINT numDriverTypes = sizeof(driverTypes) / sizeof(driverTypes[0]);
 

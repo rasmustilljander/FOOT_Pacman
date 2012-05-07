@@ -56,6 +56,8 @@ void ScreenHandler::Draw()
 
 void ScreenHandler::Initialize(ID3D10Device* lDevice) 
 {
+	//Loads all textures
+	GetResourceLoader().LoadTextures(lDevice);
 	//Creating and starting the screens
 	mDeathScreen = new DeathScreen();
 	mEndScreen = new EndScreen();
@@ -63,8 +65,7 @@ void ScreenHandler::Initialize(ID3D10Device* lDevice)
 	mMapScreen = new MapScreen();
 	mMenuScreen = new MenuScreen();
 	ScreenStartUp(lDevice);
-	//Loads all textures
-	GetResourceLoader().LoadTextures(lDevice);
+	
 
 	//Sets MenuScreen as the starting screen
 	mPrevGameScreenState = Ingame;

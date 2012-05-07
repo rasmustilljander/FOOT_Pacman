@@ -47,9 +47,10 @@ public:
 
 private:
 	
-	void CreateTextureShader(ID3D10Device* lDevice, LPCSTR lTexturePath, ID3D10ShaderResourceView* lShaderResView);
+	void CreateTextureShader(ID3D10Device* lDevice, LPCSTR lTexturePath, ID3D10ShaderResourceView** lShaderResView);
 
 private:
+	
 
 	ID3D10ShaderResourceView* mCandyTexture;
 	ID3D10ShaderResourceView* mSuperCandyTexture;

@@ -40,7 +40,7 @@ void GameScreen::Update()
 	mGameTimer->Tick();
 	float lDeltaTime = mGameTimer->GetDeltaTime();
 	KeyBoardMovement(lDeltaTime);
-	//MouseMovement();
+	MouseMovement();
 	UpdateGhost(lDeltaTime);
 	mCamera->UpdateView();
 }

@@ -10,7 +10,7 @@ matrix projMatrix;
 
 struct VSSceneIn
 {
-	float4 Pos	: POSITION;
+	float3 Pos	: POSITION;
 	float2 Tex : TEXCOORD;
 	float3 n : NORMAL;
 };
@@ -54,7 +54,12 @@ RasterizerState NoCulling
 	CullMode = NONE;
 };
 
-
+SamplerState linearSampler
+{
+	Filter = MIN_MAG_MIP_LINEAR;
+	AddressU = Wrap;
+	AddressV = Wrap;
+};
 
 //-----------------------------------------------------------------------------------------
 // VertexShader: VSScene
@@ -63,7 +68,7 @@ PSSceneIn VSScene(VSSceneIn input)
 {
 	PSSceneIn output;
 	
-		input.Pos = mul( input.Pos, worldMatrix );
+		input.Pos = mul( float4(input.Pos,1.0f), worldMatrix );
 	    output.Pos = mul( input.Pos, viewMatrix );
 	    output.Pos = mul( output.Pos, projMatrix );
 
@@ -79,8 +84,8 @@ PSSceneIn VSScene(VSSceneIn input)
 
 float4 PSScene( PSSceneIn input ) : SV_Target
 {
-	//return tex2D.Sample( linearSampler, input.Tex );
-	return float4(1,1,1,1);
+	return tex2D.Sample( linearSampler, input.Tex );
+	//return float4(1,1,1,1);
 }
 
 
