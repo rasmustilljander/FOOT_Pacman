@@ -10,7 +10,7 @@ matrix projMatrix;
 
 struct VSSceneIn
 {
-	float3 Pos	: POS;
+	float4 Pos	: POSITION;
 	float2 Tex : TEXCOORD;
 	float3 n : NORMAL;
 };
@@ -18,7 +18,7 @@ struct VSSceneIn
 struct PSSceneIn
 {
 	float4 Pos  : SV_Position;
-	float2 Tex : TEXC;
+	float2 Tex : TEXCOORD;
 };
 
 //-----------------------------------------------------------------------------------------
@@ -54,13 +54,7 @@ RasterizerState NoCulling
 	CullMode = NONE;
 };
 
-SamplerState linearSampler
-{
-	Filter = MIN_MAG_MIP_LINEAR;
-	AddressU = Clamp;
-    AddressV = Clamp;
-    MaxAnisotropy = 16;
-};
+
 
 //-----------------------------------------------------------------------------------------
 // VertexShader: VSScene
@@ -69,7 +63,7 @@ PSSceneIn VSScene(VSSceneIn input)
 {
 	PSSceneIn output;
 	
-		input.Pos = mul( float4(input.Pos,1.0), worldMatrix );
+		input.Pos = mul( input.Pos, worldMatrix );
 	    output.Pos = mul( input.Pos, viewMatrix );
 	    output.Pos = mul( output.Pos, projMatrix );
 
@@ -83,9 +77,10 @@ PSSceneIn VSScene(VSSceneIn input)
 //-----------------------------------------------------------------------------------------
 
 
-float4 textured( PSSceneIn input ) : SV_Target
+float4 PSScene( PSSceneIn input ) : SV_Target
 {
-	return tex2D.Sample( linearSampler, input.Tex );
+	//return tex2D.Sample( linearSampler, input.Tex );
+	return float4(1,1,1,1);
 }
 
 
@@ -99,7 +94,7 @@ technique10 drawTech
 		// Set VS, GS, and PS
         SetVertexShader( CompileShader( vs_4_0, VSScene() ) );
         SetGeometryShader( NULL );
-        SetPixelShader( CompileShader( ps_4_0, textured() ) );
+        SetPixelShader( CompileShader( ps_4_0, PSScene() ) );
 	    
 	    SetRasterizerState( NoCulling );
 
