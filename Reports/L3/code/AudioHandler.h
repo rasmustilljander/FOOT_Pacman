@@ -25,13 +25,13 @@ public:
 	void PlayBackgroundSound();
 	void PlayCandySound();
 	void PlayDeathSound();
-	void PlayGhostSound();
-	void PlayMenuSound();	
+	void PlayGhostSound( int lID, float lX, float lY, float lZ );
+	void PlayMenuSound();
 	void PlaySuperCandySound();
 	void StopSound();
 
 	void UpdatePosition(float lPosX, float lPosY, float lPosZ, float lDirX, float lDirY, float lDirZ);
-	void UpdateGhostPosition(int lGhost, float lPasX, float lPosY, float lPosZ);
+	void UpdateGhostPosition(int lGhost, float lPosX, float lPosY, float lPosZ);
 
 	float getPositionX();
 	float getPositionY();
