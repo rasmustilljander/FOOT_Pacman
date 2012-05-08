@@ -16,7 +16,7 @@ Renderer::Renderer():	mDriverType(D3D10_DRIVER_TYPE_NULL),
 Renderer::~Renderer()
 {
 	delete mScreenHandler;
-	SAFE_DELETE(mDevice);
+	SAFE_RELEASE(mDevice);
 }
 
 void Renderer::Update() 

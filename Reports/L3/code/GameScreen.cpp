@@ -72,7 +72,7 @@ void GameScreen::MouseMovement()
 	dx = lMousePosition.x - mOldCursorPosition.x;
 	dy = lMousePosition.y - mOldCursorPosition.y;
 	mCamera->Pitch(dy * gCursorSensitivity);
-	//mCamera->RotateY(dx * gCursorSensitivity);
+	mCamera->RotateY(dx * gCursorSensitivity);
 	mOldCursorPosition = lMousePosition;
 }
 

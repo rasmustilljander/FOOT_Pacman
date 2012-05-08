@@ -3,8 +3,8 @@
 WorldHandler::WorldHandler()
 {
 	mShaderObject = new ShaderObject();
-	Candy* temp = new Candy(1,D3DXVECTOR3(0,0,0));
-	mCandy.push_back(temp);
+	//Candy* temp = new Candy(1,D3DXVECTOR3(0,0,0));
+	//mCandy.push_back(temp);
 }
 
 WorldHandler::~WorldHandler()
@@ -12,7 +12,7 @@ WorldHandler::~WorldHandler()
 	delete mShaderObject;
 	//SAFE_RELEASE(mVertexBuffer);
 	mWallObject.clear();
-	mCandy.clear();
+	//mCandy.clear();
 	mWaypoint.clear();
 }
 
@@ -25,7 +25,7 @@ void WorldHandler::Initialize(ID3D10Device* lDevice)
 	SetResources();
 	SetupVertices();
 	LoadWaypoints();
-	mCandy.at(0)->Initialize(mDevice, "tree.fx");
+	//mCandy.at(0)->Initialize(mDevice, "tree.fx");
 }
 
 void WorldHandler::CreateVertexBuffer( ID3D10Buffer** lVB, int lSize  )
@@ -121,7 +121,7 @@ void WorldHandler::Draw( Camera* lCam )
 		mShaderObject->Render(p);
 		mDevice->Draw(4,0);
 	}
-	mCandy.at(0)->Draw( lCam );
+	//mCandy.at(0)->Draw( lCam );
 }
 
 Waypoint* WorldHandler::GetGhostSpawnWaypoint()
