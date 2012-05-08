@@ -5,8 +5,7 @@ WorldHandler::WorldHandler()
 	mShaderObject = new ShaderObject();
 	Candy* temp = new Candy(1,D3DXVECTOR3(20,20,20));
 	mCandy.push_back(temp);
-	WallObject* temp2 = new WallObject( D3DXVECTOR3(0,0,0), 100,100,D3DXVECTOR3(1,0,0));
-	mWallObject.push_back(temp2);
+
 }
 
 WorldHandler::~WorldHandler()
@@ -27,9 +26,13 @@ void WorldHandler::Initialize(ID3D10Device* lDevice)
 	SetResources();
 	SetupVertices();
 	LoadWaypoints();
+	CreateLevel();
 
 	mCandy.at(0)->Initialize(mDevice, "gameobject.fx");
-	mWallObject.at(0)->Initialize(mDevice);
+
+
+	for(UINT i = 0; i < mWallObject.size(); i++)
+		mWallObject.at(i)->Initialize(lDevice);
 }
 
 void WorldHandler::CreateVertexBuffer( ID3D10Buffer** lVB, int lSize  )
@@ -79,6 +82,19 @@ void WorldHandler::SetupVertices()
 
 void WorldHandler::CreateLevel()
 {
+	//SideWalls
+	mWallObject.push_back(new WallObject(D3DXVECTOR3(250,25,0), 500, 50, D3DXVECTOR3(0,0,1)));
+	mWallObject.push_back(new WallObject(D3DXVECTOR3(250,25,500), 500, 50, D3DXVECTOR3(0,0,-1)));
+	mWallObject.push_back(new WallObject(D3DXVECTOR3(0,25,250), 500, 50, D3DXVECTOR3(1,0,0)));
+	mWallObject.push_back(new WallObject(D3DXVECTOR3(500,25,250), 500, 50, D3DXVECTOR3(-1,0,0)));
+
+	//
+	mWallObject.push_back(new WallObject(D3DXVECTOR3(50,25,120), 140, 50, D3DXVECTOR3(1,0,0)));
+	
+	mWallObject.push_back(new WallObject(D3DXVECTOR3(120,25,50), 140, 50, D3DXVECTOR3(0,0,-1)));
+	mWallObject.push_back(new WallObject(D3DXVECTOR3(70,25,310), 140, 50, D3DXVECTOR3(0,0,-1)));
+
+
 
 }
 void WorldHandler::LoadWaypoints()
@@ -129,7 +145,11 @@ void WorldHandler::Draw( Camera2* lCam )
 		mDevice->Draw(4,0);
 	}
 	//mCandy.at(0)->Draw( lCam );
-	mWallObject.at(0)->Draw( lCam );
+
+	for(UINT i = 0; i < mWallObject.size(); i++)
+	{
+		mWallObject.at(i)->Draw(lCam);
+	}
 }
 
 Waypoint* WorldHandler::GetGhostSpawnWaypoint()

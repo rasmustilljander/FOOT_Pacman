@@ -11,8 +11,9 @@
 
 //Game Specific Things
 #define gPlayerMovementSpeed 50
+#define gPlayerYPosition 50
 #define gGhostMovementSpeed 2
-#define gCursorSensitivity 0.0087266f
+#define gCursorSensitivity 0.0017266f
 #define gGhostWaypointOffset 10
 
 static POINT gLockedCursorPoint;

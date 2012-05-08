@@ -107,7 +107,7 @@ void Camera2::update()
 	//update position - 1.5 unit per second
 	eye +=	(float) t * ( movementToggles[0] + movementToggles[1] ) * movementSpeed * forward + 
 			(float) t * ( movementToggles[2] + movementToggles[3] ) * movementSpeed * strafeRight;
-	eye.y = 50;
+	eye.y = gPlayerYPosition;
 
 	//update view
 	updateView();

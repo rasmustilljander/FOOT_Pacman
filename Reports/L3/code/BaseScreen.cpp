@@ -19,6 +19,6 @@ void BaseScreen::StartUp(ID3D10Device* lDevice)
 	mCamera2 = new Camera2();
 	mCamera2->setPerspectiveProjectionLH( 45, (float)1024/768, 0.1f, 1000.0f );
 	mCamera2->setPositionAndView(0,100,0,0,0);
-	mCamera2->setMovementSpeed(50);
+	mCamera2->setMovementSpeed(gPlayerMovementSpeed*3);
 }
 

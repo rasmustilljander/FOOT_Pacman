@@ -91,22 +91,22 @@ void GameScreen::MouseMovement()
 {
 	POINT lMousePosition;
 	GetCursorPos(&lMousePosition);
+	SetCursorPos(500, 500);
 	int dx = 0;
 	int dy = 0;
 
 	//mCamera->Pitch(dy * gCursorSensitivity);
 	//mCamera->RotateY(dx * gCursorSensitivity);
-
 	if (lMousePosition.x > 500)
-		dx = 2.5f ;
+		dx = 1.5f ;
 	else if(lMousePosition.x < 500)
-		dx = -2.5f;
+		dx = -1.5f;
 	if (lMousePosition.y > 500)
-		dy = 2.5f;
+		dy = 1.5f;
 	else if(lMousePosition.y < 500)
-		dy = -2.5f;
+		dy = -1.5f;
 	mCamera2->adjustHeadingPitch(0.025f * dx, 0.025f * dy);
-	SetCursorPos(500, 500);
+	//SetCursorPos(500, 500);
 }
 
 void GameScreen::UpdateGhost(float lDeltaTime)
