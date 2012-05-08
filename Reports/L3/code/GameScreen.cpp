@@ -45,6 +45,7 @@ void GameScreen::Update()
 	MouseMovement();
 	UpdateGhost(lDeltaTime);
 	mCamera->UpdateView();
+	//mCamera2->update();
 }
 
 void GameScreen::KeyBoardMovement(float lDeltaTime)
@@ -61,6 +62,28 @@ void GameScreen::KeyBoardMovement(float lDeltaTime)
 	//Right
 	if(mKeyboardHandler->CheckPressedKey(D))
 		mCamera->Strafe(gPlayerMovementSpeed  * lDeltaTime);
+
+	////Forward
+	//if(mKeyboardHandler->CheckPressedKey(W))
+	//	mCamera2->setMovementToggle( 0, 1 );
+	//else
+	//	mCamera2->setMovementToggle( 0, 0);
+	////Left
+	//if(mKeyboardHandler->CheckPressedKey(A))
+	//	mCamera2->setMovementToggle( 2, -1 );
+	//else
+	//	mCamera2->setMovementToggle( 2, 0 );
+	////Back
+	//if(mKeyboardHandler->CheckPressedKey(S))
+	//	mCamera2->setMovementToggle( 1, -1 );
+	//else
+	//	mCamera2->setMovementToggle( 1, 0 );
+	////Right
+	//if(mKeyboardHandler->CheckPressedKey(D))
+	//	mCamera2->setMovementToggle( 3, 1 );
+	//else
+	//	mCamera2->setMovementToggle( 3, 0 );
+
 }
 
 void GameScreen::MouseMovement()
@@ -73,6 +96,8 @@ void GameScreen::MouseMovement()
 	dy = lMousePosition.y - mOldCursorPosition.y;
 	mCamera->Pitch(dy * gCursorSensitivity);
 	mCamera->RotateY(dx * gCursorSensitivity);
+
+	//mCamera2->adjustHeadingPitch(0.000025f * dx, 0.000025f * dy);
 	mOldCursorPosition = lMousePosition;
 }
 
