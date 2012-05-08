@@ -2,7 +2,7 @@
 #define WALLOBJECT_H
 
 #include "Utilities.h"
-#include "Camera.h"
+#include "Camera2.h"
 #include "ShaderObject.h"
 #include "Vertex.h"
 #include "ResourceLoader.h"
@@ -14,7 +14,7 @@ public:
 	~WallObject();
 
 	void Initialize( ID3D10Device* lDevice );
-	void Draw(  Camera* lCam );
+	void Draw(  Camera2* lCam );
 
 private:
 	void CreateVertexBuffer( ID3D10Buffer** lVB, int lSize );

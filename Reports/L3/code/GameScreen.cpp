@@ -97,7 +97,7 @@ void GameScreen::MouseMovement()
 	//mCamera->Pitch(dy * gCursorSensitivity);
 	//mCamera->RotateY(dx * gCursorSensitivity);
 
-	mCamera2->adjustHeadingPitch(0.0025f * gLockedCursorPoint.x, 0.0025f * gLockedCursorPoint.y);
+	mCamera2->adjustHeadingPitch(0.0025f * dx, 0.0025f * dy);
 	mOldCursorPosition = lMousePosition;
 }
 

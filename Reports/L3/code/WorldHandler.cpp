@@ -5,6 +5,8 @@ WorldHandler::WorldHandler()
 	mShaderObject = new ShaderObject();
 	//Candy* temp = new Candy(1,D3DXVECTOR3(0,0,0));
 	//mCandy.push_back(temp);
+	WallObject* temp = new WallObject( D3DXVECTOR3(0,0,0), 100,100,D3DXVECTOR3(1,0,0));
+	mWallObject.push_back(temp);
 }
 
 WorldHandler::~WorldHandler()
@@ -27,6 +29,7 @@ void WorldHandler::Initialize(ID3D10Device* lDevice)
 	LoadWaypoints();
 
 	//mCandy.at(0)->Initialize(mDevice, "gameobject.fx");
+	mWallObject.at(0)->Initialize(mDevice);
 }
 
 void WorldHandler::CreateVertexBuffer( ID3D10Buffer** lVB, int lSize  )
@@ -122,10 +125,11 @@ void WorldHandler::Draw( Camera2* lCam )
 
 	for( UINT p = 0; p < techDesc.Passes; p++ )
 	{
-		mShaderObject->Render(p);
-		mDevice->Draw(4,0);
+		//mShaderObject->Render(p);
+		//mDevice->Draw(4,0);
 	}
 	//mCandy.at(0)->Draw( lCam );
+	mWallObject.at(0)->Draw( lCam );
 }
 
 Waypoint* WorldHandler::GetGhostSpawnWaypoint()

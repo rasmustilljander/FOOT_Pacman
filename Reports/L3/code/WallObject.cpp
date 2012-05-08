@@ -6,19 +6,21 @@ WallObject::WallObject( D3DXVECTOR3 lPosition, int lWidth, int lHeight, D3DXVECT
 	mWidth = lWidth;
 	mHeight = lHeight;
 	mNormal = lNormal;
+	mShaderObject = new ShaderObject();
 }
 
 WallObject::~WallObject()
 {
-
+	delete mShaderObject;
 }
 
 void WallObject::Initialize( ID3D10Device* lDevice )
 {
 	mDevice = lDevice;
 
-	mShaderObject->Initialize( lDevice, "wall.fx", VertexLayout, vertexInputLayoutNumElements, "drawTech", D3D10_SHADER_ENABLE_STRICTNESS );
+	mShaderObject->Initialize( lDevice, "wall.fx", VertexLayout, vertexInputLayoutNumElements, "drawTech", D3D10_SHADER_ENABLE_BACKWARDS_COMPATIBILITY );
 	CreateVertexBuffer( &mVertexBuffer, 4 );
+	SetupVertices();
 	SetResources();
 }
 
@@ -71,10 +73,13 @@ void WallObject::SetupVertices()
 	mVertexBuffer->Unmap();
 }
 
-void WallObject::Draw( Camera* lCam )
+void WallObject::Draw( Camera2* lCam )
 {
-	mShaderObject->SetMatrix("viewMatrix", lCam->GetView());
-	mShaderObject->SetMatrix("projMatrix", lCam->GetProjection());
+	/*mShaderObject->SetMatrix("viewMatrix", lCam->GetView());
+	mShaderObject->SetMatrix("projMatrix", lCam->GetProjection());*/
+
+	mShaderObject->SetMatrix("viewMatrix", lCam->getViewMatrix());
+	mShaderObject->SetMatrix("projMatrix", lCam->getProjectionMatrix());
 
 	mDevice->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 
@@ -83,6 +88,14 @@ void WallObject::Draw( Camera* lCam )
 
 	mDevice->IASetVertexBuffers(0,1,&mVertexBuffer, &stride, &offset);
 
-	mShaderObject->Render(0);
+
+	D3D10_TECHNIQUE_DESC techDesc;
+	mShaderObject->GetTechnique()->GetDesc( &techDesc );
+
+	for( UINT p = 0; p < techDesc.Passes; p++ )
+	{
+	mShaderObject->Render(p);
+	mDevice->Draw(4,0);
+	}
 }
 

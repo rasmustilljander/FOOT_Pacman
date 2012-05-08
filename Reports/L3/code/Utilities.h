@@ -15,8 +15,10 @@
 #define gCursorSensitivity 0.0087266f
 #define gGhostWaypointOffset 10
 
-POINT gLockedCursorPoint;
-
+namespace a
+{
+	static POINT gLockedCursorPoint;
+}
 template<typename T>
 D3DX10INLINE T Min(const T& a, const T& b)
 {
