@@ -1,28 +1,19 @@
 
 Texture2D tex2D;
 
-
-//Gameobject structs
-
 struct VS_IN
 {
 	float3 centerW : POSITION;
 	float2 sizeW   : SIZE;
 };
 
-struct VS_OUT
-{
-	float3 centerW : POSITION;
-	float2 sizeW   : SIZE;
-};
 
 struct GS_OUT
 {
 	float4 posH    : SV_POSITION;
-    float3 posW    : POSITION;
+    float4 posW    : POSITION;
     float3 normalW : NORMAL;
     float2 texC    : TEXCOORD;
-    uint primID    : SV_PrimitiveID;
 };
 
 //-----------------------------------------------------------------------------------------
@@ -91,23 +82,16 @@ BlendState SrcAlphaBlending
 //-----------------------------------------------------------------------------------------
 // VertexShader: VSScene
 //-----------------------------------------------------------------------------------------
-VS_OUT VS(VS_IN vIn)
+VS_IN VS(VS_IN vIn)
 {
-	VS_OUT vOut;
-	
-	// Just pass data into geometry shader stage.
-	vOut.centerW  = vIn.centerW;
-	vOut.sizeW    = vIn.sizeW;
-
-	return vOut;
+	return vIn;
 }
 
 //-----------------------------------------------------------------------------------------
 // GeometryShader: 
 //-----------------------------------------------------------------------------------------
 [maxvertexcount(4)]
-void GS(point VS_OUT gIn[1], 
-        uint primID : SV_PrimitiveID, 
+void GS(point VS_IN gIn[1],
         inout TriangleStream<GS_OUT> triStream)
 {	
 	//
@@ -160,7 +144,6 @@ void GS(point VS_OUT gIn[1],
 		gOut.posW     = mul(v[i], W);
 		gOut.normalW  = look;
 		gOut.texC     = texC[i];
-		gOut.primID   = primID;
 		
 		triStream.Append(gOut);
 	}
