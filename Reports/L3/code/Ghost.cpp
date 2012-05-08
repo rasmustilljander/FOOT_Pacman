@@ -86,8 +86,8 @@ void Ghost::SetupVertices()
 
 	mVertexBuffer->Map( D3D10_MAP_WRITE_DISCARD, 0, reinterpret_cast< void** > ((void**)&data) );
 
-	data[0].centerW = mPosition;
-	data[0].sizeW = D3DXVECTOR2(50, 50);
+//	data[0].centerW = mPosition;
+	//data[0].sizeW = D3DXVECTOR2(50, 50);
 
 	mVertexBuffer->Unmap();
 }

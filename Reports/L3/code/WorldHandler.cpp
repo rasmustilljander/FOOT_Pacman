@@ -3,7 +3,7 @@
 WorldHandler::WorldHandler()
 {
 	mShaderObject = new ShaderObject();
-	Candy* temp = new Candy(1,D3DXVECTOR3(0,0,10));
+	Candy* temp = new Candy(1,D3DXVECTOR3(20,20,20));
 	mCandy.push_back(temp);
 	WallObject* temp2 = new WallObject( D3DXVECTOR3(0,0,0), 100,100,D3DXVECTOR3(1,0,0));
 	mWallObject.push_back(temp2);
