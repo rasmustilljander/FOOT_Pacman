@@ -128,7 +128,7 @@ void WorldHandler::Draw( Camera2* lCam )
 		mShaderObject->Render(p);
 		mDevice->Draw(4,0);
 	}
-	mCandy.at(0)->Draw( lCam );
+	//mCandy.at(0)->Draw( lCam );
 	mWallObject.at(0)->Draw( lCam );
 }
 

@@ -98,13 +98,13 @@ void GameScreen::MouseMovement()
 	//mCamera->RotateY(dx * gCursorSensitivity);
 
 	if (lMousePosition.x > 500)
-		dx = 1 ;
+		dx = 2.5f ;
 	else if(lMousePosition.x < 500)
-		dx = -1;
+		dx = -2.5f;
 	if (lMousePosition.y > 500)
-		dy = 1 ;
+		dy = 2.5f;
 	else if(lMousePosition.y < 500)
-		dy = -1;
+		dy = -2.5f;
 	mCamera2->adjustHeadingPitch(0.025f * dx, 0.025f * dy);
 	SetCursorPos(500, 500);
 }
