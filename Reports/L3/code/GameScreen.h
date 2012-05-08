@@ -7,6 +7,7 @@
 #include "KeyboardInputHandler.h"
 #include "Ghost.h"
 #include "RawMouseInput.h"
+#include "CollisionHandler.h"
 
 class GameScreen: public BaseGameScreen
 {
@@ -20,7 +21,7 @@ public:
 	void KeyBoardMovement(float lDeltaTime);
 	void MouseMovement();
 	void ActivateScreen(GameScreenState lGameScreenState);
-	void LoadGhosts();
+	void LoadGhosts(ID3D10Device* lDevice);
 		
 private:
 	void UpdateGhost(float lDeltaTime);

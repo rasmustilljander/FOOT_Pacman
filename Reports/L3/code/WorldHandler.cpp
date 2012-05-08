@@ -5,7 +5,6 @@ WorldHandler::WorldHandler()
 	mShaderObject = new ShaderObject();
 	Candy* temp = new Candy(1,D3DXVECTOR3(20,20,20));
 	mCandy.push_back(temp);
-
 }
 
 WorldHandler::~WorldHandler()
@@ -50,7 +49,7 @@ void WorldHandler::CreateVertexBuffer( ID3D10Buffer** lVB, int lSize  )
 void WorldHandler::SetResources()
 {
 	D3DXMatrixIdentity(&mWorldMatrix);
-	D3DXMatrixTranslation(&mWorldMatrix, -0.5f, 0, 0);
+	//D3DXMatrixTranslation(&mWorldMatrix, -0.5f, 0, 0);
 	mShaderObject->SetMatrix("worldMatrix", mWorldMatrix);
 	mShaderObject->SetResource("tex2D", GetResourceLoader().GetWallTexture());
 }
@@ -99,11 +98,11 @@ void WorldHandler::CreateLevel()
 }
 void WorldHandler::LoadWaypoints()
 {
-	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(0, 0, -200)));
-	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(0, 0, 0)));
-	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(0, 0, 200)));
-	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(200, 0, 200)));
-	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(200, 0, 0)));
+	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(0, 30, 100)));
+	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(0, 30, 0)));
+	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(0, 30, 200)));
+	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(200, 30, 200)));
+	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(200, 30, 0)));
 
 
 	mWaypoint.at(0)->AddAdjecentWaypoint(mWaypoint.at(1)); //Test Spawn
@@ -144,12 +143,11 @@ void WorldHandler::Draw( Camera2* lCam )
 		mShaderObject->Render(p);
 		mDevice->Draw(4,0);
 	}
-	//mCandy.at(0)->Draw( lCam );
-
 	for(UINT i = 0; i < mWallObject.size(); i++)
 	{
 		mWallObject.at(i)->Draw(lCam);
 	}
+	mCandy.at(0)->Draw( lCam );
 }
 
 Waypoint* WorldHandler::GetGhostSpawnWaypoint()

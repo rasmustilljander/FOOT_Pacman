@@ -120,7 +120,7 @@ void GS(point VS_IN gIn[1],
 	//
 	float3 up = float3(0.0f, 1.0f, 0.0f);
 	float3 look = eyePosW - gIn[0].centerW;
-	look.y = 0.0f; // y-axis aligned, so project to xz-plane
+	//look.y = 0.0f; // y-axis aligned, so project to xz-plane
 	look = normalize(look);
 	float3 right = cross(up, look);
 	
@@ -174,7 +174,7 @@ technique10 drawTech
         SetPixelShader( CompileShader(    ps_4_0, PS() ) );
 	    
 	    SetRasterizerState( NoCulling );
-
+		SetBlendState( SrcAlphaBlending, float4( 0.0f, 0.0f, 0.0f, 0.0f ), 0xFFFFFFFF );	
 	    SetDepthStencilState( EnableDepth, 0 );
 	    //SetDepthStencilState( DisableDepth, 0 );
 	    //SetDepthStencilState( EnableDepthTestOnly, 0 );

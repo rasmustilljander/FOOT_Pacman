@@ -57,7 +57,12 @@ void Camera2::updateView()
 	D3DXMatrixLookAtLH( &viewMatrix, &eye, &view, &up );
 
 }
-
+void Camera2::SetPosition(float x, float y, float z)
+{
+	eye.x = x;
+	eye.z = z;
+	eye.y = y;
+}
 
 void Camera2::setPositionAndView(float x, float y, float z, float hDeg, float pDeg)
 {

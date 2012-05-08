@@ -47,6 +47,7 @@ public:
 	void adjustHeadingPitch( float hRad, float pRad );
 	void setMovementToggle( int i, int v );	
 	void setMovementSpeed( float s );	
+	void SetPosition(float x, float y, float z);
 
 	void update();	
 

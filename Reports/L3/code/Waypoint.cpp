@@ -26,7 +26,7 @@ void Waypoint::AddAdjecentWaypoint(Waypoint* lWaypoint)
 Waypoint* Waypoint::GetNextDestinationWaypoint(Waypoint* lPreviousWaypoint)
 {
 	int lIndex;
-	for(int i = 0; 0 < 1; i++)
+	for(int i = 0; i < 1; i++)
 	{	
 		lIndex = rand() % mAdjecentWaypoints.size();
 
