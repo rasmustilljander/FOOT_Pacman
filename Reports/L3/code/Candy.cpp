@@ -37,7 +37,7 @@ void Candy::SetupVertices()
 
 	mVertexBuffer->Map( D3D10_MAP_WRITE_DISCARD, 0, reinterpret_cast< void** > ((void**)&data) );
 
-	data[0].centerW = mPosition;
+	data[0].centerW = D3DXVECTOR4(mPosition, 1.0f);
 	data[0].sizeW = D3DXVECTOR2(10, 10);
 
 	mVertexBuffer->Unmap();

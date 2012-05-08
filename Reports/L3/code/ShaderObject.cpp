@@ -104,7 +104,8 @@ void ShaderObject::SetFloat(char* lVariable, float lFloat)
 
 void ShaderObject::SetFloat3(char* lVariable, D3DXVECTOR3* lVector) 
 {
-	mEffect->GetVariableByName(lVariable)->AsVector()->SetFloatVector((float*)&lVector);
+	//mEffect->GetVariableByName(lVariable)->AsVector()->SetFloatVector((float*)&lVector);
+	mEffect->GetVariableByName(lVariable)->SetRawValue((void*)lVector, 0 , sizeof(D3DXVECTOR3));
 }
 
 void ShaderObject::SetFloat4(char* lVariable, D3DXVECTOR4* lVector) 

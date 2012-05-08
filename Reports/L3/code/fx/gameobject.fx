@@ -3,7 +3,7 @@ Texture2D tex2D;
 
 struct VS_IN
 {
-	float3 centerW : POSITION;
+	float4 centerW : POSITION;
 	float2 sizeW   : SIZE;
 };
 
@@ -11,7 +11,7 @@ struct VS_IN
 struct GS_OUT
 {
 	float4 posH    : SV_POSITION;
-    float4 posW    : POSITION;
+    float4 posW    : POSITIONW;
     float3 normalW : NORMAL;
     float2 texC    : TEXCOORD;
 };
@@ -21,7 +21,7 @@ struct GS_OUT
 //-----------------------------------------------------------------------------------------
 cbuffer cbEveryFrame
 {
-	float3 eyePos;
+	float3 eyePosW;
 	float4x4 viewProj;
 };
 
@@ -119,7 +119,7 @@ void GS(point VS_IN gIn[1],
 	// the y-axis and faces the camera.
 	//
 	float3 up = float3(0.0f, 1.0f, 0.0f);
-	float3 look = eyePos - gIn[0].centerW;
+	float3 look = eyePosW - gIn[0].centerW;
 	look.y = 0.0f; // y-axis aligned, so project to xz-plane
 	look = normalize(look);
 	float3 right = cross(up, look);
@@ -128,7 +128,8 @@ void GS(point VS_IN gIn[1],
 	W[0] = float4(right,          0.0f);
 	W[1] = float4(up,             0.0f);
 	W[2] = float4(look,           0.0f);
-	W[3] = float4(gIn[0].centerW, 1.0f);
+	//W[3] = float4(gIn[0].centerW, 1.0f);
+	W[3] = gIn[0].centerW;
 
 	float4x4 WVP = mul(W,viewProj);
 	
