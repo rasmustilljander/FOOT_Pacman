@@ -1,25 +1,21 @@
-#include <exception>
-using namespace std;
+#ifndef COLLISIONHANDLER_H
+#define COLLISIONHANDLER_H
 
-#ifndef __CollisionHandler_h__
-#define __CollisionHandler_h__
 
 // #include "GameScreen.h"
-// #include "Camera.h"
+#include "Camera.h"
+#include "GameObject.h"
+#include "Player.h"
 // #include "QuadTree.h"
 
-class GameScreen;
-class Camera;
-class QuadTree;
-class CollisionHandler;
 
 class CollisionHandler
 {
 	public:
-		GameScreen* gameScreen;
 
-		void HandleWallCollision(Camera* lPlayer, QuadTree* lTree);
-		bool AABBCollisionCheck(Camera* lPlayer, GameObject* lObject);
+		//void HandleWallCollision(Camera* lPlayer, QuadTree* lTree);
+		bool ObjectCollisionCheck(Player* lPlayer, GameObject* lObject);
 };
+CollisionHandler& GetCollisionHandler();
 
 #endif

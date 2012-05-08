@@ -3,7 +3,8 @@
 Player::Player()
 	: NonStaticGameObject()
 {
-
+	mOldPosition = D3DXVECTOR3(0,0,0);
+	mPosition	 = D3DXVECTOR3(0,0,0);
 }
 
 Player::~Player()
@@ -31,4 +32,10 @@ void Player::SetupVertices()
 	//data[0].sizeW = D3DXVECTOR2(50, 50);
 
 	mVertexBuffer->Unmap();
+}
+
+void Player::SetPosition(D3DXVECTOR3 lPos)
+{
+	mOldPosition = mPosition;
+	mPosition = lPos;
 }

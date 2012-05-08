@@ -43,6 +43,7 @@ void GameObject::CreateVertexBuffer( ID3D10Buffer** lVB, int lSize )
 
 void GameObject::Draw( Camera2* lCam ) 
 {
+	SetupVertices();
 	D3DXMatrixIdentity(&mViewProjMatrix);
 	mViewProjMatrix = lCam->getViewMatrix() * lCam->getProjectionMatrix();
 	mShaderObject->SetMatrix("viewProj", mViewProjMatrix);

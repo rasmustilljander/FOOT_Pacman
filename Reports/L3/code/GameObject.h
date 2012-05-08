@@ -15,7 +15,7 @@ public:
 
 	void Initialize(ID3D10Device* lDevice, char* lFxFilename);
 	void Draw(Camera2* lCam);
-
+	D3DXVECTOR3 GetPosition(){ return mPosition;}
 
 protected:
 	void CreateVertexBuffer(ID3D10Buffer** lVB, int lSize);

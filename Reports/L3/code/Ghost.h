@@ -11,14 +11,15 @@ public:
 	Ghost(D3DXVECTOR3 lPosition, Waypoint* lWaypoint);
 	virtual ~Ghost();
 
-	void Update(float lDeltaTime);
-	void Eaten();
+	void	Update(float lDeltaTime);
+	void	Eaten();
+	void	IsEdible(bool lIsEdible);
 
 private:
 	float	CalculateDistance();
 	void	SetNextWaypoint();
 	void	MoveTowardsWaypoint(float lDeltaTime);
-	void	IsEdible(bool lIsEdible);
+	
 	void	SetResources();
 	void	SetupVertices();
 

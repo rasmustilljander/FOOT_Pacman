@@ -5,12 +5,13 @@ GameScreen::GameScreen()
 {	
 	mHUD = new HUD();
 	mKeyboardHandler = new KeyboardInputHandler();
+	mPacman = new Player();
 }
 
 GameScreen::~GameScreen()
 {
 	delete mHUD;
-	//delete mPacman;
+	delete mPacman;
 	delete mKeyboardHandler;
 	mGhost.clear();
 }
@@ -23,8 +24,9 @@ void GameScreen::StartUp(ID3D10Device* lDevice)
 
 	mHUD->Initialize( lDevice );
 	mWorldHandler->Initialize( lDevice );
-	LoadGhosts();
+	LoadGhosts(lDevice);
 	ShowCursor(false);
+	mPacman->SetPosition(mCamera2->getCameraPosition());
 }
 
 void GameScreen::ShutDown()
@@ -36,6 +38,8 @@ void GameScreen::Draw()
 {
 	mHUD->Draw();
 	mWorldHandler -> Draw(mCamera2);	
+	for(UINT i = 0; i < mGhost.size(); i++)
+		mGhost.at(i)->Draw(mCamera2);
 }
 
 void GameScreen::Update()
@@ -45,8 +49,16 @@ void GameScreen::Update()
 	KeyBoardMovement(lDeltaTime);
 	MouseMovement();
 	UpdateGhost(lDeltaTime);
+
 	//mCamera->UpdateView();
+	
 	mCamera2->update();
+	mPacman->SetPosition(mCamera2->getCameraPosition());
+	for(UINT i = 0; i < mGhost.size(); i++)
+	{
+		if(GetCollisionHandler().ObjectCollisionCheck(mPacman , mGhost.at(i)))
+			mCamera2->SetPosition(400,50,400);
+	}	
 }
 
 void GameScreen::KeyBoardMovement(float lDeltaTime)
@@ -120,21 +132,26 @@ void GameScreen::ActivateScreen(GameScreenState lGameScreenState)
 	mGameScreenState = lGameScreenState;
 }
 
-void GameScreen::LoadGhosts()
+void GameScreen::LoadGhosts(ID3D10Device* lDevice)
 {
-	D3DXVECTOR3 spawnVector(0, 0, -200);
+	//D3DXVECTOR3 spawnVector(0, 0, -200);
 	//mWaypoint.push_back(new Waypoint(D3DXVECTOR3(200, -200, 0)));
 
-	/*Waypoint* lWaypoint = mWorldHandler->GetGhostSpawnWaypoint();
+	Waypoint* lWaypoint = mWorldHandler->GetGhostSpawnWaypoint();
 
-	mGhost.push_back(new Ghost(spawnVector, lWaypoint));
-	mGhost.push_back(new Ghost(spawnVector, lWaypoint));
-	mGhost.push_back(new Ghost(spawnVector, lWaypoint));
-	mGhost.push_back(new Ghost(spawnVector, lWaypoint));
-
-	delete lWaypoint;*/
-	mGhost.push_back(new Ghost(spawnVector, mWorldHandler->GetGhostSpawnWaypoint()));
-	mGhost.push_back(new Ghost(spawnVector, mWorldHandler->GetGhostSpawnWaypoint()));
-	mGhost.push_back(new Ghost(spawnVector, mWorldHandler->GetGhostSpawnWaypoint()));
-	mGhost.push_back(new Ghost(spawnVector, mWorldHandler->GetGhostSpawnWaypoint()));
+	mGhost.push_back(new Ghost(lWaypoint->GetPosition(), lWaypoint));
+	mGhost.push_back(new Ghost(lWaypoint->GetPosition(), lWaypoint));
+	mGhost.push_back(new Ghost(lWaypoint->GetPosition(), lWaypoint));
+	mGhost.push_back(new Ghost(lWaypoint->GetPosition(), lWaypoint));
+	for(UINT i = 0; i < mGhost.size() ; i++)
+		mGhost.at(i)->Initialize(lDevice,"gameobject.fx");
+	mGhost.at(0)->IsEdible(false);
+	mGhost.at(1)->IsEdible(false);
+	mGhost.at(2)->IsEdible(true);
+	mGhost.at(3)->IsEdible(true);
+	//delete lWaypoint;
+	//mGhost.push_back(new Ghost(spawnVector, mWorldHandler->GetGhostSpawnWaypoint()));
+	//mGhost.push_back(new Ghost(spawnVector, mWorldHandler->GetGhostSpawnWaypoint()));
+	//mGhost.push_back(new Ghost(spawnVector, mWorldHandler->GetGhostSpawnWaypoint()));
+	//mGhost.push_back(new Ghost(spawnVector, mWorldHandler->GetGhostSpawnWaypoint()));
 }
