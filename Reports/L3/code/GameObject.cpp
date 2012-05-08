@@ -29,22 +29,22 @@ void GameObject::Initialize(ID3D10Device* lDevice, char* FxFileName)
 void GameObject::CreateVertexBuffer( ID3D10Buffer** lVB, int lSize ) 
 {
 	D3D10_BUFFER_DESC bd;
-	bd.Usage = D3D10_USAGE_DYNAMIC;
+	bd.Usage = D3D10_USAGE_IMMUTABLE;
 	bd.ByteWidth = sizeof( BillboardVertex ) * lSize;
 	bd.BindFlags = D3D10_BIND_VERTEX_BUFFER;
-	bd.CPUAccessFlags = D3D10_CPU_ACCESS_WRITE;
+	bd.CPUAccessFlags = 0;
 	bd.MiscFlags = 0;
 
 	mDevice->CreateBuffer( &bd, 0, lVB );
 }
 
 
-void GameObject::Draw( Camera* lCam ) 
+void GameObject::Draw( Camera2* lCam ) 
 {
 	D3DXMatrixIdentity(&mViewProjMatrix);
-	mViewProjMatrix = lCam->GetView() * lCam->GetProjection();
+	mViewProjMatrix = lCam->getViewMatrix() * lCam->getProjectionMatrix();
 	mShaderObject->SetMatrix("viewProj", mViewProjMatrix);
-	mShaderObject->SetFloat3("eyePosW", &lCam->GetPosition());
+	mShaderObject->SetFloat3("eyePosW", &lCam->getCameraPosition());
 
 	mDevice->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_POINTLIST);
 

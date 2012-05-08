@@ -24,6 +24,7 @@ void GameScreen::StartUp(ID3D10Device* lDevice)
 	mHUD->Initialize( lDevice );
 	mWorldHandler->Initialize( lDevice );
 	LoadGhosts();
+	ShowCursor(false);
 }
 
 void GameScreen::ShutDown()
@@ -92,13 +93,20 @@ void GameScreen::MouseMovement()
 	GetCursorPos(&lMousePosition);
 	int dx = 0;
 	int dy = 0;
-	dx = lMousePosition.x - mOldCursorPosition.x;
-	dy = lMousePosition.y - mOldCursorPosition.y;
+
 	//mCamera->Pitch(dy * gCursorSensitivity);
 	//mCamera->RotateY(dx * gCursorSensitivity);
 
-	mCamera2->adjustHeadingPitch(0.0025f * dx, 0.0025f * dy);
-	mOldCursorPosition = lMousePosition;
+	if (lMousePosition.x > 500)
+		dx = 1 ;
+	else if(lMousePosition.x < 500)
+		dx = -1;
+	if (lMousePosition.y > 500)
+		dy = 1 ;
+	else if(lMousePosition.y < 500)
+		dy = -1;
+	mCamera2->adjustHeadingPitch(0.025f * dx, 0.025f * dy);
+	SetCursorPos(500, 500);
 }
 
 void GameScreen::UpdateGhost(float lDeltaTime)

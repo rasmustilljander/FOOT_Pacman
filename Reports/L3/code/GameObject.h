@@ -3,7 +3,7 @@
 
 #include "Utilities.h"
 #include "ShaderObject.h"
-#include "Camera.h"
+#include "Camera2.h"
 #include "Vertex.h"
 #include "ResourceLoader.h"
 
@@ -14,7 +14,7 @@ public:
 	~GameObject();
 
 	void Initialize(ID3D10Device* lDevice, char* lFxFilename);
-	void Draw(Camera* lCam);
+	void Draw(Camera2* lCam);
 
 
 protected:
