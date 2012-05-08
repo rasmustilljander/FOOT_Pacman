@@ -79,11 +79,12 @@ void AudioHandler::LoadAudio()
     mBackgroundSound1->set3DMinMaxDistance(0.5f * DISTANCEFACTOR, 5000.0f * DISTANCEFACTOR);
     mBackgroundSound1->setMode(FMOD_LOOP_NORMAL);
 
+	/*
 	mSystem->createSound("Resources/Sound/b.wav", FMOD_3D, 0, &mBackgroundSound2);
     mBackgroundSound2->set3DMinMaxDistance(0.5f * DISTANCEFACTOR, 5000.0f * DISTANCEFACTOR);
     mBackgroundSound2->setMode(FMOD_LOOP_NORMAL);
-
-	/*
+	*/
+	
 	mSystem->createSound("Resources/Sound/CandySound.wav", FMOD_3D, 0, &mCandySound);
     mCandySound->setMode(FMOD_LOOP_OFF);
 
@@ -93,7 +94,7 @@ void AudioHandler::LoadAudio()
 	mSystem->createSound("Resources/Sound/GhostSound.wav", FMOD_3D, 0, &mGhostSound);
     mGhostSound->set3DMinMaxDistance(0.5f * DISTANCEFACTOR, 5000.0f * DISTANCEFACTOR);
     mGhostSound->setMode(FMOD_LOOP_NORMAL);
-
+	/*
 	mSystem->createSound("Resources/Sound/MenuSound.wav", FMOD_3D, 0, &mMenuSound);
     mMenuSound->setMode(FMOD_LOOP_NORMAL);
 	*/
@@ -137,7 +138,7 @@ void AudioHandler::PlayBackgroundSound()
 	
     FMOD_VECTOR lPosition2 = { 10.0f * DISTANCEFACTOR, 0.0f, 0.0f };
 
-    mSystem->playSound(FMOD_CHANNEL_FREE, mBackgroundSound2, true, &mChannel2);
+    mSystem->playSound(FMOD_CHANNEL_FREE, mBackgroundSound1, true, &mChannel2);
     mChannel2->set3DAttributes(&lPosition2, &mListenerDir);
     mChannel2->setPaused(false);
 }
@@ -150,8 +151,18 @@ void AudioHandler::PlayCandySound()
 
 void AudioHandler::PlayDeathSound()
 {
-	mSystem->playSound(FMOD_CHANNEL_FREE, mDeathSound, true, &mChannel3);
-	mChannel3->setPaused(false);
+	mSystem->playSound( FMOD_CHANNEL_FREE, mDeathSound, true, &mChannel3 );
+	mChannel3->setPaused( false );
+}
+
+void AudioHandler::PlayGhostSound( int lID, float lX, float lY, float lZ )
+{
+	FMOD_VECTOR lPosition = { lX, lY, lZ };
+	FMOD_VECTOR lDirection = { 0, 0, 0 };
+
+	mSystem->playSound( FMOD_CHANNEL_FREE, mGhostSound, true, &mGhostChannel[lID] );
+	mGhostChannel[lID]->set3DAttributes( &lPosition, &lDirection );
+	mGhostChannel[lID]->setPaused( false );
 }
 
 void AudioHandler::PlayMenuSound()
