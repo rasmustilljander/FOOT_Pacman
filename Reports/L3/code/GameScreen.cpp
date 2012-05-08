@@ -91,12 +91,37 @@ void GameScreen::MouseMovement()
 {
 	POINT lMousePosition;
 	GetCursorPos(&lMousePosition);
-	SetCursorPos(500, 500);
 	int dx = 0;
 	int dy = 0;
 
-	//mCamera->Pitch(dy * gCursorSensitivity);
-	//mCamera->RotateY(dx * gCursorSensitivity);
+	//if (lMousePosition.x > mOldCursorPosition.x)
+	//{
+	//	dx = abs(lMousePosition.x - mOldCursorPosition.x);
+	//}
+	//else if(lMousePosition.x < mOldCursorPosition.x)
+	//{
+	//	dx = -abs(lMousePosition.x - mOldCursorPosition.x);
+	//}
+	//if (lMousePosition.y > mOldCursorPosition.y)
+	//{
+	//	dy = abs(lMousePosition.y - mOldCursorPosition.y);
+	//}
+	//else if(lMousePosition.y < mOldCursorPosition.y)
+	//{
+	//	dy = -abs(lMousePosition.y - mOldCursorPosition.y);
+	//}
+	//int a = GetRawMouseInput().A.x;
+	//int b = GetRawMouseInput().A.y;
+
+	//mCamera2->adjustHeadingPitch(0.025f * dx, 0.025f * dy);
+	////mCamera2->adjustHeadingPitch(0.025f * GetRawMouseInput().A.x, 0.025f * GetRawMouseInput().A.y);
+	//SetCursorPos(500, 500);
+	
+	//mOldCursorPosition = lMousePosition;
+	//SetCursorPos(mOldCursorPosition.x, mOldCursorPosition.y);
+
+	mCamera->Pitch(dy * gCursorSensitivity);
+	mCamera->RotateY(dx * gCursorSensitivity);
 	if (lMousePosition.x > 500)
 		dx = 1.5f ;
 	else if(lMousePosition.x < 500)
@@ -106,7 +131,7 @@ void GameScreen::MouseMovement()
 	else if(lMousePosition.y < 500)
 		dy = -1.5f;
 	mCamera2->adjustHeadingPitch(0.025f * dx, 0.025f * dy);
-	//SetCursorPos(500, 500);
+	SetCursorPos(500, 500);
 }
 
 void GameScreen::UpdateGhost(float lDeltaTime)

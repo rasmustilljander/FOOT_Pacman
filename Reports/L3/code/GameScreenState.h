@@ -1,10 +1,5 @@
-
 #ifndef GAMESCREENSTATE_H
 #define GAMESCREENSTATE_H
-
-
-
-
 
 enum GameScreenState
 {
@@ -14,6 +9,5 @@ enum GameScreenState
 	Map,
 	Menu
 };
-
 
 #endif

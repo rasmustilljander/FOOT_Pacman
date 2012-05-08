@@ -1,4 +1,5 @@
-#pragma once
+#ifndef KEYBOARDINPUTHANDLER_H
+#define KEYBOARDINPUTHANDLER_H
 
 #include <Windows.h>
 
@@ -19,3 +20,4 @@ private:
 	bool mEscPressed;
 };
 
+#endif

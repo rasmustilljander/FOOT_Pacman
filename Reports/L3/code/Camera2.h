@@ -7,7 +7,6 @@
 
 class Camera2
 {
-
 private:
 		
 	//view parameters

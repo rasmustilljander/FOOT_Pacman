@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "KeyboardInputHandler.h"
 #include "Ghost.h"
+#include "RawMouseInput.h"
 
 class GameScreen: public BaseGameScreen
 {

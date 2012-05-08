@@ -6,8 +6,8 @@
 #include <sstream>
 using namespace std;
 
-#ifndef __HUD_h__
-#define __HUD_h__
+#ifndef HUD_H
+#define HUD_H
 
 class HUD
 {

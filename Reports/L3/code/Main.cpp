@@ -1,6 +1,6 @@
-#include "Renderer.h"
 #include <Windows.h>
-
+#include "Renderer.h"
+#include "RawMouseInput.h"
 
 HWND		g_hWnd;
 HINSTANCE	g_hInst;
@@ -21,8 +21,6 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 	if( FAILED( InitWindow( hInstance, nCmdShow ) ) )
 		return 0;
 
-
-
 	renderer.Initialize(&g_hWnd);
 
 	// Main message loop
@@ -34,13 +32,10 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 			TranslateMessage( &msg );
 			DispatchMessage( &msg );
 		}
-
-			renderer.Update();
-			renderer.Draw();
+		renderer.Update();
+		renderer.Draw();
 	}
-
-		return (int) msg.wParam;
-
+	return (int) msg.wParam;
 }
 
 
@@ -87,11 +82,9 @@ HRESULT InitWindow( HINSTANCE hInstance, int nCmdShow )
 	{
 		return E_FAIL;
 	}
+	GetRawMouseInput().RegisterInputDevices(g_hWnd);
 
-	gLockedCursorPoint.x = rc.right/2;
-	gLockedCursorPoint.y = rc.bottom/2;
-	ScreenToClient(g_hWnd, &gLockedCursorPoint);
-
+	
 	ShowWindow( g_hWnd, nCmdShow );
 	return S_OK;
 }
@@ -114,6 +107,31 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
+
+	case WM_INPUT: 
+    {
+        UINT dwSize = 40;
+        static BYTE lpb[40];
+    
+        GetRawInputData((HRAWINPUT)lParam, RID_INPUT, 
+                        lpb, &dwSize, sizeof(RAWINPUTHEADER));
+    
+        RAWINPUT* raw = (RAWINPUT*)lpb;
+    
+        if (raw->header.dwType == RIM_TYPEMOUSE) 
+        {
+            
+			GetRawMouseInput().A.x = raw->data.mouse.lLastX;
+			GetRawMouseInput().A.y = raw->data.mouse.lLastY;
+
+			int a = GetRawMouseInput().A.x;
+			int b = GetRawMouseInput().A.y;
+			int c = 5;
+			//int xPosRelative = raw->data.mouse.lLastX;
+          //  int yPosRelative = raw->data.mouse.lLastY;
+        } 
+        break;
+    }
 
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
