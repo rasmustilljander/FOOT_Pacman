@@ -42,5 +42,4 @@ void Candy::SetupVertices()
 
 	mVertexBuffer->Unmap();
 
-	//delete[] data;
 }

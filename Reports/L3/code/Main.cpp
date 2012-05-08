@@ -88,9 +88,9 @@ HRESULT InitWindow( HINSTANCE hInstance, int nCmdShow )
 		return E_FAIL;
 	}
 
-	//gLockedCursorPoint.x = rc.right/2;
-	//gLockedCursorPoint.y = rc.bottom/2;
-	//ScreenToClient(g_hWnd, &gLockedCursorPoint);
+	gLockedCursorPoint.x = rc.right/2;
+	gLockedCursorPoint.y = rc.bottom/2;
+	ScreenToClient(g_hWnd, &gLockedCursorPoint);
 
 	ShowWindow( g_hWnd, nCmdShow );
 	return S_OK;
