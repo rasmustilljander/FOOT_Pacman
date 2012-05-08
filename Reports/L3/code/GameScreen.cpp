@@ -34,7 +34,7 @@ void GameScreen::ShutDown()
 void GameScreen::Draw()
 {
 	mHUD->Draw();
-	mWorldHandler -> Draw(mCamera);	
+	mWorldHandler -> Draw(mCamera2);	
 }
 
 void GameScreen::Update()
@@ -44,45 +44,45 @@ void GameScreen::Update()
 	KeyBoardMovement(lDeltaTime);
 	MouseMovement();
 	UpdateGhost(lDeltaTime);
-	mCamera->UpdateView();
-	//mCamera2->update();
+	//mCamera->UpdateView();
+	mCamera2->update();
 }
 
 void GameScreen::KeyBoardMovement(float lDeltaTime)
 {
-	//Forward
-	if(mKeyboardHandler->CheckPressedKey(W))
-		mCamera->Walk(gPlayerMovementSpeed * lDeltaTime);
-	//Left
-	if(mKeyboardHandler->CheckPressedKey(A))
-		mCamera->Strafe(-gPlayerMovementSpeed  * lDeltaTime);
-	//Back
-	if(mKeyboardHandler->CheckPressedKey(S))
-		mCamera->Walk(-gPlayerMovementSpeed  * lDeltaTime);
-	//Right
-	if(mKeyboardHandler->CheckPressedKey(D))
-		mCamera->Strafe(gPlayerMovementSpeed  * lDeltaTime);
-
 	////Forward
 	//if(mKeyboardHandler->CheckPressedKey(W))
-	//	mCamera2->setMovementToggle( 0, 1 );
-	//else
-	//	mCamera2->setMovementToggle( 0, 0);
+	//	mCamera->Walk(gPlayerMovementSpeed * lDeltaTime);
 	////Left
 	//if(mKeyboardHandler->CheckPressedKey(A))
-	//	mCamera2->setMovementToggle( 2, -1 );
-	//else
-	//	mCamera2->setMovementToggle( 2, 0 );
+	//	mCamera->Strafe(-gPlayerMovementSpeed  * lDeltaTime);
 	////Back
 	//if(mKeyboardHandler->CheckPressedKey(S))
-	//	mCamera2->setMovementToggle( 1, -1 );
-	//else
-	//	mCamera2->setMovementToggle( 1, 0 );
+	//	mCamera->Walk(-gPlayerMovementSpeed  * lDeltaTime);
 	////Right
 	//if(mKeyboardHandler->CheckPressedKey(D))
-	//	mCamera2->setMovementToggle( 3, 1 );
-	//else
-	//	mCamera2->setMovementToggle( 3, 0 );
+	//	mCamera->Strafe(gPlayerMovementSpeed  * lDeltaTime);
+
+	//Forward
+	if(mKeyboardHandler->CheckPressedKey(W))
+		mCamera2->setMovementToggle( 0, 1 );
+	else
+		mCamera2->setMovementToggle( 0, 0);
+	//Left
+	if(mKeyboardHandler->CheckPressedKey(A))
+		mCamera2->setMovementToggle( 2, -1 );
+	else
+		mCamera2->setMovementToggle( 2, 0 );
+	//Back
+	if(mKeyboardHandler->CheckPressedKey(S))
+		mCamera2->setMovementToggle( 1, -1 );
+	else
+		mCamera2->setMovementToggle( 1, 0 );
+	//Right
+	if(mKeyboardHandler->CheckPressedKey(D))
+		mCamera2->setMovementToggle( 3, 1 );
+	else
+		mCamera2->setMovementToggle( 3, 0 );
 
 }
 
@@ -94,10 +94,10 @@ void GameScreen::MouseMovement()
 	int dy = 0;
 	dx = lMousePosition.x - mOldCursorPosition.x;
 	dy = lMousePosition.y - mOldCursorPosition.y;
-	mCamera->Pitch(dy * gCursorSensitivity);
-	mCamera->RotateY(dx * gCursorSensitivity);
+	//mCamera->Pitch(dy * gCursorSensitivity);
+	//mCamera->RotateY(dx * gCursorSensitivity);
 
-	//mCamera2->adjustHeadingPitch(0.000025f * dx, 0.000025f * dy);
+	mCamera2->adjustHeadingPitch(0.0025f * gLockedCursorPoint.x, 0.0025f * gLockedCursorPoint.y);
 	mOldCursorPosition = lMousePosition;
 }
 

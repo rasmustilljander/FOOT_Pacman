@@ -104,13 +104,13 @@ void WorldHandler::LoadWaypoints()
 
 }
 
-void WorldHandler::Draw( Camera* lCam )
+void WorldHandler::Draw( Camera2* lCam )
 {
-	/*mShaderObject->SetMatrix("viewMatrix", lCam->getViewMatrix());
-	mShaderObject->SetMatrix("projMatrix", lCam->getProjectionMatrix());*/
+	mShaderObject->SetMatrix("viewMatrix", lCam->getViewMatrix());
+	mShaderObject->SetMatrix("projMatrix", lCam->getProjectionMatrix());
 
-	mShaderObject->SetMatrix("viewMatrix", lCam->GetView());
-	mShaderObject->SetMatrix("projMatrix", lCam->GetProjection());
+	/*mShaderObject->SetMatrix("viewMatrix", lCam->GetView());
+	mShaderObject->SetMatrix("projMatrix", lCam->GetProjection());*/
 	mDevice->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 	UINT stride = sizeof(Vertex);
 	UINT offset = 0;

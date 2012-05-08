@@ -2,8 +2,8 @@
 #include "Utilities.h"
 #include "ShaderObject.h"
 #include "Vertex.h"
-//#include "Camera2.h"
-#include "Camera.h"
+#include "Camera2.h"
+//#include "Camera.h"
 #include "Candy.h"
 #include "WallObject.h"
 #include "Waypoint.h"
@@ -19,7 +19,7 @@ public:
 		WorldHandler();
 		virtual ~WorldHandler();
 		void Initialize(ID3D10Device* lDevice);
-		void Draw(Camera* lCam);
+		void Draw(Camera2* lCam);
 		Waypoint* GetGhostSpawnWaypoint();
 
 private:

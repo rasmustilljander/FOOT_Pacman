@@ -1,5 +1,6 @@
 #include "Renderer.h"
 #include <Windows.h>
+#include "RawMouseInput.h"
 
 HWND		g_hWnd;
 HINSTANCE	g_hInst;
@@ -19,6 +20,8 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 	
 	if( FAILED( InitWindow( hInstance, nCmdShow ) ) )
 		return 0;
+
+	RegisterInputDevices(g_hWnd);
 
 	renderer.Initialize(&g_hWnd);
 
@@ -114,6 +117,7 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
 
 	case WM_INPUT:
 		{
+			HandleRawInput( g_hWnd, (HRAWINPUT&) lParam );
 		}
 		break;
 
