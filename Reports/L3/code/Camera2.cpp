@@ -107,7 +107,7 @@ void Camera2::update()
 	//update position - 1.5 unit per second
 	eye +=	(float) t * ( movementToggles[0] + movementToggles[1] ) * movementSpeed * forward + 
 			(float) t * ( movementToggles[2] + movementToggles[3] ) * movementSpeed * strafeRight;
-	//calculateY();
+	eye.y = 50;
 
 	//update view
 	updateView();
@@ -122,28 +122,5 @@ void Camera2::setHeightY( float h[])
 
 void Camera2::calculateY()
 {
-	int x = eye.x;
-	int z = eye.z;
-
-	float A = heightY[z*1024 + x];
-	float B = heightY[z*1024 + (x + 1)];
-	float C = heightY[( z + 1 )*1024 + x];
-	float D = heightY[( z + 1 )*1024 + (x + 1)];
-
-	float s = eye.x - x;
-	float t = eye.z - z;
-
-	float uy = B - A;
-	float vy = C - A;
-
-	if ( s + t <= 1 )
-	{
-		eye.y = (A + s*uy + t*vy) + 20;
-	}
-	else
-	{
-		float uy = C - D;
-		float vy = B - D;
-		eye.y = (D + (1.0f-s)*uy + (1.0f-t)*vy) + 20;
-	}
+	
 }

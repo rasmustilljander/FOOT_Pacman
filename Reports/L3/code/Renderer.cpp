@@ -26,7 +26,7 @@ void Renderer::Update()
 
 void Renderer::Draw() 
 {
-	mDevice->ClearRenderTargetView( mRenderTargetView, D3DXCOLOR(1.0f,0.0f, 0.0f, 0.0f));
+	mDevice->ClearRenderTargetView( mRenderTargetView, D3DXCOLOR(0.05f,0.5f, 0.8f, 0.0f));
 	mDevice->ClearDepthStencilView( mDepthStencilView, D3D10_CLEAR_DEPTH, 1.0f, 0 );
 
 	mScreenHandler->Draw();
