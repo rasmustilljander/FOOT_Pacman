@@ -92,7 +92,7 @@ void AudioHandler::LoadAudio()
     mDeathSound->setMode(FMOD_LOOP_OFF);
 
 	mSystem->createSound("Resources/Sound/GhostSound.wav", FMOD_3D, 0, &mGhostSound);
-    mGhostSound->set3DMinMaxDistance(0.5f * DISTANCEFACTOR, 5000.0f * DISTANCEFACTOR);
+    mGhostSound->set3DMinMaxDistance(0.5f * DISTANCEFACTOR, 500.0f * DISTANCEFACTOR);
     mGhostSound->setMode(FMOD_LOOP_NORMAL);
 	/*
 	mSystem->createSound("Resources/Sound/MenuSound.wav", FMOD_3D, 0, &mMenuSound);
@@ -105,9 +105,9 @@ void AudioHandler::UpdatePosition(float lPosX, float lPosY, float lPosZ, float l
 	FMOD_VECTOR lForward = { 0.0f, 0.0f, 1.0f };
     FMOD_VECTOR lUp      = { 0.0f, 1.0f, 0.0f };
 
-	mListenerPos.x = lPosX * DISTANCEFACTOR;
-	mListenerPos.y = lPosY * DISTANCEFACTOR;
-	mListenerPos.z = lPosZ * DISTANCEFACTOR;
+	mListenerPos.x = lPosX; //These were multiplied with DISTANCEFACTOR
+	mListenerPos.y = lPosY;
+	mListenerPos.z = lPosZ;
 	
 	mListenerDir.x = lDirX;
 	mListenerDir.y = lDirY;
@@ -121,9 +121,9 @@ void AudioHandler::UpdateGhostPosition(int lGhost, float lPosX, float lPosY, flo
 {
 	FMOD_VECTOR lPosition;
 
-	lPosition.x = lPosX * DISTANCEFACTOR;
-	lPosition.y = lPosY * DISTANCEFACTOR;
-	lPosition.z = lPosZ * DISTANCEFACTOR;
+	lPosition.x = lPosX; //These were multiplied with distancefactor
+	lPosition.y = lPosY;
+	lPosition.z = lPosZ;
 
 	mGhostChannel[lGhost]->set3DAttributes(&lPosition, &mListenerDir);
 }
