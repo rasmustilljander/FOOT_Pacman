@@ -9,7 +9,7 @@ namespace	//This namespace is anonymous, shoudl solve the const issues
 	//TODO
 	//Change the INTERFACE_UPDATETIME to comply with the actual later
 	const int   INTERFACE_UPDATETIME = 50;      // 50ms update for interface
-	const float DISTANCEFACTOR = 1.0f;          // Units per meter.  I.e feet would = 3.28.  centimeters would = 100.
+	const float DISTANCEFACTOR = 100.0f;          // Units per meter.  I.e feet would = 3.28.  centimeters would = 100.
 
 };
 
