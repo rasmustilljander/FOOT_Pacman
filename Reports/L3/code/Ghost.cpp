@@ -78,7 +78,7 @@ void Ghost::IsEdible(bool lIsEdible)
 
 void Ghost::SetResources()
 {
-	mResourceView = GetResourceLoader().GetGhostTexture();
+	mResourceView = GetResourceLoader().Get2DPacmanTeture();
 	mResourceView2 = GetResourceLoader().GetGhostEdibleTexture();
 }
 

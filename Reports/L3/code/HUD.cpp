@@ -4,7 +4,7 @@ using namespace std;
 HUD::HUD()
 {
 	mScore = 0;
-	mLivesLeft = 0;
+	mLivesLeft = 3;
 	mShaderObj = new ShaderObject();
 }
 
@@ -23,6 +23,7 @@ void HUD::Draw()
 	mDevice->IASetVertexBuffers(0,1,&mVertexBuffer, &stride, &offset);
 
 	//mShaderObj->Render(0);
+	//mDevice->Draw(4, 3 - mLivesLeft);
 	DisplayText();
 }
 
@@ -30,11 +31,13 @@ void HUD::Initialize(ID3D10Device* lDevice)
 {
 	mDevice = lDevice;
 
-	CreateVertexBuffer( &mVertexBuffer, 4 );
-	//CreateTextures();
-	SetValuesToVertexBuffer();
 	mShaderObj->Initialize( mDevice, "HUD.fx", spriteVertexLayout, spriteVertexLayoutNumElements, "drawHUD", D3D10_SHADER_ENABLE_STRICTNESS);
-	D3DX10CreateFont( mDevice, 20, 0, FW_BOLD, 0, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, TEXT("Copperplate Gothic Bold"), &mFont);
+	D3DX10CreateFont( mDevice, 20, 0, FW_BOLD, 0, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, 
+						DEFAULT_PITCH | FF_DONTCARE, TEXT("Copperplate Gothic Bold"), &mFont);
+
+	CreateVertexBuffer( &mVertexBuffer, 3 );
+	CreateTextures();
+	SetValuesToVertexBuffer();
 }
 
 void HUD::CreateVertexBuffer(ID3D10Buffer** lVB, int lSize  ) 
@@ -60,6 +63,18 @@ void HUD::SetValuesToVertexBuffer()
 	data[0].dimensions[0] = ConvertPixelsToClipSpaceDistance(1024, 256);
 	data[0].dimensions[1] = ConvertPixelsToClipSpaceDistance(768, 192);
 	data[0].opacity = 0;
+
+	data[1].topLeft[0] = ConvertPixelsToClipSpace(1024, 50);
+	data[1].topLeft[1] = -ConvertPixelsToClipSpace(768, 50);
+	data[1].dimensions[0] = ConvertPixelsToClipSpaceDistance(1024, 256);
+	data[1].dimensions[1] = ConvertPixelsToClipSpaceDistance(768, 192);
+	data[1].opacity = 0;
+
+	data[2].topLeft[0] = ConvertPixelsToClipSpace(1024, 100);
+	data[2].topLeft[1] = -ConvertPixelsToClipSpace(768, 50);
+	data[2].dimensions[0] = ConvertPixelsToClipSpaceDistance(1024, 256);
+	data[2].dimensions[1] = ConvertPixelsToClipSpaceDistance(768, 192);
+	data[2].opacity = 0;
 
 	mVertexBuffer->Unmap();
 }

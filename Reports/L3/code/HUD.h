@@ -19,7 +19,7 @@ public:
 		void Draw();
 
 		void setScore(int i) { mScore = i; };
-		int setLivesLeft(int i) { mLivesLeft = i; };
+		void setLivesLeft(int i) { mLivesLeft = i; };
 private:
 		void CreateVertexBuffer( ID3D10Buffer** lVB, int lSize );
 		void SetValuesToVertexBuffer();

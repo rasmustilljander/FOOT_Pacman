@@ -3,6 +3,8 @@
 GameScreen::GameScreen()
 	: BaseGameScreen()
 {	
+	mLivesLeft = 3;
+
 	mHUD = new HUD();
 	mKeyboardHandler = new KeyboardInputHandler();
 	mPacman = new Player();
@@ -71,7 +73,11 @@ void GameScreen::ObjectCollisions()
 	for(UINT i = 0; i < mGhost.size(); i++)
 	{
 		if(GetCollisionHandler().ObjectCollisionCheck(mPacman , mGhost.at(i)))
+		{
 			mCamera2->setPositionAndView(600,800,600,1, 0);
+			mLivesLeft --;
+			mHUD->setLivesLeft(mLivesLeft);
+		}
 	}
 	vector<Candy*> *lVector = mWorldHandler->GetCandy();
 	if(!lVector->empty())
@@ -80,9 +86,18 @@ void GameScreen::ObjectCollisions()
 		{
 			if(GetCollisionHandler().ObjectCollisionCheck(mPacman , lVector->at(i)))
 			{
+				if (lVector->at(i)->GetType() == 0)
+				{
+					mScore += 100;
+					mHUD->setScore(mScore);
+				}
+				else
+				{
+					mScore +=300;
+					mHUD->setScore(mScore);
+					mSuperCandyInEffect = true;
+				}
 				lVector->erase(lVector->begin() + i);
-				mScore += 100;
-				mHUD->setScore(mScore);
 			}
 		}
 	}

@@ -9,6 +9,7 @@ public:
 	Candy();
 	Candy(int lType, D3DXVECTOR3 lPosition);
 	virtual ~Candy();
+	int GetType() { return mType; }
 
 private:
 	void SetResources();
