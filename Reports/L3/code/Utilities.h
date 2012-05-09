@@ -9,6 +9,12 @@
 #define TWO_PI 6.283185307179586476925286766559
 #define DEG_TO_RAD 0.01745329251994329576923690768489
 
+//Camera Specific Things
+#define FieldOfView 45
+#define ScreenAspect (float)1024/768
+#define NearPlane 0.1f
+#define FarPlane 2000.0f
+
 //Game Specific Things
 #define gPlayerMovementSpeed 50
 #define gPlayerYPosition 50

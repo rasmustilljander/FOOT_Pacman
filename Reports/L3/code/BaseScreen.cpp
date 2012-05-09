@@ -12,13 +12,10 @@ BaseScreen::~BaseScreen()
 
 void BaseScreen::StartUp(ID3D10Device* lDevice)
 {
-	mCamera = new Camera();
-	mCamera->SetLens( 60, (float)1024/768, 0.1f, 1000); //TODO: move variables into utilities
-	mCamera->UpdateView();
-
+	mScore = 0;
 	mCamera2 = new Camera2();
-	mCamera2->setPerspectiveProjectionLH( 45, (float)1024/768, 0.1f, 1000.0f );
-	mCamera2->setPositionAndView(0,100,0,0,0);
+	mCamera2->setPerspectiveProjectionLH( FieldOfView, ScreenAspect, NearPlane, FarPlane );
+	mCamera2->setPositionAndView(800,100,0,0,0);
 	mCamera2->setMovementSpeed(gPlayerMovementSpeed*3);
 }
 

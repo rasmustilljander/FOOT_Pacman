@@ -128,8 +128,8 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
 			int b = GetRawMouseInput().A.y;
 			int c = 5;
 			//int xPosRelative = raw->data.mouse.lLastX;
-          //  int yPosRelative = raw->data.mouse.lLastY;
-        } 
+            //int yPosRelative = raw->data.mouse.lLastY;
+        }
         break;
     }
 

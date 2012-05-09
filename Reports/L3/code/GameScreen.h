@@ -25,6 +25,7 @@ public:
 		
 private:
 	void UpdateGhost(float lDeltaTime);
+	void ObjectCollisions();
 
 private:
 	bool mSuperCandyInEffect;

@@ -22,6 +22,7 @@ public:
 		void Draw(Camera2* lCam);
 		Waypoint* GetGhostSpawnWaypoint();
 
+		vector<Candy*>* GetCandy() { return &mCandy; }
 private:
 		
 		void CreateVertexBuffer( ID3D10Buffer** lVB, int lSize  );

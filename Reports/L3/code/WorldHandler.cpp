@@ -3,8 +3,6 @@
 WorldHandler::WorldHandler()
 {
 	mShaderObject = new ShaderObject();
-	Candy* temp = new Candy(1,D3DXVECTOR3(20,20,20));
-	mCandy.push_back(temp);
 }
 
 WorldHandler::~WorldHandler()
@@ -27,7 +25,8 @@ void WorldHandler::Initialize(ID3D10Device* lDevice)
 	LoadWaypoints();
 	CreateLevel();
 
-	mCandy.at(0)->Initialize(mDevice, "gameobject.fx");
+	for(UINT i = 0; i < mCandy.size(); i++)
+	mCandy.at(i)->Initialize(mDevice, "gameobject.fx");
 
 
 	for(UINT i = 0; i < mWallObject.size(); i++)
@@ -93,31 +92,34 @@ void WorldHandler::CreateLevel()
 	mWallObject.push_back(new WallObject(D3DXVECTOR3(120,25,50), 140, 50, D3DXVECTOR3(0,0,-1)));
 	mWallObject.push_back(new WallObject(D3DXVECTOR3(70,25,310), 140, 50, D3DXVECTOR3(0,0,-1)));
 
-
-
+	mCandy.push_back(new Candy(1,D3DXVECTOR3(2000,0,0)));
+	mCandy.push_back(new Candy(1, D3DXVECTOR3(400,25,400)));
+	mCandy.push_back(new Candy(0, D3DXVECTOR3(50,25,50)));
+	mCandy.push_back(new Candy(0, D3DXVECTOR3(200,25,50)));
 }
 void WorldHandler::LoadWaypoints()
 {
-	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(0, 30, 100)));
-	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(0, 30, 0)));
-	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(0, 30, 200)));
-	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(200, 30, 200)));
-	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(200, 30, 0)));
+	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(0, 50, 50))); //0
+	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(50, 50, 50))); //1
+	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(50, 50, 500))); //2
+	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(500, 50, 500))); //3	
+	mWaypoint.push_back(new Waypoint(D3DXVECTOR3(500, 50, 50))); //4
 
+	// när du länkar waypoints tänk på att antingen x eller z värdet måste vara lika på de 2 hopplänkade, annars får spökena fnatt
 
 	mWaypoint.at(0)->AddAdjecentWaypoint(mWaypoint.at(1)); //Test Spawn
-
-	mWaypoint.at(1)->AddAdjecentWaypoint(mWaypoint.at(2));
-	mWaypoint.at(1)->AddAdjecentWaypoint(mWaypoint.at(4));
-
-	mWaypoint.at(2)->AddAdjecentWaypoint(mWaypoint.at(1));
-	mWaypoint.at(2)->AddAdjecentWaypoint(mWaypoint.at(3));
-
-	mWaypoint.at(3)->AddAdjecentWaypoint(mWaypoint.at(2));
-	mWaypoint.at(3)->AddAdjecentWaypoint(mWaypoint.at(4));
-
-	mWaypoint.at(4)->AddAdjecentWaypoint(mWaypoint.at(3)); 
-	mWaypoint.at(4)->AddAdjecentWaypoint(mWaypoint.at(1)); 
+	//1 50 50 50
+	mWaypoint.at(1)->AddAdjecentWaypoint(mWaypoint.at(2)); //50 50 50	-- 50 50 300  // går
+	mWaypoint.at(1)->AddAdjecentWaypoint(mWaypoint.at(4)); //50 50 50	--  300 50 50	// lol går
+	//2 50 50 300
+	mWaypoint.at(2)->AddAdjecentWaypoint(mWaypoint.at(1)); //50 50 300 --  50 50 50	//går
+	mWaypoint.at(2)->AddAdjecentWaypoint(mWaypoint.at(3));//50 50 300 --  300 50 300	// går
+	//3 300 50 50
+	mWaypoint.at(3)->AddAdjecentWaypoint(mWaypoint.at(2));  //300 50 50			50 50 300	// lol gg
+	mWaypoint.at(3)->AddAdjecentWaypoint(mWaypoint.at(4));	//300 50 50			300 50 50	//går
+	//4 300 50 300
+	mWaypoint.at(4)->AddAdjecentWaypoint(mWaypoint.at(3)); //300 50 300			300 50 50	//går
+	mWaypoint.at(4)->AddAdjecentWaypoint(mWaypoint.at(1)); //300 50 300			 50 50 50	//nej	
 
 
 }
@@ -147,7 +149,10 @@ void WorldHandler::Draw( Camera2* lCam )
 	{
 		mWallObject.at(i)->Draw(lCam);
 	}
-	mCandy.at(0)->Draw( lCam );
+	for(UINT i = 0; i < mCandy.size(); i++)
+	{
+	mCandy.at(i)->Draw( lCam );
+	}
 }
 
 Waypoint* WorldHandler::GetGhostSpawnWaypoint()

@@ -7,7 +7,6 @@
 #define BASESCREEN_H
 
 //#include "ScreenHandler.h"
-#include "Camera.h"
 #include "Camera2.h"
 // #include "AudioHandler.h"
 // #include "KeyboardInputHandler.h"
@@ -37,8 +36,7 @@ public:
 		
 protected:
 	GameScreenState mGameScreenState;
-	static int mScore;
-	Camera* mCamera;
+	int mScore;
 	Camera2* mCamera2;
 
 };

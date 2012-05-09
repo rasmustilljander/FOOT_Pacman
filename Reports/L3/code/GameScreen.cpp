@@ -36,45 +36,61 @@ void GameScreen::ShutDown()
 
 void GameScreen::Draw()
 {
-	mHUD->Draw();
+	
 	mWorldHandler -> Draw(mCamera2);	
 	for(UINT i = 0; i < mGhost.size(); i++)
 		mGhost.at(i)->Draw(mCamera2);
+
+	mHUD->Draw();
 }
 
 void GameScreen::Update()
 {
 	mGameTimer->Tick();
 	float lDeltaTime = mGameTimer->GetDeltaTime();
-	KeyBoardMovement(lDeltaTime);
-	MouseMovement();
-	UpdateGhost(lDeltaTime);
-
-	//mCamera->UpdateView();
 	
-	mCamera2->update();
+	if(!mKeyboardHandler->CheckPressedKey(M))
+	{
+		KeyBoardMovement(lDeltaTime);
+		MouseMovement();
+		UpdateGhost(lDeltaTime);
+		ObjectCollisions();
+		mCamera2->update();
+	}
+	else
+	{
+		mCamera2->adjustHeadingPitch(0,1);
+		mCamera2->SetPosition(600,800,600);	
+	}
 	mPacman->SetPosition(mCamera2->getCameraPosition());
+	
+}
+
+void GameScreen::ObjectCollisions()
+{
 	for(UINT i = 0; i < mGhost.size(); i++)
 	{
 		if(GetCollisionHandler().ObjectCollisionCheck(mPacman , mGhost.at(i)))
-			mCamera2->SetPosition(400,50,400);
-	}	
+			mCamera2->setPositionAndView(600,800,600,1, 0);
+	}
+	vector<Candy*> *lVector = mWorldHandler->GetCandy();
+	if(!lVector->empty())
+	{
+		for(UINT i = 0; i < lVector->size(); i++)
+		{
+			if(GetCollisionHandler().ObjectCollisionCheck(mPacman , lVector->at(i)))
+			{
+				lVector->erase(lVector->begin() + i);
+				mScore += 100;
+				mHUD->setScore(mScore);
+			}
+		}
+	}
 }
 
 void GameScreen::KeyBoardMovement(float lDeltaTime)
 {
-	////Forward
-	//if(mKeyboardHandler->CheckPressedKey(W))
-	//	mCamera->Walk(gPlayerMovementSpeed * lDeltaTime);
-	////Left
-	//if(mKeyboardHandler->CheckPressedKey(A))
-	//	mCamera->Strafe(-gPlayerMovementSpeed  * lDeltaTime);
-	////Back
-	//if(mKeyboardHandler->CheckPressedKey(S))
-	//	mCamera->Walk(-gPlayerMovementSpeed  * lDeltaTime);
-	////Right
-	//if(mKeyboardHandler->CheckPressedKey(D))
-	//	mCamera->Strafe(gPlayerMovementSpeed  * lDeltaTime);
+	
 
 	//Forward
 	if(mKeyboardHandler->CheckPressedKey(W))
@@ -101,49 +117,9 @@ void GameScreen::KeyBoardMovement(float lDeltaTime)
 
 void GameScreen::MouseMovement()
 {
-	POINT lMousePosition;
-	GetCursorPos(&lMousePosition);
-	int dx = 0;
-	int dy = 0;
-
-	//if (lMousePosition.x > mOldCursorPosition.x)
-	//{
-	//	dx = abs(lMousePosition.x - mOldCursorPosition.x);
-	//}
-	//else if(lMousePosition.x < mOldCursorPosition.x)
-	//{
-	//	dx = -abs(lMousePosition.x - mOldCursorPosition.x);
-	//}
-	//if (lMousePosition.y > mOldCursorPosition.y)
-	//{
-	//	dy = abs(lMousePosition.y - mOldCursorPosition.y);
-	//}
-	//else if(lMousePosition.y < mOldCursorPosition.y)
-	//{
-	//	dy = -abs(lMousePosition.y - mOldCursorPosition.y);
-	//}
-	//int a = GetRawMouseInput().A.x;
-	//int b = GetRawMouseInput().A.y;
-
-	//mCamera2->adjustHeadingPitch(0.025f * dx, 0.025f * dy);
-	////mCamera2->adjustHeadingPitch(0.025f * GetRawMouseInput().A.x, 0.025f * GetRawMouseInput().A.y);
-	//SetCursorPos(500, 500);
-	
-	//mOldCursorPosition = lMousePosition;
-	//SetCursorPos(mOldCursorPosition.x, mOldCursorPosition.y);
-
-	mCamera->Pitch(dy * gCursorSensitivity);
-	mCamera->RotateY(dx * gCursorSensitivity);
-	if (lMousePosition.x > 500)
-		dx = 1.5f ;
-	else if(lMousePosition.x < 500)
-		dx = -1.5f;
-	if (lMousePosition.y > 500)
-		dy = 1.5f;
-	else if(lMousePosition.y < 500)
-		dy = -1.5f;
-	mCamera2->adjustHeadingPitch(0.025f * dx, 0.025f * dy);
-	SetCursorPos(500, 500);
+	mCamera2->adjustHeadingPitch(0.005f * GetRawMouseInput().A.x, 0.005f * GetRawMouseInput().A.y);
+	GetRawMouseInput().A.x = 0;
+	GetRawMouseInput().A.y = 0;
 }
 
 void GameScreen::UpdateGhost(float lDeltaTime)
@@ -159,8 +135,6 @@ void GameScreen::ActivateScreen(GameScreenState lGameScreenState)
 
 void GameScreen::LoadGhosts(ID3D10Device* lDevice)
 {
-	//D3DXVECTOR3 spawnVector(0, 0, -200);
-	//mWaypoint.push_back(new Waypoint(D3DXVECTOR3(200, -200, 0)));
 
 	Waypoint* lWaypoint = mWorldHandler->GetGhostSpawnWaypoint();
 
@@ -174,9 +148,5 @@ void GameScreen::LoadGhosts(ID3D10Device* lDevice)
 	mGhost.at(1)->IsEdible(false);
 	mGhost.at(2)->IsEdible(true);
 	mGhost.at(3)->IsEdible(true);
-	//delete lWaypoint;
-	//mGhost.push_back(new Ghost(spawnVector, mWorldHandler->GetGhostSpawnWaypoint()));
-	//mGhost.push_back(new Ghost(spawnVector, mWorldHandler->GetGhostSpawnWaypoint()));
-	//mGhost.push_back(new Ghost(spawnVector, mWorldHandler->GetGhostSpawnWaypoint()));
-	//mGhost.push_back(new Ghost(spawnVector, mWorldHandler->GetGhostSpawnWaypoint()));
+
 }

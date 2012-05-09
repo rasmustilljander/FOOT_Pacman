@@ -23,7 +23,7 @@ void HUD::Draw()
 	mDevice->IASetVertexBuffers(0,1,&mVertexBuffer, &stride, &offset);
 
 	//mShaderObj->Render(0);
-	//DisplayText();
+	DisplayText();
 }
 
 void HUD::Initialize(ID3D10Device* lDevice) 
