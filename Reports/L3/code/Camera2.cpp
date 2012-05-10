@@ -25,6 +25,7 @@ Camera2::Camera2():	dV( D3DXVECTOR3(0,0,1) ),
 
 Camera2::~Camera2()
 {
+
 }
 
 

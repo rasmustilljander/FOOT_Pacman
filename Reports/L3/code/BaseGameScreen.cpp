@@ -11,6 +11,7 @@ BaseGameScreen::BaseGameScreen()
 BaseGameScreen::~BaseGameScreen()
 {
 	delete mWorldHandler;
+	delete mGameTimer;
 }
 
 void BaseGameScreen::StartUp(ID3D10Device* lDevice)

@@ -29,6 +29,7 @@ private:
 
 private:
 	bool mSuperCandyInEffect;
+	bool mDead;
 	int mLivesLeft;
 	HUD* mHUD;
 	Player* mPacman;

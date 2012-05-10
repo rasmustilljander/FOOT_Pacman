@@ -43,6 +43,15 @@ public:
 	{
 		return mButtonTexture;
 	}
+	ID3D10ShaderResourceView* GetDeathTexture() const
+	{
+		return mDeathTexture;
+	}
+
+	ID3D10ShaderResourceView* GetFloorTexture() const
+	{
+		return mFloorTexture;
+	}
 #pragma endregion
 
 private:
@@ -59,6 +68,9 @@ private:
 	ID3D10ShaderResourceView* mWallTexture;
 	ID3D10ShaderResourceView* m2DPacmanTexture;
 	ID3D10ShaderResourceView* mButtonTexture;
+	ID3D10ShaderResourceView* mDeathTexture;
+	ID3D10ShaderResourceView* mFloorTexture;
+
 
 };
 ResourceLoader& GetResourceLoader();

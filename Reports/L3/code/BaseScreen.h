@@ -8,7 +8,7 @@
 
 //#include "ScreenHandler.h"
 #include "Camera2.h"
-// #include "AudioHandler.h"
+#include "AudioHandler.h"
 // #include "KeyboardInputHandler.h"
 
 
@@ -38,7 +38,7 @@ protected:
 	GameScreenState mGameScreenState;
 	int mScore;
 	Camera2* mCamera2;
-
+	AudioHandler* mAudioHandler;
 };
 
 #endif

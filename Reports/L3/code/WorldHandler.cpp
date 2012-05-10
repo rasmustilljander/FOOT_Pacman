@@ -50,7 +50,7 @@ void WorldHandler::SetResources()
 	D3DXMatrixIdentity(&mWorldMatrix);
 	//D3DXMatrixTranslation(&mWorldMatrix, -0.5f, 0, 0);
 	mShaderObject->SetMatrix("worldMatrix", mWorldMatrix);
-	mShaderObject->SetResource("tex2D", GetResourceLoader().GetWallTexture());
+	mShaderObject->SetResource("tex2D", GetResourceLoader().GetFloorTexture());
 }
 
 void WorldHandler::SetupVertices()
@@ -96,6 +96,10 @@ void WorldHandler::CreateLevel()
 	mCandy.push_back(new Candy(1, D3DXVECTOR3(400,25,400)));
 	mCandy.push_back(new Candy(0, D3DXVECTOR3(50,25,50)));
 	mCandy.push_back(new Candy(0, D3DXVECTOR3(200,25,50)));
+	mCandy.push_back(new Candy(0, D3DXVECTOR3(400,25,50)));
+	mCandy.push_back(new Candy(0, D3DXVECTOR3(600,25,50)));
+	mCandy.push_back(new Candy(0, D3DXVECTOR3(50,25,250)));
+	mCandy.push_back(new Candy(0, D3DXVECTOR3(50,25,450)));
 }
 void WorldHandler::LoadWaypoints()
 {

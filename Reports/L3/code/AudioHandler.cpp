@@ -18,13 +18,14 @@ AudioHandler::~AudioHandler()
 	StopSound();
 
 	mBackgroundSound1->release();
-	mBackgroundSound2->release();
-	//mCandySound->release();
-	//mDeathSound->release();
-	//mGhostSound->release();
+	//mBackgroundSound2->release();
+	mCandySound->release();
+	mDeathSound->release();
+	mGhostSound->release();
 	//mMenuSound->release();
 	//mSuperCandySound->release();
 
+	/*
 	delete mBackgroundSound1;
 	delete mBackgroundSound2;
 	delete mCandySound;
@@ -32,17 +33,15 @@ AudioHandler::~AudioHandler()
 	delete mGhostSound;
 	delete mMenuSound;
 	delete mSuperCandySound;
+	*/
 	
-	delete mChannel1;
-	delete mChannel2;
-	delete mChannel3;
-	for (int i = 0; i < 4; i++)
-		delete mGhostChannel[i];
-	delete mGhostChannel;
-
+	//delete mChannel1;
+	//delete mChannel2;
+	//delete mChannel3;
+	//for (int i = 0; i < 4; i++)
+	//	delete mGhostChannel[i];
 	mSystem->close();
 	mSystem->release();
-	delete mSystem;
 }
 
 void AudioHandler::Initialize()

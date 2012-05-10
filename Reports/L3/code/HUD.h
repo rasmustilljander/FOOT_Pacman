@@ -17,6 +17,7 @@ public:
 
 		void Initialize(ID3D10Device* lDevice);
 		void Draw();
+		void DrawDeathEffect();
 
 		void setScore(int i) { mScore = i; };
 		void setLivesLeft(int i) { mLivesLeft = i; };
@@ -36,6 +37,7 @@ private:
 		ID3D10EffectShaderResourceVariable* mShaderTextureVariable;
 		ID3D10ShaderResourceView* mResourceView;
 		ID3D10Buffer* mVertexBuffer;
+		ID3D10Buffer* mDeathVB;
 		ID3DX10Font* mFont;
 
 		int mScore;
